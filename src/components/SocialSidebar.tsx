@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 const socials = [
   {
     label: 'Facebook',
@@ -60,9 +62,33 @@ const socials = [
 ];
 
 const SocialSidebar = () => {
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Find all light-background sections on the page
+      const lightSections = document.querySelectorAll('[data-theme="light"]');
+      const sidebarY = window.innerHeight / 2; // sidebar is vertically centered
+
+      let overLight = false;
+      lightSections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < sidebarY && rect.bottom > sidebarY) {
+          overLight = true;
+        }
+      });
+
+      setIsDark(!overLight);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // check on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <aside
-      className="hidden lg:flex flex-col gap-[18px] fixed right-6 top-1/2 -translate-y-1/2 z-50"
+      className="hidden lg:flex flex-col gap-[18px] fixed right-6 top-1/2 -translate-y-1/2 z-50 transition-colors duration-500"
     >
       {socials.map((s) => (
         <a
@@ -71,7 +97,11 @@ const SocialSidebar = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={s.label}
-          className="flex items-center justify-center text-white/60 hover:text-white hover:scale-110 transition-all duration-300"
+          className={`flex items-center justify-center hover:scale-110 transition-all duration-300 ${
+            isDark
+              ? "text-white/60 hover:text-white"
+              : "text-black/40 hover:text-black"
+          }`}
         >
           {s.icon}
         </a>

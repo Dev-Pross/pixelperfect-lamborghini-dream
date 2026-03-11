@@ -55,7 +55,7 @@ const ModelsSection = () => {
   const goNext = () => setActive((prev) => (prev + 1) % count);
 
   return (
-    <section className="bg-[#FAFAFA] overflow-hidden">
+    <section data-theme="light" className="bg-[#FAFAFA] overflow-hidden">
       {/* Top accent line */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-black/10 to-transparent" />
 
