@@ -1,39 +1,23 @@
-import { useState, useEffect, useRef } from "react";
 import NavBar from "@/components/NavBar";
 import HeroSection from "@/components/HeroSection";
-import RevealSection from "@/components/RevealSection";
 import ModelsSection from "@/components/ModelsSection";
-import BrandSection from "@/components/BrandSection";
-import SpecsSection from "@/components/SpecsSection";
+import DealerSection from "@/components/DealerSection";
+import ConfiguratorSection from "@/components/ConfiguratorSection";
+import NewsSection from "@/components/NewsSection";
 import FooterSection from "@/components/FooterSection";
 
 const Index = () => {
-  const [navVisible, setNavVisible] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-      setNavVisible(container.scrollTop > window.innerHeight * 0.5);
-    };
-
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <>
-      <NavBar visible={navVisible} />
-      <div ref={containerRef} className="snap-container">
-        <HeroSection onScrollPast={() => {}} />
-        <RevealSection />
+      <NavBar />
+      <main>
+        <HeroSection />
         <ModelsSection />
-        <SpecsSection />
-        <BrandSection />
-        <FooterSection />
-      </div>
+        <DealerSection />
+        <ConfiguratorSection />
+        <NewsSection />
+      </main>
+      <FooterSection />
     </>
   );
 };
