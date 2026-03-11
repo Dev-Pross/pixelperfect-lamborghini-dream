@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 const FooterSection = () => {
   return (
     <footer className="bg-background border-t border-border">
-      <div className="px-8 md:px-16 py-16">
-        {/* Logo */}
-        <div className="flex items-center justify-between mb-16">
-          <Link to="/" className="text-heading-xl text-2xl tracking-[0.15em] text-foreground">
+      <div className="px-6 sm:px-8 md:px-16 py-12 md:py-16">
+        {/* Logo + Nav */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-0 mb-12 md:mb-16">
+          <Link to="/" className="text-heading-xl text-xl md:text-2xl tracking-[0.15em] text-foreground">
             LAMBORGHINI
           </Link>
-          <div className="flex gap-8">
-            <Link to="/models" className="nav-link text-[11px]">Models</Link>
+          <div className="flex flex-wrap gap-4 md:gap-8">
+            <Link to="/#models" className="nav-link text-[11px]">Models</Link>
             <Link to="/configurator" className="nav-link text-[11px]">Configurator</Link>
-            <Link to="/dealerships" className="nav-link text-[11px]">Dealerships</Link>
-            <Link to="/news" className="nav-link text-[11px]">News</Link>
+            <Link to="/#dealerships" className="nav-link text-[11px]">Dealerships</Link>
+            <Link to="/#news" className="nav-link text-[11px]">News</Link>
           </div>
         </div>
 

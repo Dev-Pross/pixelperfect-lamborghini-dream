@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Search, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -17,11 +17,11 @@ const NavBar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-5 bg-background/80 backdrop-blur-md">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-5 bg-transparent mix-blend-difference pointer-events-none">
         {/* Left: Menu */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="flex items-center gap-3 text-foreground"
+          className="flex items-center gap-3 text-foreground pointer-events-auto"
         >
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
           <span className="text-xs tracking-[0.25em] uppercase font-body hidden md:inline">
@@ -30,7 +30,7 @@ const NavBar = () => {
         </button>
 
         {/* Center: Bull Logo */}
-        <Link to="/" className="absolute left-1/2 -translate-x-1/2">
+        <Link to="/" className="absolute left-1/2 -translate-x-1/2 pointer-events-auto">
           <svg
             width="40"
             height="40"
@@ -69,7 +69,7 @@ const NavBar = () => {
         </Link>
 
         {/* Right: Icons */}
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 pointer-events-auto">
           <button className="text-foreground hover:opacity-60 transition-opacity">
             <MessageCircle size={18} />
           </button>

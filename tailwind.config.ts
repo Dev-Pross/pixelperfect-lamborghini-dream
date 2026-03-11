@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         heading: ['Roboto Condensed', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
+        configurator: ['Nunito Sans', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

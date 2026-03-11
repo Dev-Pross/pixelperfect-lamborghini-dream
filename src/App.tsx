@@ -12,6 +12,8 @@ import NewsDetailPage from "./pages/NewsDetailPage.tsx";
 import DealershipsPage from "./pages/DealershipsPage.tsx";
 import ConfiguratorPage from "./pages/ConfiguratorPage.tsx";
 import ConfiguratorPageV2 from "./pages/ConfiguratorPageV2.tsx";
+import ConfiguratorFullPage from "./pages/ConfiguratorFullPage.tsx";
+import HeroPreviewPage from "./pages/HeroPreviewPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -45,8 +47,11 @@ const App = () => (
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/:slug" element={<NewsDetailPage />} />
           <Route path="/dealerships" element={<DealershipsPage />} />
-          <Route path="/configurator" element={<ConfiguratorPage />} />
+          <Route path="/configurator" element={<ConfiguratorFullPage />} />
+          <Route path="/configurator/:modelSlug" element={<ConfiguratorFullPage />} />
+          <Route path="/configurator-old" element={<ConfiguratorPage />} />
           <Route path="/configurator-v2" element={<ConfiguratorPageV2 />} />
+          <Route path="/hero-preview" element={<HeroPreviewPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

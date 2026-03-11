@@ -135,32 +135,26 @@ const ConfiguratorPageV2 = () => {
       </div>
 
       {/* Specifications Footer */}
-      <div className="w-full px-[5vw] lg:px-0 lg:max-w-[1620px] mx-auto pb-6 lg:pb-[20px] flex gap-1 lg:gap-0 lg:flex-row flex-wrap items-center justify-center lg:justify-between z-20 text-[12px] lg:text-[15px] text-[#8E8E8E] font-light">
-        <div className="whitespace-nowrap">Length: {activeTab.stats.length}</div>
+      <div className="w-full px-4 sm:px-[5vw] lg:px-0 lg:max-w-[1620px] mx-auto pb-4 lg:pb-[20px] grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-row items-center justify-center lg:justify-between z-20 text-[11px] sm:text-[12px] lg:text-[15px] text-[#8E8E8E] font-light gap-2 sm:gap-3 lg:gap-0">
+        <div className="whitespace-nowrap text-center">Length: {activeTab.stats.length}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
-        <div className="block lg:hidden w-[1px] h-[10px] bg-[#8E8E8E]"></div>
 
-        <div className="whitespace-nowrap">Width: {activeTab.stats.width}</div>
+        <div className="whitespace-nowrap text-center">Width: {activeTab.stats.width}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
-        <div className="block lg:hidden w-[1px] h-[10px] bg-[#8E8E8E]"></div>
 
-        <div className="whitespace-nowrap">Depth: {activeTab.stats.depth}</div>
+        <div className="whitespace-nowrap text-center">Depth: {activeTab.stats.depth}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
-        <div className="block lg:hidden w-[1px] h-[10px] bg-[#8E8E8E]"></div>
 
-        <div className="whitespace-nowrap">Seating: {activeTab.stats.seating}</div>
+        <div className="whitespace-nowrap text-center">Seating: {activeTab.stats.seating}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
-        <div className="block lg:hidden w-[1px] h-[10px] bg-[#8E8E8E]"></div>
 
-        <div className="whitespace-nowrap">Engine Brand: {activeTab.stats.brand}</div>
+        <div className="whitespace-nowrap text-center">Engine: {activeTab.stats.brand}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
-        <div className="block lg:hidden w-[1px] h-[10px] bg-[#8E8E8E]"></div>
         
-        <div className="whitespace-nowrap">Engine: {activeTab.stats.engine}</div>
+        <div className="whitespace-nowrap text-center">{activeTab.stats.engine}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
-        <div className="block lg:hidden w-[1px] h-[10px] bg-[#8E8E8E]"></div>
 
-        <div className="whitespace-nowrap text-center lg:text-left w-full lg:w-auto mt-2 lg:mt-0">Certification: {activeTab.stats.cert}</div>
+        <div className="whitespace-nowrap text-center col-span-2 sm:col-span-1">Cert: {activeTab.stats.cert}</div>
       </div>
 
       {/* Social Icons Sidebar */}
