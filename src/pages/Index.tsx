@@ -7,6 +7,7 @@ import ConfiguratorSection from "@/components/ConfiguratorSection";
 import NewsSection from "@/components/NewsSection";
 import FooterSection from "@/components/FooterSection";
 import SocialSidebar from "@/components/SocialSidebar";
+import ConfiguratorPageV2 from "./ConfiguratorPageV2";
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
       <SocialSidebar />
       <main>
         <HeroSection />
+        <ConfiguratorPageV2 />
         <ModelsSection />
 
         <ModelsHeroSlides />

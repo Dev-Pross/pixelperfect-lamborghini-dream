@@ -10,6 +10,7 @@ import NewsPage from "./pages/NewsPage.tsx";
 import NewsDetailPage from "./pages/NewsDetailPage.tsx";
 import DealershipsPage from "./pages/DealershipsPage.tsx";
 import ConfiguratorPage from "./pages/ConfiguratorPage.tsx";
+import ConfiguratorPageV2 from "./pages/ConfiguratorPageV2.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/news/:slug" element={<NewsDetailPage />} />
           <Route path="/dealerships" element={<DealershipsPage />} />
           <Route path="/configurator" element={<ConfiguratorPage />} />
+          <Route path="/configurator-v2" element={<ConfiguratorPageV2 />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

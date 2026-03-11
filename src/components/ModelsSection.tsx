@@ -5,6 +5,9 @@ import temerarioImg from "@/assets/temerario.jpg";
 import revueltoImg from "@/assets/revuelto.jpg";
 import urusImg from "@/assets/car-model-2.jpg";
 import huracanImg from "@/assets/car-model-1.jpg";
+// import modelRImg from '@/assets/slide-model-r.png';
+import modelFImg from '@/assets/slide-model-f.png';
+import modelRImg from '@/assets/model-r.png';
 
 const models = [
   {
@@ -14,7 +17,7 @@ const models = [
     letterColor: "#D4AF37",
     tagline: "Refined Performance",
     slug: "model-r",
-    image: temerarioImg,
+    image: modelRImg,
   },
   {
     name: "Model F",
@@ -23,7 +26,7 @@ const models = [
     letterColor: "#888888",
     tagline: "Pure Power on Water",
     slug: "model-f",
-    image: revueltoImg,
+    image: modelFImg,
   },
   {
     name: "Lumina",
