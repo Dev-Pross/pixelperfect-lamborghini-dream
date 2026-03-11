@@ -38,7 +38,7 @@ const articles = [
 
 const NewsSection = () => {
   return (
-    <section className="bg-background py-20">
+    <section id="news" className="bg-background py-20">
       <div className="px-8 md:px-16 flex items-center justify-between mb-12">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

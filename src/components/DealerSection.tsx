@@ -4,7 +4,7 @@ import dealerBg from "@/assets/dealer-bg.jpg";
 
 const DealerSection = () => {
   return (
-    <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    <section id="dealerships" className="relative h-[70vh] flex items-center justify-center overflow-hidden">
       <img
         src={dealerBg}
         alt="Supercar on mountain road"

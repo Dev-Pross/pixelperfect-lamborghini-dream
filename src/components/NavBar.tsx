@@ -4,12 +4,12 @@ import { Menu, X, Search, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const menuLinks = [
-  { label: "Models", href: "/models" },
+  { label: "Models", href: "/#models" },
   { label: "Configurator", href: "/configurator" },
-  { label: "Dealerships", href: "/dealerships" },
-  { label: "News", href: "/news" },
-  { label: "Brand", href: "#" },
-  { label: "Motorsport", href: "#" },
+  { label: "Dealerships", href: "/#dealerships" },
+  { label: "News", href: "/#news" },
+  { label: "Brand", href: "/#brand" },
+  { label: "Motorsport", href: "/#motorsport" },
 ];
 
 const NavBar = () => {
