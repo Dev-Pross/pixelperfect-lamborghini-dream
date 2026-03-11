@@ -6,11 +6,13 @@ import DealerSection from "@/components/DealerSection";
 import ConfiguratorSection from "@/components/ConfiguratorSection";
 import NewsSection from "@/components/NewsSection";
 import FooterSection from "@/components/FooterSection";
+import SocialSidebar from "@/components/SocialSidebar";
 
 const Index = () => {
   return (
     <>
       <NavBar />
+      <SocialSidebar />
       <main>
         <HeroSection />
         <ModelsSection />
