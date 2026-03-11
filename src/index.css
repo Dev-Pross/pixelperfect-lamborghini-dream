@@ -15,35 +15,35 @@
     --popover: 0 0% 5%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 51 100% 50%;
+    --primary: 0 0% 100%;
     --primary-foreground: 0 0% 0%;
 
     --secondary: 0 0% 10%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 60%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 51 100% 50%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 51 100% 50%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 100%;
 
     --radius: 0px;
 
     --sidebar-background: 0 0% 3%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 51 100% 50%;
+    --sidebar-primary: 0 0% 100%;
     --sidebar-primary-foreground: 0 0% 0%;
     --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 51 100% 50%;
+    --sidebar-ring: 0 0% 100%;
 
     --font-heading: 'Roboto Condensed', sans-serif;
     --font-body: 'Inter', sans-serif;
@@ -70,19 +70,6 @@
 }
 
 @layer utilities {
-  .snap-container {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
-    scroll-behavior: auto;
-  }
-
-  .snap-section {
-    scroll-snap-align: start;
-    min-height: 100vh;
-    height: 100vh;
-  }
-
   .text-heading-xl {
     font-family: var(--font-heading);
     font-weight: 700;
@@ -90,49 +77,58 @@
     letter-spacing: 0.02em;
   }
 
-  .btn-brutal {
-    @apply bg-background text-foreground border border-foreground px-8 py-3 text-sm font-medium tracking-widest uppercase transition-none;
+  .btn-outline-white {
+    @apply border border-foreground text-foreground px-8 py-3 text-xs font-medium tracking-[0.2em] uppercase bg-transparent;
     font-family: var(--font-body);
+    transition: background-color 0.3s, color 0.3s;
   }
 
-  .btn-brutal:hover {
-    @apply bg-primary text-primary-foreground border-primary;
-  }
-
-  .btn-primary-brutal {
-    @apply bg-primary text-primary-foreground px-8 py-3 text-sm font-medium tracking-widest uppercase transition-none;
-    font-family: var(--font-body);
-  }
-
-  .btn-primary-brutal:hover {
+  .btn-outline-white:hover {
     @apply bg-foreground text-background;
   }
 
-  .nav-link {
-    @apply text-foreground text-xs tracking-[0.25em] uppercase transition-none;
+  .btn-filled-white {
+    @apply bg-foreground text-background px-8 py-3 text-xs font-medium tracking-[0.2em] uppercase;
     font-family: var(--font-body);
-    font-weight: 500;
+    transition: opacity 0.3s;
+  }
+
+  .btn-filled-white:hover {
+    opacity: 0.85;
+  }
+
+  .nav-link {
+    @apply text-foreground text-xs tracking-[0.25em] uppercase;
+    font-family: var(--font-body);
+    font-weight: 400;
+    transition: opacity 0.3s;
   }
 
   .nav-link:hover {
-    @apply text-primary;
+    opacity: 0.6;
   }
 
-  .spec-value {
-    font-family: var(--font-heading);
-    @apply text-primary;
+  .section-label {
+    @apply text-xs tracking-[0.3em] uppercase text-muted-foreground;
+    font-family: var(--font-body);
+    font-weight: 400;
   }
 
   .section-line {
-    @apply w-12 h-[2px] bg-primary;
+    @apply w-12 h-[1px] bg-foreground;
   }
 }
 
-/* Hide scrollbar */
-.snap-container::-webkit-scrollbar {
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for horizontal scroll containers */
+.hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
-.snap-container {
+.hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

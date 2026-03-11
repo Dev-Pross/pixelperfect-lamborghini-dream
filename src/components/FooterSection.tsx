@@ -1,57 +1,57 @@
+import { Link } from "react-router-dom";
+
 const FooterSection = () => {
-  const columns = [
-    {
-      title: "Models",
-      links: ["Revuelto", "Huracán", "Urus", "Limited Series"],
-    },
-    {
-      title: "Brand",
-      links: ["Heritage", "Design", "Innovation", "Motorsport"],
-    },
-    {
-      title: "Experience",
-      links: ["Customization", "Driving Academy", "Events", "Museum"],
-    },
-    {
-      title: "Connect",
-      links: ["Dealer Locator", "Contact Us", "Newsletter", "Careers"],
-    },
-  ];
-
   return (
-    <section className="snap-section relative flex flex-col justify-end bg-background border-t border-border">
-      <div className="w-full max-w-7xl mx-auto px-8 py-16 flex-1 flex flex-col justify-center">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-          {columns.map((col) => (
-            <div key={col.title}>
-              <h4 className="text-heading-xl text-sm tracking-[0.2em] text-foreground mb-6">
-                {col.title}
-              </h4>
-              <ul className="space-y-3">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="nav-link text-muted-foreground text-[11px]">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="border-t border-border px-8 py-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-heading-xl text-3xl tracking-[0.2em] text-foreground">
+    <footer className="bg-background border-t border-border">
+      <div className="px-8 md:px-16 py-16">
+        {/* Logo */}
+        <div className="flex items-center justify-between mb-16">
+          <Link to="/" className="text-heading-xl text-2xl tracking-[0.15em] text-foreground">
             LAMBORGHINI
+          </Link>
+          <div className="flex gap-8">
+            <Link to="/models" className="nav-link text-[11px]">Models</Link>
+            <Link to="/configurator" className="nav-link text-[11px]">Configurator</Link>
+            <Link to="/dealerships" className="nav-link text-[11px]">Dealerships</Link>
+            <Link to="/news" className="nav-link text-[11px]">News</Link>
           </div>
-          <p className="text-muted-foreground text-[10px] tracking-widest uppercase font-body">
-            © 2026 Automobili Lamborghini S.p.A. — All rights reserved
+        </div>
+
+        {/* Disclaimers */}
+        <div className="space-y-3 mb-12">
+          <p className="text-[9px] text-muted-foreground leading-relaxed font-body">
+            Temerario: Fuel consumption combined: 10.5 l/100km; CO₂ emissions combined: 238 g/km. 
+            Efficiency class: G. The values shown are for demonstration purposes only.
+          </p>
+          <p className="text-[9px] text-muted-foreground leading-relaxed font-body">
+            Urus SE: Fuel consumption combined (weighted): 8.0 l/100km; CO₂ emissions combined (weighted): 182 g/km. 
+            Efficiency class: E. Electric range (WLTP): 60 km.
+          </p>
+          <p className="text-[9px] text-muted-foreground leading-relaxed font-body">
+            Revuelto: Fuel consumption combined (weighted): 11.9 l/100km; CO₂ emissions combined (weighted): 276 g/km. 
+            Efficiency class: G. Electric range (WLTP): 10 km.
           </p>
         </div>
+
+        {/* Bottom bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-border">
+          <p className="text-[10px] text-muted-foreground tracking-widest uppercase font-body">
+            © 2026 Automobili Lamborghini S.p.A. — All rights reserved
+          </p>
+          <div className="flex gap-6">
+            <a href="#" className="text-[10px] text-muted-foreground hover:text-foreground transition-colors font-body">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-[10px] text-muted-foreground hover:text-foreground transition-colors font-body">
+              Cookie Policy
+            </a>
+            <a href="#" className="text-[10px] text-muted-foreground hover:text-foreground transition-colors font-body">
+              Legal
+            </a>
+          </div>
+        </div>
       </div>
-    </section>
+    </footer>
   );
 };
 

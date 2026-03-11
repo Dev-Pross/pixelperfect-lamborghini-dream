@@ -1,91 +1,81 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import carModel1 from "@/assets/car-model-1.jpg";
-import carModel2 from "@/assets/car-model-2.jpg";
+import ModelCard from "./ModelCard";
+import temerarioImg from "@/assets/temerario.jpg";
+import revueltoImg from "@/assets/revuelto.jpg";
+import urusImg from "@/assets/car-model-2.jpg";
+import huracanImg from "@/assets/car-model-1.jpg";
 
 const models = [
   {
-    name: "HURACÁN",
-    subtitle: "Tecnica",
-    image: carModel1,
-    power: "640",
-    speed: "325",
-    acceleration: "3.2",
+    name: "Temerario",
+    tagline: "Beyond any satisfhat means",
+    slug: "temerario",
+    image: temerarioImg,
+    subModels: [
+      { name: "Temerario", image: temerarioImg },
+    ],
   },
   {
-    name: "URUS",
-    subtitle: "Performante",
-    image: carModel2,
-    power: "666",
-    speed: "306",
-    acceleration: "3.3",
+    name: "Urus",
+    tagline: "You can't hide who you are",
+    slug: "urus",
+    image: urusImg,
+    subModels: [
+      { name: "SE", image: urusImg },
+      { name: "S", image: urusImg },
+      { name: "Performante", image: urusImg },
+    ],
+  },
+  {
+    name: "Revuelto",
+    tagline: "The ultimate fusion of power",
+    slug: "revuelto",
+    image: revueltoImg,
+    subModels: [
+      { name: "Revuelto", image: revueltoImg },
+    ],
+  },
+  {
+    name: "Huracán",
+    tagline: "Every road becomes a racetrack",
+    slug: "huracan",
+    image: huracanImg,
+    subModels: [
+      { name: "Sterrato", image: huracanImg },
+      { name: "Tecnica", image: huracanImg },
+      { name: "STO", image: huracanImg },
+    ],
   },
 ];
 
 const ModelsSection = () => {
   return (
-    <section className="snap-section relative flex flex-col justify-center bg-background overflow-hidden">
-      <div className="w-full max-w-7xl mx-auto px-8 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+    <div>
+      {/* Models header */}
+      <section className="px-8 md:px-16 py-16 flex items-center justify-between">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="mb-12"
+          transition={{ duration: 0.5 }}
+          className="text-heading-xl text-3xl md:text-5xl text-foreground"
         >
-          <div className="section-line mb-4" />
-          <h2 className="text-4xl md:text-6xl text-heading-xl text-foreground">
-            Our Models
-          </h2>
-        </motion.div>
+          Models
+        </motion.h2>
+        <Link to="/models" className="nav-link hidden md:inline-flex items-center gap-2">
+          Discover all Models
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeWidth={1.5} d="M5 12h14m-6-6l6 6-6 6" />
+          </svg>
+        </Link>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-          {models.map((model, i) => (
-            <motion.div
-              key={model.name}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              viewport={{ once: true }}
-              className="group relative border border-border overflow-hidden cursor-pointer"
-            >
-              <div className="aspect-video relative overflow-hidden">
-                <img
-                  src={model.image}
-                  alt={model.name}
-                  className="w-full h-full object-cover transition-none group-hover:brightness-110"
-                />
-                <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-none" />
-              </div>
-              <div className="p-6 bg-background border-t border-border">
-                <h3 className="text-2xl md:text-3xl text-heading-xl text-foreground">
-                  {model.name}
-                </h3>
-                <p className="text-muted-foreground text-xs tracking-[0.2em] uppercase mt-1">
-                  {model.subtitle}
-                </p>
-                <div className="flex gap-8 mt-6">
-                  <div>
-                    <span className="spec-value text-2xl">{model.power}</span>
-                    <span className="text-muted-foreground text-xs block uppercase tracking-widest mt-1">CV</span>
-                  </div>
-                  <div>
-                    <span className="spec-value text-2xl">{model.speed}</span>
-                    <span className="text-muted-foreground text-xs block uppercase tracking-widest mt-1">km/h</span>
-                  </div>
-                  <div>
-                    <span className="spec-value text-2xl">{model.acceleration}s</span>
-                    <span className="text-muted-foreground text-xs block uppercase tracking-widest mt-1">0-100</span>
-                  </div>
-                </div>
-                <button className="btn-brutal text-xs mt-6 w-full">
-                  Explore
-                </button>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+      {/* Model cards */}
+      {models.map((model) => (
+        <ModelCard key={model.name} {...model} />
+      ))}
+    </div>
   );
 };
 
