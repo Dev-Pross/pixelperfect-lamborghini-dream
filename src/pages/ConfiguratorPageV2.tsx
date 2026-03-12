@@ -4,10 +4,12 @@ import { Facebook, Linkedin, Youtube, Instagram, Music2, MessageCircle } from 'l
 
 // Using actual image paths available in the project
 import modelRImg from '@/assets/model-r.png';
-import modelFImg from '@/assets/model-f.png';
+// import modelFImg from '@/assets/model-f.png';
 import luminaImg from '@/assets/revuelto.jpg';
 import cyberImg from '@/assets/temerario.jpg';
-
+// import modelFImg from '@/assets/slide-model-r.png';
+// slide-model-f.png
+import  modelFImg from  '@/assets/slide-model-f.png';
 const MODELS = [
   {
     id: 'MODEL R',

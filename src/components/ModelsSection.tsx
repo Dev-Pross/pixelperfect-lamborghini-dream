@@ -7,8 +7,9 @@ import urusImg from "@/assets/car-model-2.jpg";
 import huracanImg from "@/assets/car-model-1.jpg";
 // import modelRImg from '@/assets/slide-model-r.png';
 import modelFImg from '@/assets/slide-model-f.png';
-import modelRImg from '@/assets/model-r.png';
-
+    // import modelRImg from '@/assets/model-r.png';
+    // slide-model-r.png
+import modelRImg from '@/assets/slide-model-r.png';
 const models = [
   {
     name: "Model R",
