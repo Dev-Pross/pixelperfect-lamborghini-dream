@@ -189,7 +189,7 @@ const ModelsSection = () => {
                   <img
                     src={model.image}
                     alt={model.name}
-                    className="w-full h-auto object-contain drop-shadow-2xl"
+                    className="w-full h-auto object-contain [clip-path:polygon(0_0,100%_0,100%_80%,0_80%)] translate-y-[10%]"
                   />
                   {model.comingSoon && isCenter && (
                     <div className="absolute top-0 right-0 md:top-2 md:right-2 bg-black text-white text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5">
