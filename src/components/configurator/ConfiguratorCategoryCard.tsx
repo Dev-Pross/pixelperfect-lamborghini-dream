@@ -5,13 +5,12 @@ interface Props {
   title: string;
   subtitle: string;
   selectedOptionName?: string;
+  isTouched: boolean;
   onClick: () => void;
   index: number;
 }
 
-const ConfiguratorCategoryCard = ({ title, subtitle, selectedOptionName, onClick, index }: Props) => {
-  const isConfigured = !!selectedOptionName;
-
+const ConfiguratorCategoryCard = ({ title, subtitle, selectedOptionName, isTouched, onClick, index }: Props) => {
   return (
     <motion.button
       initial={{ opacity: 0, y: 10 }}
@@ -21,13 +20,13 @@ const ConfiguratorCategoryCard = ({ title, subtitle, selectedOptionName, onClick
       whileHover={{ scale: 1.01 }}
       whileTap={{ scale: 0.98 }}
       className={`w-full flex items-center justify-between px-4 py-3.5 rounded-[10px] transition-all duration-200 group border ${
-        isConfigured
+        isTouched
           ? 'bg-[#f0faf9] border-[#81D8D0]/25 hover:border-[#81D8D0]/50 hover:shadow-sm'
           : 'bg-white border-[#eee] hover:border-[#ddd] hover:shadow-sm'
       }`}
     >
       <div className="flex items-center gap-3 text-left min-w-0">
-        {isConfigured && (
+        {isTouched && (
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -39,11 +38,11 @@ const ConfiguratorCategoryCard = ({ title, subtitle, selectedOptionName, onClick
         )}
 
         <div className="min-w-0">
-          <div className="font-['Nunito_Sans',sans-serif] font-extrabold text-[14px] lg:text-[15px] text-[#1a1a1a] leading-tight">
+          <div className="font-configurator font-extrabold text-[14px] lg:text-[15px] text-[#1a1a1a] leading-tight">
             {title}
           </div>
-          <div className="font-['Nunito_Sans',sans-serif] font-medium text-[11px] lg:text-[12px] mt-0.5 truncate">
-            {isConfigured ? (
+          <div className="font-configurator font-medium text-[11px] lg:text-[12px] mt-0.5 truncate">
+            {selectedOptionName ? (
               <span className="text-[#0fa89e]">{selectedOptionName}</span>
             ) : (
               <span className="text-[#bbb]">{subtitle}</span>

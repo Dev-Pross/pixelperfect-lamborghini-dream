@@ -1,4 +1,5 @@
-import { useReducer } from 'react';
+import { useReducer, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import { CONFIGURATOR_MODELS, DEFAULT_SELECTIONS } from '@/data/configuratorData';
 
 export type Phase = 'landing' | 'canvas';
@@ -11,6 +12,7 @@ export interface ConfiguratorState {
   activeTab: TabId;
   activeCategory: string | null;
   selections: Record<string, string>;
+  touched: string[];
   showDownloadModal: boolean;
 }
 
@@ -25,19 +27,29 @@ export type ConfiguratorAction =
   | { type: 'SELECT_CATEGORY'; categoryId: string }
   | { type: 'BACK_TO_CATEGORIES' }
   | { type: 'SELECT_OPTION'; categoryId: string; optionId: string }
+  | { type: 'NAVIGATE_CATEGORY'; direction: 'next' | 'prev' }
   | { type: 'RESET_ALL' }
   | { type: 'SHOW_DOWNLOAD' }
   | { type: 'HIDE_DOWNLOAD' };
 
-const initialState: ConfiguratorState = {
-  phase: 'landing',
-  selectedModelIndex: 0,
-  sidebarOpen: false,
-  activeTab: 'exterior',
-  activeCategory: null,
-  selections: { ...DEFAULT_SELECTIONS },
-  showDownloadModal: false,
-};
+const ALL_CATEGORY_IDS = [
+  'paint', 'wheels', 'window-tint', 'body-kit',
+  'upholstery', 'dashboard', 'steering', 'ambient',
+  'audio', 'performance',
+];
+
+function createInitialState(modelIndex: number): ConfiguratorState {
+  return {
+    phase: 'landing',
+    selectedModelIndex: modelIndex,
+    sidebarOpen: false,
+    activeTab: 'exterior',
+    activeCategory: null,
+    selections: { ...DEFAULT_SELECTIONS },
+    touched: [],
+    showDownloadModal: false,
+  };
+}
 
 function reducer(state: ConfiguratorState, action: ConfiguratorAction): ConfiguratorState {
   switch (action.type) {
@@ -78,11 +90,29 @@ function reducer(state: ConfiguratorState, action: ConfiguratorAction): Configur
     case 'BACK_TO_CATEGORIES':
       return { ...state, activeCategory: null };
 
-    case 'SELECT_OPTION':
+    case 'SELECT_OPTION': {
+      const newTouched = state.touched.includes(action.categoryId)
+        ? state.touched
+        : [...state.touched, action.categoryId];
       return {
         ...state,
         selections: { ...state.selections, [action.categoryId]: action.optionId },
+        touched: newTouched,
       };
+    }
+
+    case 'NAVIGATE_CATEGORY': {
+      const currentIndex = state.activeCategory
+        ? ALL_CATEGORY_IDS.indexOf(state.activeCategory)
+        : -1;
+      let nextIndex: number;
+      if (action.direction === 'next') {
+        nextIndex = currentIndex < ALL_CATEGORY_IDS.length - 1 ? currentIndex + 1 : 0;
+      } else {
+        nextIndex = currentIndex > 0 ? currentIndex - 1 : ALL_CATEGORY_IDS.length - 1;
+      }
+      return { ...state, activeCategory: ALL_CATEGORY_IDS[nextIndex] };
+    }
 
     case 'RESET_ALL':
       return {
@@ -90,6 +120,7 @@ function reducer(state: ConfiguratorState, action: ConfiguratorAction): Configur
         selections: { ...DEFAULT_SELECTIONS },
         activeCategory: null,
         activeTab: 'exterior',
+        touched: [],
       };
 
     case 'SHOW_DOWNLOAD':
@@ -103,8 +134,18 @@ function reducer(state: ConfiguratorState, action: ConfiguratorAction): Configur
   }
 }
 
+export const ALL_CATEGORIES = ALL_CATEGORY_IDS;
+
 export function useConfiguratorState() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { modelSlug } = useParams<{ modelSlug?: string }>();
+
+  const initialModelIndex = useMemo(() => {
+    if (!modelSlug) return 0;
+    const idx = CONFIGURATOR_MODELS.findIndex((m) => m.slug === modelSlug);
+    return idx >= 0 ? idx : 0;
+  }, [modelSlug]);
+
+  const [state, dispatch] = useReducer(reducer, initialModelIndex, createInitialState);
   const model = CONFIGURATOR_MODELS[state.selectedModelIndex];
   return { state, dispatch, model };
 }

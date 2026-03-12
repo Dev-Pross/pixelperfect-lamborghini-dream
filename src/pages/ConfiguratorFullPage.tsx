@@ -59,6 +59,7 @@ const ConfiguratorFullPage = () => {
                     activeTab={state.activeTab}
                     activeCategory={state.activeCategory}
                     selections={state.selections}
+                    touched={state.touched}
                     dispatch={dispatch}
                   />
                 )}

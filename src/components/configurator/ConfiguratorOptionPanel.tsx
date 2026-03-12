@@ -29,10 +29,10 @@ const ConfiguratorOptionPanel = ({ category, selectedOptionId, onSelect, onBack 
           whileTap={{ scale: 0.97 }}
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-          <span className="font-['Nunito_Sans',sans-serif] text-[12px] font-medium">Back</span>
+          <span className="font-configurator text-[12px] font-medium">Back</span>
         </motion.button>
 
-        <h3 className="font-['Nunito_Sans',sans-serif] font-extrabold text-[18px] text-[#1a1a1a]">
+        <h3 className="font-configurator font-extrabold text-[18px] text-[#1a1a1a]">
           {category.title}
         </h3>
 
@@ -48,11 +48,11 @@ const ConfiguratorOptionPanel = ({ category, selectedOptionId, onSelect, onBack 
               <div className="w-4 h-4 rounded-full bg-[#81D8D0] flex items-center justify-center">
                 <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
               </div>
-              <span className="font-['Nunito_Sans',sans-serif] text-[12px] text-[#0fa89e] font-medium">
+              <span className="font-configurator text-[12px] text-[#0fa89e] font-medium">
                 {selectedOption.name}
               </span>
               {selectedOption.price && selectedOption.price !== 'Included' && (
-                <span className="font-['Nunito_Sans',sans-serif] text-[11px] text-[#e6a817] font-semibold ml-auto">
+                <span className="font-configurator text-[11px] text-[#e6a817] font-semibold ml-auto">
                   {selectedOption.price}
                 </span>
               )}
@@ -62,7 +62,7 @@ const ConfiguratorOptionPanel = ({ category, selectedOptionId, onSelect, onBack 
               key="none"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="font-['Nunito_Sans',sans-serif] text-[12px] text-[#ccc] mt-1.5"
+              className="font-configurator text-[12px] text-[#ccc] mt-1.5"
             >
               Choose an option below
             </motion.p>
@@ -146,20 +146,20 @@ const ConfiguratorOptionPanel = ({ category, selectedOptionId, onSelect, onBack 
                           style={{ background: option.gradient || option.color }}
                         />
                       )}
-                      <span className={`font-['Nunito_Sans',sans-serif] font-bold text-[13px] ${
+                      <span className={`font-configurator font-bold text-[13px] ${
                         isSelected ? 'text-[#0fa89e]' : 'text-[#1a1a1a]'
                       }`}>
                         {option.name}
                       </span>
                     </div>
-                    <p className="font-['Nunito_Sans',sans-serif] text-[11px] text-[#aaa] mt-0.5 leading-relaxed">
+                    <p className="font-configurator text-[11px] text-[#aaa] mt-0.5 leading-relaxed">
                       {option.description}
                     </p>
                   </div>
 
                   <div className="flex flex-col items-end gap-1.5 shrink-0">
                     {option.price && (
-                      <span className={`font-['Nunito_Sans',sans-serif] text-[11px] font-semibold whitespace-nowrap ${
+                      <span className={`font-configurator text-[11px] font-semibold whitespace-nowrap ${
                         option.price === 'Included'
                           ? 'text-[#81D8D0]'
                           : isSelected ? 'text-[#e6a817]' : 'text-[#bbb]'

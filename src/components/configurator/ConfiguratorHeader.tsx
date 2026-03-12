@@ -39,14 +39,14 @@ const ConfiguratorHeader = ({ model, sidebarOpen, onToggleSidebar, onBackToLandi
           title="Go to homepage"
         >
           <Home className="w-4 h-4 text-[#888] group-hover:text-[#81D8D0] transition-colors" />
-          <span className="font-['Nunito_Sans',sans-serif] font-black text-[15px] lg:text-[17px] text-[#333] tracking-tight">
+          <span className="font-configurator font-black text-[15px] lg:text-[17px] text-[#333] tracking-tight">
             DTS
           </span>
         </Link>
 
         <div className="w-px h-5 bg-black/10 mx-1" />
 
-        <span className="font-['Nunito_Sans',sans-serif] font-bold text-[14px] lg:text-[16px] text-[#555] tracking-tight">
+        <span className="font-configurator font-bold text-[14px] lg:text-[16px] text-[#555] tracking-tight">
           {model.name}
         </span>
       </div>
@@ -59,7 +59,7 @@ const ConfiguratorHeader = ({ model, sidebarOpen, onToggleSidebar, onBackToLandi
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
         >
-          <span className="font-['Nunito_Sans',sans-serif] font-bold text-[11px] lg:text-[12px] text-[#111] tracking-wide">
+          <span className="font-configurator font-bold text-[11px] lg:text-[12px] text-[#111] tracking-wide">
             YOUR CAR
           </span>
         </motion.button>
@@ -75,7 +75,7 @@ const ConfiguratorHeader = ({ model, sidebarOpen, onToggleSidebar, onBackToLandi
           whileTap={{ scale: 0.97 }}
         >
           <PanelRight className="w-[16px] h-[16px]" strokeWidth={1.8} />
-          <span className="hidden sm:inline font-['Nunito_Sans',sans-serif] font-semibold text-[11px] tracking-wide">
+          <span className="hidden sm:inline font-configurator font-semibold text-[11px] tracking-wide">
             {sidebarOpen ? 'CLOSE' : 'CONFIGURE'}
           </span>
         </motion.button>

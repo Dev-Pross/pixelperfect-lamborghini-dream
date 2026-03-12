@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, ContactShadows, Environment } from '@react-three/drei';
 import * as THREE from 'three';
@@ -11,6 +11,16 @@ interface Props {
   model: ConfiguratorModel;
   sidebarOpen: boolean;
   selections: Record<string, string>;
+}
+
+function detectWebGL(): boolean {
+  try {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl2') || canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    return !!gl;
+  } catch {
+    return false;
+  }
 }
 
 function LoadingSpinner() {
@@ -66,7 +76,7 @@ function SceneContent({ selections }: { selections: Record<string, string> }) {
         far={5}
       />
 
-      {/* Showroom floor — reflective */}
+      {/* Showroom floor */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.005, 0]} receiveShadow>
         <circleGeometry args={[25, 64]} />
         <meshStandardMaterial
@@ -98,7 +108,39 @@ function SceneContent({ selections }: { selections: Record<string, string> }) {
   );
 }
 
-const ConfiguratorCanvas = ({ sidebarOpen, selections }: Props) => {
+function WebGLFallback({ model }: { model: ConfiguratorModel }) {
+  return (
+    <div
+      className="absolute inset-0 flex flex-col items-center justify-center"
+      style={{ background: 'linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 40%, #dcdcdc 100%)' }}
+    >
+      <img
+        src={model.image}
+        alt={model.name}
+        className="w-[60%] max-w-[700px] object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.15)]"
+      />
+      <div className="mt-6 px-5 py-3 bg-black/[0.04] rounded-xl text-center">
+        <p className="font-configurator text-[13px] font-semibold text-[#555]">
+          3D view unavailable
+        </p>
+        <p className="font-configurator text-[11px] text-[#999] mt-1">
+          Enable hardware acceleration in your browser settings for the full 3D experience
+        </p>
+      </div>
+    </div>
+  );
+}
+
+const ConfiguratorCanvas = ({ model, sidebarOpen, selections }: Props) => {
+  const [webglAvailable, setWebglAvailable] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    setWebglAvailable(detectWebGL());
+  }, []);
+
+  // Still loading the check
+  if (webglAvailable === null) return null;
+
   return (
     <motion.div
       className="absolute inset-0"
@@ -107,38 +149,44 @@ const ConfiguratorCanvas = ({ sidebarOpen, selections }: Props) => {
       }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Canvas
-        shadows
-        camera={{
-          position: [3.5, 1.8, 4],
-          fov: 40,
-          near: 0.1,
-          far: 100,
-        }}
-        gl={{
-          antialias: true,
-          toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1.0,
-          preserveDrawingBuffer: true,
-        }}
-        style={{ background: 'linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 40%, #dcdcdc 100%)' }}
-      >
-        <SceneContent selections={selections} />
-      </Canvas>
+      {webglAvailable ? (
+        <>
+          <Canvas
+            shadows
+            camera={{
+              position: [3.5, 1.8, 4],
+              fov: 40,
+              near: 0.1,
+              far: 100,
+            }}
+            gl={{
+              antialias: true,
+              toneMapping: THREE.ACESFilmicToneMapping,
+              toneMappingExposure: 1.0,
+              preserveDrawingBuffer: true,
+            }}
+            style={{ background: 'linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 40%, #dcdcdc 100%)' }}
+          >
+            <SceneContent selections={selections} />
+          </Canvas>
 
-      {/* Hint */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 pointer-events-none select-none"
-      >
-        <div className="px-4 py-1.5 bg-black/[0.04] backdrop-blur-sm rounded-full">
-          <span className="text-[10px] font-['Nunito_Sans',sans-serif] font-medium tracking-[0.15em] uppercase text-black/25">
-            Drag to rotate &bull; Scroll to zoom
-          </span>
-        </div>
-      </motion.div>
+          {/* Hint */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.5 }}
+            className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 pointer-events-none select-none"
+          >
+            <div className="px-4 py-1.5 bg-black/[0.04] backdrop-blur-sm rounded-full">
+              <span className="font-configurator text-[10px] font-medium tracking-[0.15em] uppercase text-black/25">
+                Drag to rotate &bull; Scroll to zoom
+              </span>
+            </div>
+          </motion.div>
+        </>
+      ) : (
+        <WebGLFallback model={model} />
+      )}
     </motion.div>
   );
 };

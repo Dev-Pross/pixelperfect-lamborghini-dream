@@ -75,7 +75,6 @@ export interface CarMaterialSet {
   dashboard: THREE.MeshStandardMaterial;
   ambientColor: string;
   caliperColor: string;
-  showSpoiler: boolean;
 }
 
 export function useCarMaterials(selections: Record<string, string>): CarMaterialSet {
@@ -86,7 +85,6 @@ export function useCarMaterials(selections: Record<string, string>): CarMaterial
   const dashboardId = selections.dashboard || 'piano-black';
   const ambientId = selections.ambient || 'white-ambient';
   const perfId = selections.performance || 'standard-perf';
-  const bodyKitId = selections['body-kit'] || 'stock';
 
   const body = useMemo(() => {
     const color = PAINT_COLORS[paintId] || '#C0392B';
@@ -144,7 +142,6 @@ export function useCarMaterials(selections: Record<string, string>): CarMaterial
 
   const ambientColor = AMBIENT_COLORS[ambientId] || '#ffffff';
   const caliperColor = PERF_CALIPER_COLORS[perfId] || '#333333';
-  const showSpoiler = bodyKitId === 'carbon-aero' || bodyKitId === 'widebody' || bodyKitId === 'track-pack';
 
-  return { body, glass, rim, leather, dashboard, ambientColor, caliperColor, showSpoiler };
+  return { body, glass, rim, leather, dashboard, ambientColor, caliperColor };
 }

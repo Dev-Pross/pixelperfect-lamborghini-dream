@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -12,12 +12,16 @@ interface Props {
   dispatch: React.Dispatch<ConfiguratorAction>;
 }
 
-const COLOR_SWATCHES = [
-  { id: 'rosso-corsa', gradient: 'linear-gradient(130.6deg, #BE292A 20.06%, #FF5850 50.47%, #BA0506 83.49%)', filter: 'none', label: 'Rosso Corsa' },
-  { id: 'verde-mantis', gradient: 'linear-gradient(130.6deg, #19C419 20.06%, #41EA4D 50.47%, #00B71B 83.49%)', filter: 'hue-rotate(100deg) saturate(1.4)', label: 'Verde Mantis' },
-  { id: 'giallo-orion', gradient: 'linear-gradient(130.6deg, #D4AC0D 20.06%, #F9E154 50.47%, #B7950B 83.49%)', filter: 'hue-rotate(40deg) saturate(1.6) brightness(1.15)', label: 'Giallo Orion' },
-  { id: 'blu-nethuns', gradient: 'linear-gradient(130.6deg, #1A5276 20.06%, #3498DB 50.47%, #154360 83.49%)', filter: 'hue-rotate(200deg) saturate(1.3)', label: 'Blu Nethuns' },
-  { id: 'nero-nemesis', gradient: 'linear-gradient(130.6deg, #0A0A0A 20.06%, #3D3D3D 50.47%, #000000 83.49%)', filter: 'saturate(0) brightness(0.25)', label: 'Nero Nemesis' },
+// All 8 paint colors as real swatches from configuratorData
+const PAINT_SWATCHES = [
+  { id: 'rosso-corsa', gradient: 'linear-gradient(130.6deg, #BE292A 20.06%, #FF5850 50.47%, #BA0506 83.49%)', label: 'Rosso Corsa' },
+  { id: 'verde-mantis', gradient: 'linear-gradient(130.6deg, #19C419 20.06%, #41EA4D 50.47%, #00B71B 83.49%)', label: 'Verde Mantis' },
+  { id: 'giallo-orion', gradient: 'linear-gradient(130.6deg, #D4AC0D 20.06%, #F9E154 50.47%, #B7950B 83.49%)', label: 'Giallo Orion' },
+  { id: 'bianco-monocerus', gradient: 'linear-gradient(130.6deg, #D5D8DC 20.06%, #FDFEFE 50.47%, #BDC3C7 83.49%)', label: 'Bianco Monocerus' },
+  { id: 'nero-nemesis', gradient: 'linear-gradient(130.6deg, #0A0A0A 20.06%, #3D3D3D 50.47%, #000000 83.49%)', label: 'Nero Nemesis' },
+  { id: 'blu-nethuns', gradient: 'linear-gradient(130.6deg, #1A5276 20.06%, #3498DB 50.47%, #154360 83.49%)', label: 'Blu Nethuns' },
+  { id: 'grigio-telesto', gradient: 'linear-gradient(130.6deg, #616A6B 20.06%, #95A5A6 50.47%, #515A5A 83.49%)', label: 'Grigio Telesto' },
+  { id: 'arancio-borealis', gradient: 'linear-gradient(130.6deg, #CA6F1E 20.06%, #F0932B 50.47%, #A04000 83.49%)', label: 'Arancio Borealis' },
 ];
 
 const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => {
@@ -39,11 +43,27 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
     goToModel(newIndex);
   };
 
-  const currentSwatch = COLOR_SWATCHES[activeColor];
+  // Visual-only color preview on the landing (does not modify config state)
+  const handleColorSelect = useCallback((index: number) => {
+    setActiveColor(index);
+  }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') prevModel();
+      else if (e.key === 'ArrowRight') nextModel();
+      else if (e.key === 'Enter') dispatch({ type: 'START_CONFIGURATION' });
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedModelIndex]);
+
+  const currentSwatch = PAINT_SWATCHES[activeColor];
 
   return (
     <div className="relative w-full h-full flex flex-col overflow-hidden bg-[#111]">
-
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -8 }}
@@ -51,24 +71,21 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
         transition={{ duration: 0.6, delay: 0.1 }}
         className="relative z-30 w-full h-[60px] sm:h-[70px] lg:h-[80px] flex items-center justify-between px-6 lg:px-10 shrink-0"
       >
-        {/* Home link */}
         <Link
           to="/"
           className="flex items-center gap-2.5 text-white/60 hover:text-white transition-all group"
         >
           <Home className="w-4 h-4" />
-          <span className="font-['Nunito_Sans',sans-serif] font-black text-[16px] lg:text-[18px] tracking-tight text-white/90 group-hover:text-white transition-colors">
+          <span className="font-configurator font-black text-[16px] lg:text-[18px] tracking-tight text-white/90 group-hover:text-white transition-colors">
             DTS
           </span>
         </Link>
 
-        {/* Center: brand */}
-        <span className="absolute left-1/2 -translate-x-1/2 font-['Nunito_Sans',sans-serif] font-light text-[11px] tracking-[0.4em] text-white/30 uppercase">
+        <span className="absolute left-1/2 -translate-x-1/2 font-configurator font-light text-[11px] tracking-[0.4em] text-white/30 uppercase">
           Drive to Survive
         </span>
 
-        {/* Model count */}
-        <span className="font-['Nunito_Sans',sans-serif] text-[12px] text-white/30 font-medium">
+        <span className="font-configurator text-[12px] text-white/30 font-medium">
           {String(selectedModelIndex + 1).padStart(2, '0')} / {String(CONFIGURATOR_MODELS.length).padStart(2, '0')}
         </span>
       </motion.div>
@@ -86,7 +103,7 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
               exit={{ opacity: 0, x: direction * -30 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="font-['Nunito_Sans',sans-serif] text-[11px] sm:text-[13px] lg:text-[15px] tracking-[0.35em] font-light text-white/40 block">
+              <span className="font-configurator text-[11px] sm:text-[13px] lg:text-[15px] tracking-[0.35em] font-light text-white/40 block">
                 MODEL
               </span>
               <span
@@ -114,6 +131,7 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
                 backgroundColor: selectedModelIndex === i ? m.activeColor : '#fff',
               }}
               title={m.name}
+              aria-label={`Select ${m.name}`}
             />
           ))}
         </div>
@@ -127,39 +145,34 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3, delay: 0.15 }}
-              className="font-['Nunito_Sans',sans-serif] font-light text-[13px] lg:text-[15px] leading-relaxed text-white/35"
+              className="font-configurator font-light text-[13px] lg:text-[15px] leading-relaxed text-white/35"
             >
               {model.desc}
             </motion.p>
           </AnimatePresence>
         </div>
 
-        {/* Car Image */}
+        {/* Car Image area — transparent to show 3D behind */}
         <div className="flex-1 flex items-center justify-center relative px-4">
           <div className="absolute w-[55%] h-[25%] bottom-[18%] bg-[#050505] blur-[50px] rounded-full pointer-events-none" />
-          <div
-            className="absolute w-[50%] lg:w-[42%] h-[40px] lg:h-[90px] bottom-[16%] lg:bottom-[18%] rounded-[50%] pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse, rgba(0,0,0,0.5) 0%, transparent 70%)',
-              filter: 'blur(15px)',
-            }}
-          />
 
           <AnimatePresence mode="wait">
-            <motion.img
-              key={`${model.id}-${activeColor}`}
-              src={model.image}
-              alt={model.name}
-              className="relative z-10 object-contain w-[70%] sm:w-[55%] lg:w-[45%] max-w-[864px] select-none"
-              draggable={false}
+            <motion.div
+              key={model.id}
               initial={{ opacity: 0, scale: 0.92, x: direction * 60 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               exit={{ opacity: 0, scale: 0.96, x: direction * -60 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              style={{
-                filter: `${currentSwatch.filter} drop-shadow(0 25px 35px rgba(0,0,0,0.4))`,
-              }}
-            />
+              className="relative z-10 w-[70%] sm:w-[55%] lg:w-[45%] max-w-[864px] aspect-video"
+            >
+              {/* Semi-transparent area showing 3D behind */}
+              <img
+                src={model.image}
+                alt={model.name}
+                className="w-full h-full object-contain select-none drop-shadow-[0_25px_35px_rgba(0,0,0,0.4)]"
+                draggable={false}
+              />
+            </motion.div>
           </AnimatePresence>
 
           <motion.button
@@ -167,6 +180,7 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
             className="absolute left-[8%] lg:left-[15%] top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-all"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            aria-label="Previous model"
           >
             <ChevronLeft className="w-5 h-5 text-white/60" />
           </motion.button>
@@ -175,6 +189,7 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
             className="absolute right-[8%] lg:right-[15%] top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-all"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            aria-label="Next model"
           >
             <ChevronRight className="w-5 h-5 text-white/60" />
           </motion.button>
@@ -187,12 +202,12 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
           transition={{ duration: 0.6, delay: 0.3 }}
           className="relative z-20 flex items-center justify-center gap-4 lg:gap-6 px-4 lg:px-[8%] pb-5 lg:pb-7"
         >
-          <div className="flex items-center gap-2 px-3 py-2 bg-white/[0.05] rounded-[10px] border border-white/[0.08] backdrop-blur-sm">
-            {COLOR_SWATCHES.map((swatch, i) => (
+          <div className="flex items-center gap-2 px-3 py-2 bg-white/[0.05] rounded-[10px] border border-white/[0.08] backdrop-blur-sm overflow-x-auto hide-scrollbar">
+            {PAINT_SWATCHES.map((swatch, i) => (
               <motion.button
                 key={swatch.id}
-                onClick={() => setActiveColor(i)}
-                className={`w-[50px] h-[38px] lg:w-[70px] lg:h-[50px] rounded-[8px] transition-all duration-200 ${
+                onClick={() => handleColorSelect(i)}
+                className={`w-[40px] h-[30px] lg:w-[50px] lg:h-[38px] rounded-[6px] transition-all duration-200 shrink-0 ${
                   activeColor === i
                     ? 'border-2 border-white shadow-lg'
                     : 'border border-white/15 hover:border-white/40'
@@ -204,6 +219,7 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
                 title={swatch.label}
+                aria-label={`Select ${swatch.label}`}
               />
             ))}
           </div>
@@ -214,7 +230,7 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -5 }}
-              className="hidden lg:block font-['Nunito_Sans',sans-serif] text-[13px] text-white/35 font-light whitespace-nowrap"
+              className="hidden lg:block font-configurator text-[13px] text-white/35 font-light whitespace-nowrap"
             >
               {currentSwatch.label}
             </motion.span>
@@ -224,11 +240,12 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
 
           <motion.button
             onClick={() => dispatch({ type: 'START_CONFIGURATION' })}
-            className="h-[48px] lg:h-[54px] px-6 lg:px-8 bg-[#81D8D0] rounded-[10px] hover:bg-[#6fc9c1] transition-all flex items-center gap-3 group shrink-0 shadow-lg shadow-[#81D8D0]/20"
-            whileHover={{ scale: 1.03, boxShadow: '0 8px 30px rgba(129,216,208,0.35)' }}
+            className="h-[48px] lg:h-[54px] px-6 lg:px-8 bg-[var(--dts-accent)] rounded-[10px] hover:bg-[var(--dts-accent-hover)] transition-all flex items-center gap-3 group shrink-0 shadow-lg"
+            style={{ boxShadow: '0 8px 30px var(--dts-accent-glow)' }}
+            whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            <span className="font-['Nunito_Sans',sans-serif] font-bold text-[13px] lg:text-[14px] text-[#111] tracking-wide">
+            <span className="font-configurator font-bold text-[13px] lg:text-[14px] text-[#111] tracking-wide">
               START CONFIGURATION
             </span>
             <ChevronRight className="w-4 h-4 text-[#111] group-hover:translate-x-0.5 transition-transform" />

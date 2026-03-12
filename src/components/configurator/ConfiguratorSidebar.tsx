@@ -11,6 +11,7 @@ interface Props {
   activeTab: TabId;
   activeCategory: string | null;
   selections: Record<string, string>;
+  touched: string[];
   dispatch: React.Dispatch<ConfiguratorAction>;
 }
 
@@ -20,7 +21,7 @@ const TABS: { id: TabId; label: string }[] = [
   { id: 'equipments', label: 'PERFORMANCE' },
 ];
 
-const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, dispatch }: Props) => {
+const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, touched, dispatch }: Props) => {
   const currentTab = model.tabs.find((t) => t.id === activeTab);
   const currentCategory = activeCategory
     ? currentTab?.categories.find((c) => c.id === activeCategory)
@@ -33,12 +34,10 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, dis
   };
 
   const totalCategories = currentTab?.categories.length || 0;
-  const configuredCategories = currentTab?.categories.filter((c) => selections[c.id]).length || 0;
-  const progressPercent = totalCategories > 0 ? (configuredCategories / totalCategories) * 100 : 0;
+  const touchedInTab = currentTab?.categories.filter((c) => touched.includes(c.id)).length || 0;
+  const progressPercent = totalCategories > 0 ? (touchedInTab / totalCategories) * 100 : 0;
 
-  const totalConfigured = model.tabs.reduce(
-    (acc, tab) => acc + tab.categories.filter((c) => selections[c.id]).length, 0
-  );
+  const totalTouched = touched.length;
   const totalAll = model.tabs.reduce((acc, tab) => acc + tab.categories.length, 0);
 
   return (
@@ -52,11 +51,11 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, dis
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-5 pb-3 shrink-0">
         <div>
-          <h2 className="font-['Nunito_Sans',sans-serif] font-bold text-[18px] text-[#1a1a1a]">
+          <h2 className="font-configurator font-bold text-[18px] text-[#1a1a1a]">
             Configure
           </h2>
-          <p className="font-['Nunito_Sans',sans-serif] text-[11px] text-[#999] mt-0.5">
-            {totalConfigured} of {totalAll} options selected
+          <p className="font-configurator text-[11px] text-[#999] mt-0.5">
+            {totalTouched} of {totalAll} options customized
           </p>
         </div>
 
@@ -76,7 +75,7 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, dis
             title="Reset all options"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span className="font-['Nunito_Sans',sans-serif] font-semibold text-[10px] tracking-wide">RESET</span>
+            <span className="font-configurator font-semibold text-[10px] tracking-wide">RESET</span>
           </motion.button>
 
           <button
@@ -93,14 +92,14 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, dis
         {TABS.map((tab) => {
           const isActive = activeTab === tab.id;
           const tabData = model.tabs.find((t) => t.id === tab.id);
-          const tabConfigured = tabData?.categories.filter((c) => selections[c.id]).length || 0;
+          const tabTouched = tabData?.categories.filter((c) => touched.includes(c.id)).length || 0;
           const tabTotal = tabData?.categories.length || 0;
 
           return (
             <motion.button
               key={tab.id}
               onClick={() => dispatch({ type: 'SET_TAB', tab: tab.id })}
-              className={`flex-1 py-2 font-['Nunito_Sans',sans-serif] font-bold text-[11px] lg:text-[12px] text-center transition-all relative ${
+              className={`flex-1 py-2 font-configurator font-bold text-[11px] lg:text-[12px] text-center transition-all relative ${
                 isActive
                   ? 'bg-[#81D8D0] text-[#111] rounded-[8px] shadow-sm'
                   : 'text-[#999] hover:text-[#666]'
@@ -108,9 +107,9 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, dis
               whileTap={{ scale: 0.97 }}
             >
               {tab.label}
-              {tabConfigured > 0 && !isActive && (
+              {tabTouched > 0 && !isActive && (
                 <span className="ml-1 text-[9px] font-bold text-[#81D8D0]">
-                  {tabConfigured}/{tabTotal}
+                  {tabTouched}/{tabTotal}
                 </span>
               )}
             </motion.button>
@@ -151,11 +150,11 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, dis
               className="h-full overflow-y-auto px-5 pb-4 space-y-2 hide-scrollbar"
             >
               <div className="flex items-center justify-between pt-1 mb-2">
-                <p className="font-['Nunito_Sans',sans-serif] font-medium text-[12px] text-[#bbb]">
+                <p className="font-configurator font-medium text-[12px] text-[#bbb]">
                   Select a category
                 </p>
-                <span className="font-['Nunito_Sans',sans-serif] text-[11px] text-[#81D8D0] font-bold">
-                  {configuredCategories}/{totalCategories}
+                <span className="font-configurator text-[11px] text-[#81D8D0] font-bold">
+                  {touchedInTab}/{totalCategories}
                 </span>
               </div>
 
@@ -165,6 +164,7 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, dis
                   title={category.title}
                   subtitle={category.subtitle}
                   selectedOptionName={getSelectedOptionName(category)}
+                  isTouched={touched.includes(category.id)}
                   onClick={() => dispatch({ type: 'SELECT_CATEGORY', categoryId: category.id })}
                   index={i}
                 />
@@ -178,7 +178,7 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, dis
       <div className="px-5 py-3 border-t border-black/[0.05] shrink-0">
         <motion.button
           onClick={() => dispatch({ type: 'SHOW_DOWNLOAD' })}
-          className="w-full h-[44px] bg-[#81D8D0] rounded-[10px] hover:bg-[#6fc9c1] transition-all font-['Nunito_Sans',sans-serif] font-bold text-[13px] text-[#111] shadow-sm hover:shadow-md tracking-wide"
+          className="w-full h-[44px] bg-[#81D8D0] rounded-[10px] hover:bg-[#6fc9c1] transition-all font-configurator font-bold text-[13px] text-[#111] shadow-sm hover:shadow-md tracking-wide"
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
         >
