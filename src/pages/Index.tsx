@@ -5,11 +5,13 @@ import DealerSection from "@/components/DealerSection";
 import NewsSection from "@/components/NewsSection";
 import FooterSection from "@/components/FooterSection";
 import SocialSidebar from "@/components/SocialSidebar";
+import SmoothScroll from "@/components/SmoothScroll";
 import ConfiguratorPageV2 from "./ConfiguratorPageV2";
 
 const Index = () => {
   return (
     <>
+      <SmoothScroll />
       <NavBar />
       <SocialSidebar />
       <main>
