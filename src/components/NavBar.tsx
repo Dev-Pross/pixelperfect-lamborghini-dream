@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 const menuLinks = [
   { label: "Models", href: "/#models" },
   { label: "Configurator", href: "/configurator" },
-  { label: "Dealerships", href: "/#dealerships" },
+  { label: "Company", href: "/company" },
   { label: "News", href: "/#news" },
-  { label: "Brand", href: "/#brand" },
-  { label: "Motorsport", href: "/#motorsport" },
+  { label: "Investors", href: "/investors" },
+  { label: "Dealerships", href: "/become-distributor" },
 ];
 
 const NavBar = () => {
@@ -34,7 +34,7 @@ const NavBar = () => {
           <img 
             src="/emotion-drive-logo.png" 
             alt="Emotion Drive" 
-            className="h-10 md:h-12 lg:h-14 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-transform duration-500 hover:scale-105" 
+            className="h-7 md:h-8 lg:h-10 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-transform duration-500 hover:scale-105" 
           />
         </Link>
 
@@ -100,8 +100,9 @@ const NavBar = () => {
                 {/* Bottom Grid Links — Optional secondary links */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-0 w-full">
                   {[
-                    { label: 'Design', href: '#' },
-                    { label: 'History', href: '#' }
+                    { label: 'Design', href: '/company' },
+                    { label: 'History', href: '/company' },
+                    { label: 'Gallery', href: '#' }
                   ].map((link, i) => (
                     <motion.div 
                       key={link.label}

@@ -20,12 +20,12 @@ const DealerSection = () => {
         transition={{ duration: 0.6 }}
         className="relative z-10 text-center"
       >
-        <p className="section-label mb-4">Dealer Locator</p>
+        <p className="section-label mb-4">Global Network</p>
         <h2 className="text-heading-xl text-3xl md:text-5xl text-foreground mb-8">
-          Find Your Dealer
+          Become a Distributor
         </h2>
-        <Link to="/dealerships" className="btn-outline-white">
-          Find your dealer
+        <Link to="/become-distributor" className="btn-outline-white">
+          Learn More
         </Link>
       </motion.div>
     </section>

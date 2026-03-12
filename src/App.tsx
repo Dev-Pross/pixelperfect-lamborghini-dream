@@ -10,6 +10,9 @@ import ModelDetailPage from "./pages/ModelDetailPage.tsx";
 import NewsPage from "./pages/NewsPage.tsx";
 import NewsDetailPage from "./pages/NewsDetailPage.tsx";
 import DealershipsPage from "./pages/DealershipsPage.tsx";
+import BecomeDistributor from "./pages/business/BecomeDistributor.tsx";
+import Investors from "./pages/business/Investors.tsx";
+import CompanyOverview from "./pages/company/CompanyOverview.tsx";
 import ConfiguratorPage from "./pages/ConfiguratorPage.tsx";
 import ConfiguratorPageV2 from "./pages/ConfiguratorPageV2.tsx";
 import ConfiguratorFullPage from "./pages/ConfiguratorFullPage.tsx";
@@ -47,6 +50,9 @@ const App = () => (
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/:slug" element={<NewsDetailPage />} />
           <Route path="/dealerships" element={<DealershipsPage />} />
+          <Route path="/become-distributor" element={<BecomeDistributor />} />
+          <Route path="/investors" element={<Investors />} />
+          <Route path="/company" element={<CompanyOverview />} />
           <Route path="/configurator" element={<ConfiguratorFullPage />} />
           <Route path="/configurator/:modelSlug" element={<ConfiguratorFullPage />} />
           <Route path="/configurator-old" element={<ConfiguratorPage />} />
