@@ -31,41 +31,11 @@ const NavBar = () => {
 
         {/* Center: Bull Logo */}
         <Link to="/" className="absolute left-1/2 -translate-x-1/2 pointer-events-auto">
-          <svg
-            width="40"
-            height="40"
-            viewBox="0 0 100 100"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="text-foreground"
-          >
-            <path
-              d="M50 5C25.1 5 5 25.1 5 50s20.1 45 45 45 45-20.1 45-45S74.9 5 50 5zm0 4c22.6 0 41 18.4 41 41S72.6 91 50 91 9 72.6 9 50 27.4 9 50 9z"
-              fill="currentColor"
-            />
-            <path
-              d="M50 15c-4 0-7.5 3-10 7-2 3.2-3.5 7-4.5 11-.8 3-1.2 6-1.5 9h32c-.3-3-.7-6-1.5-9-1-4-2.5-7.8-4.5-11-2.5-4-6-7-10-7z"
-              fill="currentColor"
-            />
-            <path
-              d="M22 50c-3-5-5-3-8-1s-4 6-2 10c1.5 3 4 5 7 6 2 .7 4 .5 5-.5 1.5-1.5 1-4-2-8.5v-1l.5-2.5c0-1-.2-2-.5-2.5z"
-              fill="currentColor"
-            />
-            <path
-              d="M78 50c3-5 5-3 8-1s4 6 2 10c-1.5 3-4 5-7 6-2 .7-4 .5-5-.5-1.5-1.5-1-4 2-8.5v-1l-.5-2.5c0-1 .2-2 .5-2.5z"
-              fill="currentColor"
-            />
-            <path
-              d="M34 46v24c0 4 3 8 7 10 3 1.5 6 2 9 2s6-.5 9-2c4-2 7-6 7-10V46H34z"
-              fill="currentColor"
-            />
-            <path
-              d="M42 56c0 1.5 1 3 2.5 3.5 1 .3 2 .3 3 0 1.5-.5 2.5-2 2.5-3.5v-4h-8v4zM44 68l6 4M56 68l-6 4"
-              stroke="hsl(0 0% 0%)"
-              strokeWidth="1.5"
-              fill="none"
-            />
-          </svg>
+          <img 
+            src="/emotion-drive-logo.png" 
+            alt="Emotion Drive" 
+            className="h-10 md:h-12 lg:h-14 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-transform duration-500 hover:scale-105" 
+          />
         </Link>
 
         {/* Right: Icons */}

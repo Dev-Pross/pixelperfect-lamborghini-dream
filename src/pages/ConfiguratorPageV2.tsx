@@ -13,6 +13,7 @@ const MODELS = [
     id: 'MODEL R',
     name: 'THE MODEL R',
     letter: 'R',
+    tagline: 'Refined Performance',
     logoImage: '/logo-r.png',
     slug: 'urus', // using urus as a placeholder for the routing
     desc: 'Designed for premium leisure and commercial use, compliant with CE standards for global operation.',
@@ -24,32 +25,35 @@ const MODELS = [
     id: 'MODEL F',
     name: 'THE MODEL F',
     letter: 'F',
+    tagline: 'Pure Power on Water',
     logoImage: '/logo-f.png',
     slug: 'huracan',
-    desc: 'Focused on high speeds and unmatched track performance, equipped with advanced aerodynamics.',
+    desc: 'A high-performance JetCar engineered for speed, control, and CE-compliant commercial use.',
     image: modelFImg,
     activeColor: '#FFFFFF',
-    stats: { length: '5.05 m', width: '2.00 m', depth: '1.75 m', seating: '2 persons', brand: 'Lamborghini', engine: 'V12 6.5L', cert: 'Track Only' }
+    stats: { length: '5.22 m', width: '2.06 m', depth: '1.83 m', seating: '2 persons', brand: 'Yamaha', engine: '1900 cc', cert: 'CE Certified' }
   },
   {
     id: 'LUMINA',
     name: 'THE LUMINA',
     letter: 'L',
+    tagline: 'Innovation in Motion',
     slug: 'revuelto',
-    desc: 'Pure elegance and smooth cruising, boasting luxury interiors and an incredibly quiet electric engine.',
+    desc: 'A compact, agile water kart developed in accordance with CE safety and quality requirements.',
     image: luminaImg,
     activeColor: '#FFFFFF',
-    stats: { length: '5.50 m', width: '2.10 m', depth: '1.90 m', seating: '4 persons', brand: 'Lumina EV', engine: 'Dual Motor', cert: 'Global' }
+    stats: { length: '3.40 m', width: '2.15 m', depth: 'N/A', seating: '2 persons', brand: 'Tohatsu', engine: 'Outboard', cert: 'CE Certified' }
   },
   {
     id: 'CYBERMARINE',
     name: 'THE CYBERMARINE',
     letter: 'C',
+    tagline: 'The Future, Reimagined',
     slug: 'temerario',
-    desc: 'Futuristic design with marine-grade materials, ready to conquer both road and water expanses.',
+    desc: 'Coming Soon\n\nA future-focused concept designed for next-generation water mobility, with planned CE certification.',
     image: cyberImg,
     activeColor: '#FFFFFF',
-    stats: { length: '6.00 m', width: '2.20 m', depth: '2.00 m', seating: '6 persons', brand: 'CyberD', engine: 'Quad Motor', cert: 'Amphibious' }
+    stats: { length: 'TBA', width: 'TBA', depth: 'TBA', seating: 'TBA', brand: 'TBA', engine: 'TBA', cert: 'Planned CE' }
   }
 ];
 
@@ -104,12 +108,15 @@ const ConfiguratorPageV2 = () => {
           <div className="font-light text-xl md:text-2xl sm:text-[32px] leading-tight text-white mb-2">
             CONFIGURE YOUR
           </div>
-          <div className="font-bold text-3xl md:text-4xl sm:text-[64px] leading-tight text-white mb-6">
+          <div className="font-bold text-3xl md:text-4xl sm:text-[64px] leading-tight text-white mb-3">
             {activeTab.name}
+          </div>
+          <div className="font-medium text-[15px] lg:text-[18px] tracking-[0.2em] uppercase text-[#F6C974] mb-6" style={{ color: activeTab.activeColor !== '#FFFFFF' ? activeTab.activeColor : '#81D8D0' }}>
+            {activeTab.tagline}
           </div>
 
           {/* Description */}
-          <div className="font-extralight text-lg lg:text-[20px] leading-snug text-gray-200 mb-[5vh] max-w-xl">
+          <div className="font-extralight text-lg lg:text-[20px] leading-relaxed text-gray-200 mb-[5vh] max-w-xl whitespace-pre-wrap">
             {activeTab.desc}
           </div>
 
@@ -119,20 +126,24 @@ const ConfiguratorPageV2 = () => {
               <span className="font-normal text-xs sm:text-sm text-black whitespace-nowrap mr-3">
                 START CONFIGURATION
               </span>
-              <div className="w-[20px] h-[20px] lg:w-[25px] lg:h-[25px] flex items-center justify-center group-hover:scale-110 transition-transform relative">
-                <div className="absolute border border-black w-3 h-3 lg:w-4 lg:h-4"></div>
-                <div className="absolute border flex items-center justify-center border-black w-2 h-2 lg:w-3 lg:h-3 translate-x-1 -translate-y-1 bg-[#81D8D0]"></div>
-              </div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] lg:w-[22px] lg:h-[22px] text-black group-hover:scale-110 transition-transform relative">
+                {/* 3D Cube core */}
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                
+                {/* Corner Brackets */}
+                <path strokeWidth="1.5" strokeLinecap="square" d="M7 2H4v3 M17 2h3v3 M7 22H4v-3 M17 22h3v-3" />
+              </svg>
             </Link>
 
             <Link to={`/models/${activeTab.slug}`} className="h-[50px] lg:h-[60px] px-6 lg:px-[30px] border border-white rounded-[6px] hover:bg-white/10 transition-colors flex items-center justify-between group cursor-pointer pointer-events-auto min-w-[200px] lg:min-w-[250px]">
               <span className="font-normal text-sm lg:text-[15px] text-[#E3E3E3] whitespace-nowrap mr-3">
                 EXPLORE THE MODEL
               </span>
-              <div className="w-[16px] h-[16px] lg:w-[20px] lg:h-[20px] relative overflow-hidden group-hover:translate-x-1 transition-transform">
-                <div className="absolute top-[6px] lg:top-[8px] right-[2px] w-[10px] lg:w-[14px] h-[2px] bg-[#F5F5F5]"></div>
-                <div className="absolute top-[2px] lg:top-[3px] right-[2px] w-[6px] h-[6px] lg:w-[8px] lg:h-[8px] border-t-2 border-r-2 border-[#F5F5F5] transform rotate-45"></div>
-              </div>
+              <svg className="w-[18px] h-[18px] lg:w-[22px] lg:h-[22px] text-[#F5F5F5] group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-6-6l6 6-6 6" />
+              </svg>
             </Link>
           </div>
         </div>
