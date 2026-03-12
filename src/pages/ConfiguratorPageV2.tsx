@@ -13,6 +13,7 @@ const MODELS = [
     id: 'MODEL R',
     name: 'THE MODEL R',
     letter: 'R',
+    logoImage: '/logo-r.png',
     slug: 'urus', // using urus as a placeholder for the routing
     desc: 'Designed for premium leisure and commercial use, compliant with CE standards for global operation.',
     image: modelRImg,
@@ -23,6 +24,7 @@ const MODELS = [
     id: 'MODEL F',
     name: 'THE MODEL F',
     letter: 'F',
+    logoImage: '/logo-f.png',
     slug: 'huracan',
     desc: 'Focused on high speeds and unmatched track performance, equipped with advanced aerodynamics.',
     image: modelFImg,
@@ -84,11 +86,19 @@ const ConfiguratorPageV2 = () => {
         {/* Left Side: Typography & Buttons */}
         <div className="flex flex-col items-start w-full md:w-[50%] lg:w-[45%] mt-6 md:mt-0">
           
-          {/* Logo Letter */}
-          <div className="flex flex-col items-start leading-none gap-0 whitespace-nowrap font-serif italic font-bold mb-[3vh]" style={{ color: activeTab.activeColor }}>
-            <span className="text-sm md:text-base lg:text-[20px] tracking-[0.3em] font-sans font-normal not-italic ml-1 lg:ml-2 mb-1 text-white">MODEL</span>
-            <span className="text-[80px] md:text-[100px] lg:text-[130px] leading-[0.8] tracking-tighter">{activeTab.letter}</span>
-          </div>
+          {/* Logo Letter / Image */}
+          {activeTab.logoImage ? (
+            <img 
+              src={activeTab.logoImage} 
+              alt={`${activeTab.name} Logo`} 
+              className="h-[80px] md:h-[120px] lg:h-[150px] object-contain object-left mb-[3vh] ml-[-10px]" 
+            />
+          ) : (
+            <div className="flex flex-col items-start leading-none gap-0 whitespace-nowrap font-serif italic font-bold mb-[3vh]" style={{ color: activeTab.activeColor }}>
+              <span className="text-sm md:text-base lg:text-[20px] tracking-[0.3em] font-sans font-normal not-italic ml-1 lg:ml-2 mb-1 text-white">MODEL</span>
+              <span className="text-[80px] md:text-[100px] lg:text-[130px] leading-[0.8] tracking-tighter">{activeTab.letter}</span>
+            </div>
+          )}
 
           {/* Title Area */}
           <div className="font-light text-xl md:text-2xl sm:text-[32px] leading-tight text-white mb-2">

@@ -7,10 +7,11 @@ const HeroSectionV2 = () => {
       
       {/* Background Video - Flipped horizontally as per original design matrix(-1,0,0,1,0,0) */}
       <video
+        key="hero-vid"
         src="/2FinalVerse_h264.mp4"
         autoPlay
         loop
-        muted
+        muted={true}
         playsInline
         className="absolute inset-0 w-full h-full object-cover object-[25%_center] md:object-[30%_center] lg:object-left"
         style={{ transform: 'scaleX(-1)' }}
