@@ -1,18 +1,19 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import heroImg from "@/assets/hero-bg-new.jpg";
 
 const HeroSectionV2 = () => {
   return (
     <section className="relative w-full h-screen bg-[#0B0B0B] overflow-hidden" style={{ minHeight: '600px' }}>
       
-      {/* Background Image - Flipped horizontally per Figma matrix(-1,0,0,1,0,0) */}
-      <img
-        src={heroImg}
-        alt="Jetcar on water"
-        className="absolute inset-0 w-full h-full object-cover"
+      {/* Background Video - Flipped horizontally as per original design matrix(-1,0,0,1,0,0) */}
+      <video
+        src="/2FinalVerse_h264.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover object-[25%_center] md:object-[30%_center] lg:object-left"
         style={{ transform: 'scaleX(-1)' }}
-        loading="eager"
       />
 
       {/* Rectangle 345 - Left side blur overlay for text readability */}

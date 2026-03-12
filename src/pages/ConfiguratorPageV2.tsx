@@ -79,10 +79,10 @@ const ConfiguratorPageV2 = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col lg:flex-row items-center justify-between px-[5vw] lg:px-[8vw] z-10 w-full max-w-[1920px] mx-auto">
+      <div className="flex-1 flex flex-col md:flex-row items-center justify-between px-[5vw] lg:px-[8vw] z-10 w-full max-w-[1920px] mx-auto mt-4 md:mt-0">
         
         {/* Left Side: Typography & Buttons */}
-        <div className="flex flex-col items-start w-full lg:w-[45%] mt-10 lg:mt-0">
+        <div className="flex flex-col items-start w-full md:w-[50%] lg:w-[45%] mt-6 md:mt-0">
           
           {/* Logo Letter */}
           <div className="flex flex-col items-start leading-none gap-0 whitespace-nowrap font-serif italic font-bold mb-[3vh]" style={{ color: activeTab.activeColor }}>
@@ -128,9 +128,9 @@ const ConfiguratorPageV2 = () => {
         </div>
 
         {/* Right Side: Car Image */}
-        <div className="w-full lg:w-[50%] h-[30vh] lg:h-[50vh] flex items-center justify-center mt-10 lg:mt-0 relative">
-            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#1B1B1B] to-transparent z-10 pointer-events-none block lg:hidden"></div>
-            <img key={activeTab.id} src={activeTab.image} alt={activeTab.name} className="object-contain w-full h-full max-h-[400px] opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]" />
+        <div className="w-full md:w-[45%] lg:w-[50%] h-[30vh] md:h-[50vh] flex items-center justify-center md:justify-end mt-10 md:mt-0 relative">
+            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#1B1B1B] to-transparent z-10 pointer-events-none block md:hidden"></div>
+            <img key={activeTab.id} src={activeTab.image} alt={activeTab.name} className="object-contain object-center md:object-right w-full h-full max-h-[400px] xl:max-h-[500px] opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]" />
         </div>
       </div>
 

@@ -165,11 +165,10 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="relative z-10 w-[70%] sm:w-[55%] lg:w-[45%] max-w-[864px] aspect-video"
             >
-              {/* Semi-transparent area showing 3D behind */}
               <img
                 src={model.image}
                 alt={model.name}
-                className="w-full h-full object-contain select-none drop-shadow-[0_25px_35px_rgba(0,0,0,0.4)]"
+                className="w-full h-full object-contain select-none"
                 draggable={false}
               />
             </motion.div>

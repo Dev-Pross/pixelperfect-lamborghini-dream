@@ -17,7 +17,7 @@ const ConfiguratorHeader = ({ model, sidebarOpen, onToggleSidebar, onBackToLandi
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="relative z-40 flex items-center justify-between px-4 sm:px-6 lg:px-8 h-[56px] lg:h-[64px]"
+      className="relative z-40 flex items-center justify-between px-4 sm:px-6 lg:px-8 h-[56px] lg:h-[64px] bg-[#f0f0f0]"
     >
       {/* Left: Back + Logo + Model Name */}
       <div className="flex items-center gap-2">

@@ -1,17 +1,20 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import heroImg from "@/assets/hero-headlight.jpg";
 
 const HeroSection = () => {
   return (
     <section className="relative h-screen flex items-end overflow-hidden">
-      <img
-        src={heroImg}
-        alt="Supercar headlight detail"
-        className="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
+      {/* Background Video - Flipped horizontally as per original design matrix(-1,0,0,1,0,0) */}
+      <video
+        src="/2FinalVerse_h264.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover object-[25%_center] md:object-[30%_center] lg:object-left"
+        style={{ transform: 'scaleX(-1)' }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent z-[5]" />
       <div className="relative z-10 px-6 sm:px-8 md:px-16 pb-16 sm:pb-20 md:pb-28 max-w-3xl">
         <motion.p
           initial={{ opacity: 0, y: 20 }}

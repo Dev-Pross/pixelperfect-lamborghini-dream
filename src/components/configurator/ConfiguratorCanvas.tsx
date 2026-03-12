@@ -110,20 +110,17 @@ function SceneContent({ selections }: { selections: Record<string, string> }) {
 
 function WebGLFallback({ model }: { model: ConfiguratorModel }) {
   return (
-    <div
-      className="absolute inset-0 flex flex-col items-center justify-center"
-      style={{ background: 'linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 40%, #dcdcdc 100%)' }}
-    >
+    <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#111]">
       <img
         src={model.image}
         alt={model.name}
-        className="w-[60%] max-w-[700px] object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.15)]"
+        className="w-[65%] max-w-[750px] object-contain"
       />
-      <div className="mt-6 px-5 py-3 bg-black/[0.04] rounded-xl text-center">
-        <p className="font-configurator text-[13px] font-semibold text-[#555]">
+      <div className="mt-6 px-5 py-3 bg-white/[0.05] rounded-xl text-center">
+        <p className="font-configurator text-[13px] font-semibold text-white/60">
           3D view unavailable
         </p>
-        <p className="font-configurator text-[11px] text-[#999] mt-1">
+        <p className="font-configurator text-[11px] text-white/35 mt-1">
           Enable hardware acceleration in your browser settings for the full 3D experience
         </p>
       </div>
