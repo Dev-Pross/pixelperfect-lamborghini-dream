@@ -99,7 +99,7 @@ const NewsSection = () => {
       </div>
 
       {/* Horizontal scrolling cards */}
-      <div className="flex gap-6 overflow-x-auto hide-scrollbar px-8 md:px-16 pb-4">
+      <div className="flex gap-6 overflow-x-auto styled-scrollbar px-8 md:px-16 pb-4">
         {articles.map((article, i) => (
           <motion.article
             key={article.slug}

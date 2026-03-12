@@ -7,7 +7,7 @@ const DealerSection = () => {
     <section id="dealerships" className="relative h-[70vh] flex items-center justify-center overflow-hidden">
       <img
         src={dealerBg}
-        alt="Supercar on mountain road"
+        alt="EDrive JetCar dealership"
         className="absolute inset-0 w-full h-full object-cover"
         loading="lazy"
       />

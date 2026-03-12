@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
-import temerarioImg from "@/assets/temerario.jpg";
-import revueltoImg from "@/assets/revuelto.jpg";
-import urusImg from "@/assets/car-model-2.jpg";
-import huracanImg from "@/assets/car-model-1.jpg";
+import modelRImg from "@/assets/slide-model-r.png";
+import modelFImg from "@/assets/slide-model-f.png";
+import luminaImg from "@/assets/revuelto.jpg";
+import cyberImg from "@/assets/temerario.jpg";
 
 const allModels = [
-  { name: "Temerario", slug: "temerario", image: temerarioImg, tagline: "Beyond any satisfhat means" },
-  { name: "Urus", slug: "urus", image: urusImg, tagline: "You can't hide who you are" },
-  { name: "Revuelto", slug: "revuelto", image: revueltoImg, tagline: "The ultimate fusion of power" },
-  { name: "Huracán", slug: "huracan", image: huracanImg, tagline: "Every road becomes a racetrack" },
+  { name: "Model R", slug: "model-r", image: modelRImg, tagline: "Refined Performance" },
+  { name: "Model F", slug: "model-f", image: modelFImg, tagline: "Pure Power on Water" },
+  { name: "Lumina", slug: "lumina", image: luminaImg, tagline: "Innovation in Motion" },
+  { name: "Cybermarine", slug: "cybermarine", image: cyberImg, tagline: "The Future, Reimagined" },
 ];
 
 const ModelsPage = () => {

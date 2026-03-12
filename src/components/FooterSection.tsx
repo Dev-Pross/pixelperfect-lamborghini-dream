@@ -19,10 +19,10 @@ const FooterSection = () => {
           </Link>
           <div className="flex flex-wrap gap-6 md:gap-8">
             <Link to="/company" className="text-[11px] tracking-[0.15em] uppercase text-white/60 hover:text-white transition-colors">{t('footer.company')}</Link>
-            <Link to="/company" className="text-[11px] tracking-[0.15em] uppercase text-white/60 hover:text-white transition-colors">{t('footer.careers')}</Link>
-            <Link to="#" className="text-[11px] tracking-[0.15em] uppercase text-white/60 hover:text-white transition-colors">{t('footer.contactUs')}</Link>
-            <Link to="#" className="text-[11px] tracking-[0.15em] uppercase text-white/60 hover:text-white transition-colors">{t('footer.collaborate')}</Link>
-            <Link to="#" className="text-[11px] tracking-[0.15em] uppercase text-white/60 hover:text-white transition-colors">{t('footer.privacyLegal')}</Link>
+            <Link to="/company/careers" className="text-[11px] tracking-[0.15em] uppercase text-white/60 hover:text-white transition-colors">{t('footer.careers')}</Link>
+            <a href="mailto:FMC.emotiondrive@gmail.com" className="text-[11px] tracking-[0.15em] uppercase text-white/60 hover:text-white transition-colors">{t('footer.contactUs')}</a>
+            <Link to="/become-distributor" className="text-[11px] tracking-[0.15em] uppercase text-white/60 hover:text-white transition-colors">{t('footer.collaborate')}</Link>
+            <Link to="/investors" className="text-[11px] tracking-[0.15em] uppercase text-white/60 hover:text-white transition-colors">{t('footer.privacyLegal')}</Link>
           </div>
         </div>
 

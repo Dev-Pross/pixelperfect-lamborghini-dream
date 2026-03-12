@@ -5,12 +5,12 @@ import FooterSection from "@/components/FooterSection";
 import dealerBg from "@/assets/dealer-bg.jpg";
 
 const dealers = [
-  { name: "Lamborghini Milano", city: "Milan", country: "Italy", address: "Via della Spiga 26" },
-  { name: "Lamborghini London", city: "London", country: "United Kingdom", address: "27 Old Bond Street" },
-  { name: "Lamborghini Dubai", city: "Dubai", country: "UAE", address: "Sheikh Zayed Road" },
-  { name: "Lamborghini New York", city: "New York", country: "USA", address: "Manhattan, 5th Avenue" },
-  { name: "Lamborghini Tokyo", city: "Tokyo", country: "Japan", address: "Roppongi Hills" },
-  { name: "Lamborghini Munich", city: "Munich", country: "Germany", address: "Maximilianstraße 12" },
+  { name: "eDrive HQ", city: "Dubai", country: "UAE", address: "Dubai Maritime City" },
+  { name: "eDrive Abu Dhabi", city: "Abu Dhabi", country: "UAE", address: "Yas Marina Circuit" },
+  { name: "eDrive Europe", city: "Athens", country: "Greece", address: "Piraeus Marina" },
+  { name: "eDrive Bahrain", city: "Manama", country: "Bahrain", address: "Bahrain Bay" },
+  { name: "eDrive Southeast Asia", city: "Manila", country: "Philippines", address: "Manila Bay" },
+  { name: "eDrive Maldives", city: "Malé", country: "Maldives", address: "Resort District" },
 ];
 
 const DealershipsPage = () => {

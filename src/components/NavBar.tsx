@@ -15,8 +15,8 @@ const menuLinks = [
 ];
 
 const secondaryLinks = [
-  { key: "design", href: "/company" },
-  { key: "history", href: "/company" },
+  { key: "design", href: "/company/profile" },
+  { key: "history", href: "/company/history" },
 ];
 
 const NavBar = () => {

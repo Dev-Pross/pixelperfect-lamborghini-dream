@@ -144,3 +144,29 @@ html {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Styled thin scrollbar for news section */
+.styled-scrollbar {
+  scroll-snap-type: x mandatory;
+}
+.styled-scrollbar > * {
+  scroll-snap-align: start;
+}
+.styled-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+.styled-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+.styled-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+.styled-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+.styled-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+}

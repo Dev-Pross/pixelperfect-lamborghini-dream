@@ -13,11 +13,11 @@ import  modelFImg from  '@/assets/slide-model-f.png';
 const MODELS = [
   {
     id: 'MODEL R',
-    name: 'THE MODEL R',
+    name: 'MODEL R',
     letter: 'R',
     tagline: 'Refined Performance',
     logoImage: '/logo-r.png',
-    slug: 'urus', // using urus as a placeholder for the routing
+    slug: 'model-r',
     desc: 'Designed for premium leisure and commercial use, compliant with CE standards for global operation.',
     image: modelRImg,
     activeColor: '#F6C974',
@@ -25,11 +25,11 @@ const MODELS = [
   },
   {
     id: 'MODEL F',
-    name: 'THE MODEL F',
+    name: 'MODEL F',
     letter: 'F',
     tagline: 'Pure Power on Water',
     logoImage: '/logo-f.png',
-    slug: 'huracan',
+    slug: 'model-f',
     desc: 'A high-performance JetCar engineered for speed, control, and CE-compliant commercial use.',
     image: modelFImg,
     activeColor: '#FFFFFF',
@@ -37,10 +37,10 @@ const MODELS = [
   },
   {
     id: 'LUMINA',
-    name: 'THE LUMINA',
+    name: 'LUMINA',
     letter: 'L',
     tagline: 'Innovation in Motion',
-    slug: 'revuelto',
+    slug: 'lumina',
     desc: 'A compact, agile water kart developed in accordance with CE safety and quality requirements.',
     image: luminaImg,
     activeColor: '#FFFFFF',
@@ -48,10 +48,10 @@ const MODELS = [
   },
   {
     id: 'CYBERMARINE',
-    name: 'THE CYBERMARINE',
+    name: 'CYBERMARINE',
     letter: 'C',
     tagline: 'The Future, Reimagined',
-    slug: 'temerario',
+    slug: 'cybermarine',
     desc: 'Coming Soon\n\nA future-focused concept designed for next-generation water mobility, with planned CE certification.',
     image: cyberImg,
     activeColor: '#FFFFFF',
