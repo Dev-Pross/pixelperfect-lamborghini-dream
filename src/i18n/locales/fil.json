@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "menu": "Menu", "close": "Isara", "models": "Mga Modelo", "configurator": "Configurator",
+    "company": "Kompanya", "news": "Balita", "investors": "Mga Investor", "dealerships": "Mga Distributor",
+    "gallery": "Galerya", "design": "Disenyo", "history": "Kasaysayan", "languages": "Mga Wika", "textSize": "Laki ng Teksto"
+  },
+  "hero": {
+    "topline": "Susunod na Henerasyong JetCar Manufacturing · UAE",
+    "headline1": "Lumikha. Magmaneho.", "headline2": "Dominahin ang tubig.", "cta": "Tuklasin Pa"
+  },
+  "configurator": {
+    "headline": "Ang unang real-time online JetCar configurator sa buong mundo.",
+    "cta": "Gawin ang Iyong JetCar", "startConfig": "Simulan ang Configuration", "exploreModel": "Tuklasin ang Modelo"
+  },
+  "models": {
+    "title": "Mga Modelo", "discoverAll": "Tuklasin Lahat ng Modelo", "explore": "Tuklasin ang Modelo",
+    "download": "I-download ang Brochure", "comingSoon": "Paparating Na",
+    "modelR": { "name": "MODEL R", "tagline": "Pinong Pagganap" },
+    "modelF": { "name": "MODEL F", "tagline": "Purong Lakas sa Tubig" },
+    "lumina": { "name": "LUMINA", "tagline": "Inobasyon sa Galaw" },
+    "cybermarine": { "name": "CYBERMARINE", "tagline": "Ang Hinaharap, Muling Naisip" }
+  },
+  "news": { "title": "Balita", "subtitle": "Mundo ng E-Drive", "readMore": "Magbasa pa" },
+  "footer": {
+    "company": "Kompanya", "careers": "Mga Karera", "contactUs": "Makipag-ugnayan",
+    "collaborate": "Makipagtulungan", "privacyLegal": "Privacy at Legal",
+    "cookieSettings": "Cookie Settings", "whatsapp": "WhatsApp", "contact": "Kontak",
+    "copyright": "© 2026 E-Drive JetCar Manufacturing L.L.C. Lahat ng karapatan ay nakalaan."
+  },
+  "distributor": {
+    "title": "Maging Distributor", "subtitle": "Katawanin ang bagong kategorya ng luxury water mobility",
+    "cta": "Humiling ng Distribution Access", "submit": "Isumite ang Company Profile"
+  },
+  "investors": {
+    "title": "Mag-invest sa eDrive", "subtitle": "Isang strategic na modelo na nakabatay sa tunay na operasyon",
+    "cta": "Maging Investor", "submit": "Isumite ang kahilingan"
+  },
+  "common": { "learnMore": "Alamin Pa", "preOrder": "Bukas ang pre-order", "contactEdrive": "Kontakin ang eDrive" }
+}

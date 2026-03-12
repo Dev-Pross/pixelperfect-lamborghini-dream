@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "menu": "Μενού", "close": "Κλείσιμο", "models": "Μοντέλα", "configurator": "Διαμορφωτής",
+    "company": "Εταιρεία", "news": "Νέα", "investors": "Επενδυτές", "dealerships": "Αντιπρόσωποι",
+    "gallery": "Γκαλερί", "design": "Σχεδιασμός", "history": "Ιστορία", "languages": "Γλώσσες", "textSize": "Μέγεθος κειμένου"
+  },
+  "hero": {
+    "topline": "Κατασκευή JetCar νέας γενιάς · ΗΑΕ",
+    "headline1": "Δημιούργησε. Οδήγησε.", "headline2": "Κυρίαρχε στο νερό.", "cta": "Μάθε περισσότερα"
+  },
+  "configurator": {
+    "headline": "Ο πρώτος στον κόσμο online διαμορφωτής JetCar σε πραγματικό χρόνο.",
+    "cta": "Δημιούργησε το JetCar σου", "startConfig": "Έναρξη διαμόρφωσης", "exploreModel": "Εξερεύνηση μοντέλου"
+  },
+  "models": {
+    "title": "Μοντέλα", "discoverAll": "Ανακαλύψτε όλα τα μοντέλα", "explore": "Εξερεύνηση μοντέλου",
+    "download": "Λήψη φυλλαδίου", "comingSoon": "Σύντομα",
+    "modelR": { "name": "ΜΟΝΤΕΛΟ R", "tagline": "Εκλεπτυσμένη απόδοση" },
+    "modelF": { "name": "ΜΟΝΤΕΛΟ F", "tagline": "Καθαρή δύναμη στο νερό" },
+    "lumina": { "name": "LUMINA", "tagline": "Καινοτομία σε κίνηση" },
+    "cybermarine": { "name": "CYBERMARINE", "tagline": "Το μέλλον, ξανασχεδιασμένο" }
+  },
+  "news": { "title": "Νέα", "subtitle": "Κόσμος E-Drive", "readMore": "Διαβάστε περισσότερα" },
+  "footer": {
+    "company": "Εταιρεία", "careers": "Καριέρα", "contactUs": "Επικοινωνία",
+    "collaborate": "Συνεργασία", "privacyLegal": "Απόρρητο & Νομικά",
+    "cookieSettings": "Ρυθμίσεις cookies", "whatsapp": "WhatsApp", "contact": "Επικοινωνία",
+    "copyright": "© 2026 E-Drive JetCar Manufacturing L.L.C. Με επιφύλαξη παντός δικαιώματος."
+  },
+  "distributor": {
+    "title": "Γίνετε διανομέας", "subtitle": "Εκπροσωπήστε μια νέα κατηγορία θαλάσσιας πολυτέλειας",
+    "cta": "Αίτηση πρόσβασης διανομής", "submit": "Υποβολή προφίλ εταιρείας"
+  },
+  "investors": {
+    "title": "Επένδυση με eDrive", "subtitle": "Στρατηγικό μοντέλο βασισμένο σε πραγματικές λειτουργίες",
+    "cta": "Γίνετε επενδυτής", "submit": "Υποβολή αιτήματος"
+  },
+  "common": { "learnMore": "Μάθε περισσότερα", "preOrder": "Προπαραγγελίες ανοικτές", "contactEdrive": "Επικοινωνία με eDrive" }
+}

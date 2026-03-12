@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const HeroSectionV2 = () => {
+  const { t } = useTranslation();
   return (
     <section className="relative w-full h-screen bg-[#0B0B0B] overflow-hidden" style={{ minHeight: '600px' }}>
       
@@ -49,7 +51,7 @@ const HeroSectionV2 = () => {
               marginBottom: 'clamp(10px, 1.1vw, 17px)'
             }}
           >
-            NEXT-GENERATION JETCAR MANUFACTURING - UAE
+            {t('hero.topline')}
           </motion.p>
           
           <motion.div
@@ -64,7 +66,7 @@ const HeroSectionV2 = () => {
               fontSize: 'clamp(32px, 3.33vw, 64px)', 
               lineHeight: '1.36'
             }}>
-              Create. Drive.
+              {t('hero.headline1')}
             </span>
             <span style={{ 
               fontFamily: "'Nunito Sans', sans-serif", 
@@ -72,7 +74,7 @@ const HeroSectionV2 = () => {
               fontSize: 'clamp(32px, 3.33vw, 64px)', 
               lineHeight: '1.36'
             }}>
-              Dominate the water.
+              {t('hero.headline2')}
             </span>
           </motion.div>
         </div>
@@ -104,7 +106,7 @@ const HeroSectionV2 = () => {
                 lineHeight: '33px'
               }}
             >
-              DISCOVER MORE
+              {t('hero.cta')}
             </span>
             <svg 
               width="33" 

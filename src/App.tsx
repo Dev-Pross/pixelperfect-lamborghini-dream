@@ -13,6 +13,13 @@ import DealershipsPage from "./pages/DealershipsPage.tsx";
 import BecomeDistributor from "./pages/business/BecomeDistributor.tsx";
 import Investors from "./pages/business/Investors.tsx";
 import CompanyOverview from "./pages/company/CompanyOverview.tsx";
+import CompanyProfile from "./pages/company/CompanyProfile.tsx";
+import Manufacturing from "./pages/company/Manufacturing.tsx";
+import Certifications from "./pages/company/Certifications.tsx";
+import Governance from "./pages/company/Governance.tsx";
+import Sustainability from "./pages/company/Sustainability.tsx";
+import Careers from "./pages/company/Careers.tsx";
+import History from "./pages/company/History.tsx";
 import ConfiguratorPage from "./pages/ConfiguratorPage.tsx";
 import ConfiguratorPageV2 from "./pages/ConfiguratorPageV2.tsx";
 import ConfiguratorFullPage from "./pages/ConfiguratorFullPage.tsx";
@@ -53,6 +60,13 @@ const App = () => (
           <Route path="/become-distributor" element={<BecomeDistributor />} />
           <Route path="/investors" element={<Investors />} />
           <Route path="/company" element={<CompanyOverview />} />
+          <Route path="/company/profile" element={<CompanyProfile />} />
+          <Route path="/company/manufacturing" element={<Manufacturing />} />
+          <Route path="/company/certifications" element={<Certifications />} />
+          <Route path="/company/governance" element={<Governance />} />
+          <Route path="/company/sustainability" element={<Sustainability />} />
+          <Route path="/company/careers" element={<Careers />} />
+          <Route path="/company/history" element={<History />} />
           <Route path="/configurator" element={<ConfiguratorFullPage />} />
           <Route path="/configurator/:modelSlug" element={<ConfiguratorFullPage />} />
           <Route path="/configurator-old" element={<ConfiguratorPage />} />

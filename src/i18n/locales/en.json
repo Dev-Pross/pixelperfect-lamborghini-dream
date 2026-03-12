@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "menu": "Menu",
+    "close": "Close",
+    "models": "Models",
+    "configurator": "Configurator",
+    "company": "Company",
+    "news": "News",
+    "investors": "Investors",
+    "dealerships": "Dealerships",
+    "gallery": "Gallery",
+    "design": "Design",
+    "history": "History",
+    "languages": "Languages",
+    "textSize": "Text Size"
+  },
+  "hero": {
+    "topline": "Next-Generation JetCar Manufacturing · UAE",
+    "headline1": "Create. Drive.",
+    "headline2": "Dominate the water.",
+    "cta": "Discover More"
+  },
+  "configurator": {
+    "headline": "The world's first real-time online JetCar configurator.",
+    "cta": "Create Your JetCar",
+    "startConfig": "Start Configuration",
+    "exploreModel": "Explore the Model"
+  },
+  "models": {
+    "title": "Models",
+    "discoverAll": "Discover All Models",
+    "explore": "Explore the Model",
+    "download": "Download Brochure",
+    "comingSoon": "Coming Soon",
+    "modelR": {
+      "name": "MODEL R",
+      "tagline": "Refined Performance"
+    },
+    "modelF": {
+      "name": "MODEL F",
+      "tagline": "Pure Power on Water"
+    },
+    "lumina": {
+      "name": "LUMINA",
+      "tagline": "Innovation in Motion"
+    },
+    "cybermarine": {
+      "name": "CYBERMARINE",
+      "tagline": "The Future, Reimagined"
+    }
+  },
+  "news": {
+    "title": "News",
+    "subtitle": "E-Drive World",
+    "readMore": "Read more"
+  },
+  "footer": {
+    "company": "Company",
+    "careers": "Careers",
+    "contactUs": "Contact Us",
+    "collaborate": "Collaborate",
+    "privacyLegal": "Privacy & Legal",
+    "cookieSettings": "Cookie Settings",
+    "whatsapp": "WhatsApp",
+    "contact": "Contact",
+    "legalNotice": "The specifications, features, and visuals displayed on this website may vary depending on market availability and configuration.",
+    "legalNotice2": "Product availability, specifications, and compliance may differ based on regional regulations.",
+    "legalNotice3": "If you believe information is incorrectly displayed for your location, please contact an authorized E-Drive representative.",
+    "unauthorizedWarning": "E-Drive is not a publicly traded company and does not offer shares or equity through this website.",
+    "unauthorizedWarning2": "E-Drive may present individual investment and partnership opportunities, including projects related to JetCar placement and operation, exclusively on a contractual basis and through authorized company representatives.",
+    "unauthorizedWarning3": "Any third-party claims regarding the sale of shares, equity participation, or investment products on behalf of E-Drive without official written confirmation from the company are unauthorized.",
+    "copyright": "© 2026 E-Drive JetCar Manufacturing L.L.C. All rights reserved."
+  },
+  "distributor": {
+    "title": "Become a Distributor",
+    "subtitle": "Represent a New Category in Luxury Water Mobility",
+    "tagline": "Global Expansion. Select Territories Available.",
+    "cta": "Request Distribution Access",
+    "submit": "Submit Company Profile",
+    "reviewNotice": "All submissions are reviewed by the Commercial Department."
+  },
+  "investors": {
+    "title": "Investing with eDrive",
+    "subtitle": "A Strategic Model Built on Real Operations",
+    "cta": "Become an Investor",
+    "submit": "Submit request"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "preOrder": "Pre-orders open",
+    "contactEdrive": "Contact eDrive"
+  }
+}

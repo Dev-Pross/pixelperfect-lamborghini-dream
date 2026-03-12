@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "menu": "Menu", "close": "Fermer", "models": "Modèles", "configurator": "Configurateur",
+    "company": "Entreprise", "news": "Actualités", "investors": "Investisseurs", "dealerships": "Concessionnaires",
+    "gallery": "Galerie", "design": "Design", "history": "Histoire", "languages": "Langues", "textSize": "Taille du texte"
+  },
+  "hero": {
+    "topline": "Fabrication de JetCar nouvelle génération · EAU",
+    "headline1": "Créez. Conduisez.", "headline2": "Dominez l'eau.", "cta": "En savoir plus"
+  },
+  "configurator": {
+    "headline": "Le premier configurateur de JetCar en ligne en temps réel au monde.",
+    "cta": "Créez votre JetCar", "startConfig": "Démarrer la configuration", "exploreModel": "Explorer le modèle"
+  },
+  "models": {
+    "title": "Modèles", "discoverAll": "Découvrir tous les modèles", "explore": "Explorer le modèle",
+    "download": "Télécharger la brochure", "comingSoon": "Bientôt disponible",
+    "modelR": { "name": "MODÈLE R", "tagline": "Performance raffinée" },
+    "modelF": { "name": "MODÈLE F", "tagline": "Puissance pure sur l'eau" },
+    "lumina": { "name": "LUMINA", "tagline": "Innovation en mouvement" },
+    "cybermarine": { "name": "CYBERMARINE", "tagline": "Le futur, réinventé" }
+  },
+  "news": { "title": "Actualités", "subtitle": "Monde E-Drive", "readMore": "Lire la suite" },
+  "footer": {
+    "company": "Entreprise", "careers": "Carrières", "contactUs": "Contactez-nous",
+    "collaborate": "Collaborer", "privacyLegal": "Confidentialité et mentions légales",
+    "cookieSettings": "Paramètres des cookies", "whatsapp": "WhatsApp", "contact": "Contact",
+    "copyright": "© 2026 E-Drive JetCar Manufacturing L.L.C. Tous droits réservés."
+  },
+  "distributor": {
+    "title": "Devenir distributeur", "subtitle": "Représentez une nouvelle catégorie de mobilité nautique de luxe",
+    "cta": "Demander l'accès à la distribution", "submit": "Soumettre le profil de l'entreprise"
+  },
+  "investors": {
+    "title": "Investir avec eDrive", "subtitle": "Un modèle stratégique basé sur des opérations réelles",
+    "cta": "Devenir investisseur", "submit": "Soumettre la demande"
+  },
+  "common": { "learnMore": "En savoir plus", "preOrder": "Précommandes ouvertes", "contactEdrive": "Contacter eDrive" }
+}

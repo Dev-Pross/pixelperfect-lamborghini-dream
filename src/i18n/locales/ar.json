@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "menu": "القائمة",
+    "close": "إغلاق",
+    "models": "الموديلات",
+    "configurator": "المُهيّئ",
+    "company": "الشركة",
+    "news": "الأخبار",
+    "investors": "المستثمرون",
+    "dealerships": "الموزعون",
+    "gallery": "المعرض",
+    "design": "التصميم",
+    "history": "التاريخ",
+    "languages": "اللغات",
+    "textSize": "حجم النص"
+  },
+  "hero": {
+    "topline": "تصنيع جت كار من الجيل القادم · الإمارات",
+    "headline1": "ابتكر. قُد.",
+    "headline2": "تحكّم بالمياه.",
+    "cta": "اكتشف المزيد"
+  },
+  "configurator": {
+    "headline": "أول مُهيّئ جت كار تفاعلي في الوقت الفعلي في العالم.",
+    "cta": "صمّم جت كار الخاص بك",
+    "startConfig": "ابدأ التهيئة",
+    "exploreModel": "استكشف الموديل"
+  },
+  "models": {
+    "title": "الموديلات",
+    "discoverAll": "اكتشف جميع الموديلات",
+    "explore": "استكشف الموديل",
+    "download": "تحميل الكتيب",
+    "comingSoon": "قريباً",
+    "modelR": { "name": "موديل R", "tagline": "أداء راقٍ" },
+    "modelF": { "name": "موديل F", "tagline": "قوة خالصة على الماء" },
+    "lumina": { "name": "لومينا", "tagline": "ابتكار في الحركة" },
+    "cybermarine": { "name": "سايبر مارين", "tagline": "المستقبل، مُعاد تصوره" }
+  },
+  "news": { "title": "الأخبار", "subtitle": "عالم إي-درايف", "readMore": "اقرأ المزيد" },
+  "footer": {
+    "company": "الشركة", "careers": "الوظائف", "contactUs": "اتصل بنا",
+    "collaborate": "تعاون", "privacyLegal": "الخصوصية والقانون",
+    "cookieSettings": "إعدادات الكوكيز", "whatsapp": "واتساب", "contact": "تواصل",
+    "copyright": "© 2026 إي-درايف جت كار للتصنيع ذ.م.م. جميع الحقوق محفوظة."
+  },
+  "distributor": {
+    "title": "كن موزعاً", "subtitle": "مثّل فئة جديدة في التنقل المائي الفاخر",
+    "cta": "طلب وصول التوزيع", "submit": "إرسال ملف الشركة"
+  },
+  "investors": {
+    "title": "الاستثمار مع إي-درايف", "subtitle": "نموذج استراتيجي مبني على عمليات حقيقية",
+    "cta": "كن مستثمراً", "submit": "إرسال الطلب"
+  },
+  "common": { "learnMore": "اعرف المزيد", "preOrder": "الطلب المسبق مفتوح", "contactEdrive": "تواصل مع إي-درايف" }
+}

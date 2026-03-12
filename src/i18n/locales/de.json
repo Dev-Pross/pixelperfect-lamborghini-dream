@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "menu": "Menü", "close": "Schließen", "models": "Modelle", "configurator": "Konfigurator",
+    "company": "Unternehmen", "news": "Nachrichten", "investors": "Investoren", "dealerships": "Händler",
+    "gallery": "Galerie", "design": "Design", "history": "Geschichte", "languages": "Sprachen", "textSize": "Textgröße"
+  },
+  "hero": {
+    "topline": "JetCar-Fertigung der nächsten Generation · VAE",
+    "headline1": "Erschaffen. Fahren.", "headline2": "Das Wasser beherrschen.", "cta": "Mehr erfahren"
+  },
+  "configurator": {
+    "headline": "Der weltweit erste Echtzeit-Online-JetCar-Konfigurator.",
+    "cta": "Gestalten Sie Ihren JetCar", "startConfig": "Konfiguration starten", "exploreModel": "Modell erkunden"
+  },
+  "models": {
+    "title": "Modelle", "discoverAll": "Alle Modelle entdecken", "explore": "Modell erkunden",
+    "download": "Broschüre herunterladen", "comingSoon": "Demnächst",
+    "modelR": { "name": "MODELL R", "tagline": "Verfeinerte Leistung" },
+    "modelF": { "name": "MODELL F", "tagline": "Pure Kraft auf dem Wasser" },
+    "lumina": { "name": "LUMINA", "tagline": "Innovation in Bewegung" },
+    "cybermarine": { "name": "CYBERMARINE", "tagline": "Die Zukunft, neu gedacht" }
+  },
+  "news": { "title": "Nachrichten", "subtitle": "E-Drive Welt", "readMore": "Weiterlesen" },
+  "footer": {
+    "company": "Unternehmen", "careers": "Karriere", "contactUs": "Kontakt",
+    "collaborate": "Zusammenarbeit", "privacyLegal": "Datenschutz & Recht",
+    "cookieSettings": "Cookie-Einstellungen", "whatsapp": "WhatsApp", "contact": "Kontakt",
+    "copyright": "© 2026 E-Drive JetCar Manufacturing L.L.C. Alle Rechte vorbehalten."
+  },
+  "distributor": {
+    "title": "Vertriebspartner werden", "subtitle": "Vertreten Sie eine neue Kategorie der Luxus-Wassermobilität",
+    "cta": "Vertriebszugang anfordern", "submit": "Unternehmensprofil einreichen"
+  },
+  "investors": {
+    "title": "Investieren mit eDrive", "subtitle": "Ein strategisches Modell auf realen Operationen",
+    "cta": "Investor werden", "submit": "Anfrage senden"
+  },
+  "common": { "learnMore": "Mehr erfahren", "preOrder": "Vorbestellungen offen", "contactEdrive": "eDrive kontaktieren" }
+}

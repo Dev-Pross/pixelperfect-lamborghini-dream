@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "menu": "Меню", "close": "Закрыть", "models": "Модели", "configurator": "Конфигуратор",
+    "company": "Компания", "news": "Новости", "investors": "Инвесторы", "dealerships": "Дилеры",
+    "gallery": "Галерея", "design": "Дизайн", "history": "История", "languages": "Языки", "textSize": "Размер текста"
+  },
+  "hero": {
+    "topline": "Производство JetCar нового поколения · ОАЭ",
+    "headline1": "Создавай. Управляй.", "headline2": "Покоряй воду.", "cta": "Узнать больше"
+  },
+  "configurator": {
+    "headline": "Первый в мире онлайн-конфигуратор JetCar в реальном времени.",
+    "cta": "Создай свой JetCar", "startConfig": "Начать конфигурацию", "exploreModel": "Изучить модель"
+  },
+  "models": {
+    "title": "Модели", "discoverAll": "Все модели", "explore": "Изучить модель",
+    "download": "Скачать брошюру", "comingSoon": "Скоро",
+    "modelR": { "name": "МОДЕЛЬ R", "tagline": "Утончённая мощность" },
+    "modelF": { "name": "МОДЕЛЬ F", "tagline": "Чистая сила на воде" },
+    "lumina": { "name": "LUMINA", "tagline": "Инновации в движении" },
+    "cybermarine": { "name": "CYBERMARINE", "tagline": "Будущее, переосмысленное" }
+  },
+  "news": { "title": "Новости", "subtitle": "Мир E-Drive", "readMore": "Читать далее" },
+  "footer": {
+    "company": "Компания", "careers": "Карьера", "contactUs": "Связаться с нами",
+    "collaborate": "Сотрудничество", "privacyLegal": "Конфиденциальность",
+    "cookieSettings": "Настройки cookie", "whatsapp": "WhatsApp", "contact": "Контакт",
+    "copyright": "© 2026 E-Drive JetCar Manufacturing L.L.C. Все права защищены."
+  },
+  "distributor": {
+    "title": "Стать дистрибьютором", "subtitle": "Представляйте новую категорию роскошного водного транспорта",
+    "cta": "Запросить доступ к дистрибуции", "submit": "Отправить профиль компании"
+  },
+  "investors": {
+    "title": "Инвестиции в eDrive", "subtitle": "Стратегическая модель на реальных операциях",
+    "cta": "Стать инвестором", "submit": "Отправить заявку"
+  },
+  "common": { "learnMore": "Подробнее", "preOrder": "Предзаказ открыт", "contactEdrive": "Связаться с eDrive" }
+}

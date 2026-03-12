@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "menu": "Menú", "close": "Cerrar", "models": "Modelos", "configurator": "Configurador",
+    "company": "Empresa", "news": "Noticias", "investors": "Inversores", "dealerships": "Distribuidores",
+    "gallery": "Galería", "design": "Diseño", "history": "Historia", "languages": "Idiomas", "textSize": "Tamaño de texto"
+  },
+  "hero": {
+    "topline": "Fabricación de JetCar de nueva generación · EAU",
+    "headline1": "Crea. Conduce.", "headline2": "Domina el agua.", "cta": "Descubrir más"
+  },
+  "configurator": {
+    "headline": "El primer configurador de JetCar en línea en tiempo real del mundo.",
+    "cta": "Crea tu JetCar", "startConfig": "Iniciar configuración", "exploreModel": "Explorar modelo"
+  },
+  "models": {
+    "title": "Modelos", "discoverAll": "Descubrir todos los modelos", "explore": "Explorar el modelo",
+    "download": "Descargar folleto", "comingSoon": "Próximamente",
+    "modelR": { "name": "MODELO R", "tagline": "Rendimiento refinado" },
+    "modelF": { "name": "MODELO F", "tagline": "Potencia pura en el agua" },
+    "lumina": { "name": "LUMINA", "tagline": "Innovación en movimiento" },
+    "cybermarine": { "name": "CYBERMARINE", "tagline": "El futuro, reimaginado" }
+  },
+  "news": { "title": "Noticias", "subtitle": "Mundo E-Drive", "readMore": "Leer más" },
+  "footer": {
+    "company": "Empresa", "careers": "Empleo", "contactUs": "Contáctenos",
+    "collaborate": "Colaborar", "privacyLegal": "Privacidad y legal",
+    "cookieSettings": "Configuración de cookies", "whatsapp": "WhatsApp", "contact": "Contacto",
+    "copyright": "© 2026 E-Drive JetCar Manufacturing L.L.C. Todos los derechos reservados."
+  },
+  "distributor": {
+    "title": "Ser distribuidor", "subtitle": "Represente una nueva categoría en movilidad acuática de lujo",
+    "cta": "Solicitar acceso de distribución", "submit": "Enviar perfil de empresa"
+  },
+  "investors": {
+    "title": "Invertir con eDrive", "subtitle": "Un modelo estratégico basado en operaciones reales",
+    "cta": "Ser inversor", "submit": "Enviar solicitud"
+  },
+  "common": { "learnMore": "Saber más", "preOrder": "Preórdenes abiertas", "contactEdrive": "Contactar eDrive" }
+}
