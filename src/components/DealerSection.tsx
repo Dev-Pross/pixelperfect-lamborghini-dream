@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import dealerBg from "@/assets/dealer-bg.jpg";
 
 const DealerSection = () => {
+  const { t } = useTranslation();
   return (
     <section id="dealerships" className="relative h-[70vh] flex items-center justify-center overflow-hidden">
       <img
@@ -20,12 +22,12 @@ const DealerSection = () => {
         transition={{ duration: 0.6 }}
         className="relative z-10 text-center"
       >
-        <p className="section-label mb-4">Global Network</p>
+        <p className="section-label mb-4">{t('dealer.globalNetwork')}</p>
         <h2 className="text-heading-xl text-3xl md:text-5xl text-foreground mb-8">
-          Become a Distributor
+          {t('dealer.becomeDistributor')}
         </h2>
         <Link to="/become-distributor" className="btn-outline-white">
-          Learn More
+          {t('common.learnMore')}
         </Link>
       </motion.div>
     </section>

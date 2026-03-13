@@ -1,5 +1,6 @@
-  import { useState } from "react";
+import { useState } from "react";
 import { Search } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
 import dealerBg from "@/assets/dealer-bg.jpg";
@@ -14,6 +15,7 @@ const dealers = [
 ];
 
 const DealershipsPage = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const filtered = dealers.filter(d =>
     d.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -30,7 +32,7 @@ const DealershipsPage = () => {
           <img src={dealerBg} alt="Dealer" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
           <div className="relative z-10 px-8 md:px-16 pb-16">
-            <h1 className="text-heading-xl text-4xl md:text-6xl text-foreground">Dealer Locator</h1>
+            <h1 className="text-heading-xl text-4xl md:text-6xl text-foreground">{t('dealerships.title')}</h1>
           </div>
         </section>
 
@@ -40,7 +42,7 @@ const DealershipsPage = () => {
             <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Search by city or country..."
+              placeholder={t('dealerships.searchPlaceholder')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full bg-transparent border border-border pl-12 pr-4 py-3 text-sm text-foreground font-body placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
@@ -67,3 +69,4 @@ const DealershipsPage = () => {
 };
 
 export default DealershipsPage;
+

@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, ContactShadows, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import CarModel from './CarModel';
 import { useCarMaterials } from './CarMaterials';
 import type { ConfiguratorModel } from '@/data/configuratorData';
@@ -132,6 +133,7 @@ function WebGLFallback({ model }: { model: ConfiguratorModel }) {
 }
 
 const ConfiguratorCanvas = ({ model, sidebarOpen, selections }: Props) => {
+  const { t } = useTranslation();
   const [webglAvailable, setWebglAvailable] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -179,7 +181,7 @@ const ConfiguratorCanvas = ({ model, sidebarOpen, selections }: Props) => {
           >
             <div className="px-4 py-1.5 bg-black/[0.04] backdrop-blur-sm rounded-full">
               <span className="font-configurator text-[10px] font-medium tracking-[0.15em] uppercase text-black/25">
-                Drag to rotate &bull; Scroll to zoom
+                {t('config.dragHint')}
               </span>
             </div>
           </motion.div>

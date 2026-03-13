@@ -1,5 +1,6 @@
 import { ArrowLeft, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import type { ConfigCategory } from '@/data/configuratorData';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const ConfiguratorOptionPanel = ({ category, selectedOptionId, onSelect, onBack }: Props) => {
+  const { t } = useTranslation();
   const hasColorSwatches = ['hull-color', 'ambient-lighting', 'upholstery'].includes(category.id);
   const selectedOption = category.options.find((o) => o.id === selectedOptionId);
 
@@ -29,7 +31,7 @@ const ConfiguratorOptionPanel = ({ category, selectedOptionId, onSelect, onBack 
           whileTap={{ scale: 0.97 }}
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-          <span className="font-configurator text-[12px] font-medium">Back</span>
+          <span className="font-configurator text-[12px] font-medium">{t('config.back')}</span>
         </motion.button>
 
         <h3 className="font-configurator font-extrabold text-[18px] text-[#1a1a1a]">
@@ -64,7 +66,7 @@ const ConfiguratorOptionPanel = ({ category, selectedOptionId, onSelect, onBack 
               animate={{ opacity: 1 }}
               className="font-configurator text-[12px] text-[#ccc] mt-1.5"
             >
-              Choose an option below
+              {t('config.chooseOption')}
             </motion.p>
           )}
         </AnimatePresence>

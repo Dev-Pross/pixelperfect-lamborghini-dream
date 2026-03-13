@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
@@ -14,30 +15,34 @@ const sections = [
   { title: "Looking Ahead", text: ["Sustainability at eDrive is a journey.", "As our product range expands and new technologies — including electric propulsion — are introduced, our sustainability framework will continue to develop accordingly.", "We remain committed to responsible innovation, transparency, and building water mobility solutions designed for the future."] },
 ];
 
-const Sustainability = () => (
-  <>
-    <NavBar />
-    <main className="bg-background text-foreground min-h-screen selection:bg-tiffany selection:text-black">
-      {/* HERO */}
-      <section className="relative h-[60vh] flex flex-col justify-end pb-20 px-8 md:px-16 bg-gradient-to-b from-emerald-950/40 to-black">
-        <motion.div {...fade}><p className="text-sm tracking-[0.3em] text-white/50 uppercase mb-4">Company</p><h1 className="text-3xl md:text-6xl font-bold tracking-tighter text-heading-xl">SUSTAINABILITY & RESPONSIBILITY</h1></motion.div>
-      </section>
+const Sustainability = () => {
+  const { t } = useTranslation();
 
-      {sections.map((s, i) => (
-        <section key={i} className={`py-24 px-8 ${i % 3 === 1 ? 'bg-tiffany text-black' : i % 3 === 2 ? 'bg-neutral-950' : 'bg-black'}`}>
-          <div className="max-w-4xl mx-auto"><motion.div {...fade}>
-            <h3 className={`text-sm tracking-[0.2em] uppercase mb-8 ${i % 3 === 1 ? 'text-black/50 font-bold' : 'text-white/50'}`}>{s.title}</h3>
-            {s.text.map((t, j) => <p key={j} className={`text-lg font-light leading-relaxed mb-4 ${i % 3 === 1 ? '' : j > 0 ? 'text-muted-foreground' : 'text-white/80'}`}>{t}</p>)}
-            {s.bullets && <ul className="mt-6 space-y-3">{s.bullets.map((b, j) => <li key={j} className={`flex items-center gap-4 ${i % 3 === 1 ? 'text-black/80' : 'text-white/70'}`}><span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${i % 3 === 1 ? 'bg-black' : 'bg-tiffany'}`} />{b}</li>)}</ul>}
-          </motion.div></div>
+  return (
+    <>
+      <NavBar />
+      <main className="bg-background text-foreground min-h-screen selection:bg-tiffany selection:text-black">
+        {/* HERO */}
+        <section className="relative h-[60vh] flex flex-col justify-end pb-20 px-8 md:px-16 bg-gradient-to-b from-emerald-950/40 to-black">
+          <motion.div {...fade}><p className="text-sm tracking-[0.3em] text-white/50 uppercase mb-4">{t('company.sustainability.heroLabel')}</p><h1 className="text-3xl md:text-6xl font-bold tracking-tighter text-heading-xl">{t('company.sustainability.heroTitle')}</h1></motion.div>
         </section>
-      ))}
 
-      {/* FINAL */}
-      <section className="py-40 px-8 text-center bg-black border-t border-white/5"><div className="max-w-4xl mx-auto"><motion.div {...fade}><p className="text-2xl md:text-4xl font-light italic leading-snug">At eDrive, sustainability is not about compromise.<br/>It is about designing the future responsibly.</p></motion.div></div></section>
-    </main>
-    <FooterSection />
-  </>
-);
+        {sections.map((s, i) => (
+          <section key={i} className={`py-24 px-8 ${i % 3 === 1 ? 'bg-tiffany text-black' : i % 3 === 2 ? 'bg-neutral-950' : 'bg-black'}`}>
+            <div className="max-w-4xl mx-auto"><motion.div {...fade}>
+              <h3 className={`text-sm tracking-[0.2em] uppercase mb-8 ${i % 3 === 1 ? 'text-black/50 font-bold' : 'text-white/50'}`}>{s.title}</h3>
+              {s.text.map((t, j) => <p key={j} className={`text-lg font-light leading-relaxed mb-4 ${i % 3 === 1 ? '' : j > 0 ? 'text-muted-foreground' : 'text-white/80'}`}>{t}</p>)}
+              {s.bullets && <ul className="mt-6 space-y-3">{s.bullets.map((b, j) => <li key={j} className={`flex items-center gap-4 ${i % 3 === 1 ? 'text-black/80' : 'text-white/70'}`}><span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${i % 3 === 1 ? 'bg-black' : 'bg-tiffany'}`} />{b}</li>)}</ul>}
+            </motion.div></div>
+          </section>
+        ))}
+
+        {/* FINAL */}
+        <section className="py-40 px-8 text-center bg-black border-t border-white/5"><div className="max-w-4xl mx-auto"><motion.div {...fade}><p className="text-2xl md:text-4xl font-light italic leading-snug">{t('company.sustainability.closingStatement')}</p></motion.div></div></section>
+      </main>
+      <FooterSection />
+    </>
+  );
+};
 
 export default Sustainability;

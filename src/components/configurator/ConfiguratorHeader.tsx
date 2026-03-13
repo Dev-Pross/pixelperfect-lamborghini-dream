@@ -1,6 +1,7 @@
 import { PanelRight, ArrowLeft, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import type { ConfiguratorModel } from '@/data/configuratorData';
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const ConfiguratorHeader = ({ model, sidebarOpen, onToggleSidebar, onBackToLanding, onShowDownload }: Props) => {
+  const { t } = useTranslation();
   return (
     <motion.header
       initial={{ opacity: 0, y: -10 }}
@@ -60,7 +62,7 @@ const ConfiguratorHeader = ({ model, sidebarOpen, onToggleSidebar, onBackToLandi
           whileTap={{ scale: 0.97 }}
         >
           <span className="font-configurator font-bold text-[11px] lg:text-[12px] text-[#111] tracking-wide">
-            YOUR JETCAR
+            {t('config.yourJetcar')}
           </span>
         </motion.button>
 
@@ -76,7 +78,7 @@ const ConfiguratorHeader = ({ model, sidebarOpen, onToggleSidebar, onBackToLandi
         >
           <PanelRight className="w-[16px] h-[16px]" strokeWidth={1.8} />
           <span className="hidden sm:inline font-configurator font-semibold text-[11px] tracking-wide">
-            {sidebarOpen ? 'CLOSE' : 'CONFIGURE'}
+            {sidebarOpen ? t('config.close') : t('config.configure')}
           </span>
         </motion.button>
       </div>

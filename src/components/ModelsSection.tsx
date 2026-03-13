@@ -79,13 +79,13 @@ const ModelsSection = () => {
               className="text-black text-2xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              Models
+              {t('models.title')}
             </motion.h2>
             <Link
               to="/models"
               className="hidden md:flex items-center gap-3 text-black/50 text-sm lg:text-base font-medium uppercase hover:text-black transition-colors group tracking-wide"
             >
-              DISCOVER ALL MODELS
+              {t('models.discoverAll').toUpperCase()}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:translate-x-1 transition-transform">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -232,7 +232,7 @@ const ModelsSection = () => {
                   />
                   {model.comingSoon && isCenter && (
                     <div className="absolute top-0 right-0 md:top-2 md:right-2 bg-black text-white text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5">
-                      Coming Soon
+                      {t('models.comingSoon')}
                     </div>
                   )}
                 </motion.div>
@@ -256,7 +256,7 @@ const ModelsSection = () => {
                 to={`/models/${current.slug}`}
                 className="inline-flex items-center gap-2 text-black text-sm font-semibold tracking-[0.1em] uppercase hover:opacity-60 transition-opacity group"
               >
-                EXPLORE {current.name.toUpperCase()}
+                {t('models.explore').toUpperCase()} {current.name.toUpperCase()}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:translate-x-1 transition-transform">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>

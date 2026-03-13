@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { RotateCcw, X, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import type { ConfiguratorModel, ConfigCategory } from '@/data/configuratorData';
 import type { ConfiguratorAction, TabId } from '@/hooks/useConfiguratorState';
 import ConfiguratorCategoryCard from './ConfiguratorCategoryCard';
@@ -22,6 +23,7 @@ const TABS: { id: TabId; label: string }[] = [
 ];
 
 const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, touched, dispatch }: Props) => {
+  const { t } = useTranslation();
   const currentTab = model.tabs.find((t) => t.id === activeTab);
   const currentCategory = activeCategory
     ? currentTab?.categories.find((c) => c.id === activeCategory)
@@ -52,10 +54,10 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, tou
       <div className="flex items-center justify-between px-5 pt-5 pb-3 shrink-0">
         <div>
           <h2 className="font-configurator font-bold text-[18px] text-[#1a1a1a]">
-            Configure
+            {t('config.configure')}
           </h2>
           <p className="font-configurator text-[11px] text-[#999] mt-0.5">
-            {totalTouched} of {totalAll} options customized
+            {t('config.optionsCustomized', { touched: totalTouched, total: totalAll })}
           </p>
         </div>
 
@@ -75,7 +77,7 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, tou
             title="Reset all options"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span className="font-configurator font-semibold text-[10px] tracking-wide">RESET</span>
+            <span className="font-configurator font-semibold text-[10px] tracking-wide">{t('config.reset')}</span>
           </motion.button>
 
           <button
@@ -151,7 +153,7 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, tou
             >
               <div className="flex items-center justify-between pt-1 mb-2">
                 <p className="font-configurator font-medium text-[12px] text-[#bbb]">
-                  Select a category
+                  {t('config.selectCategory')}
                 </p>
                 <span className="font-configurator text-[11px] text-[#81D8D0] font-bold">
                   {touchedInTab}/{totalCategories}
@@ -182,7 +184,7 @@ const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, tou
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
         >
-          VIEW SUMMARY & DOWNLOAD
+          {t('config.viewSummary')}
         </motion.button>
       </div>
     </motion.aside>

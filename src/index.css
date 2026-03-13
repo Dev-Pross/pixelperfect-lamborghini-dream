@@ -207,3 +207,22 @@ section {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
 }
+
+/* ─── RTL (Arabic) Support ─── */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .section-label {
+  text-align: right;
+}
+
+/* Flip horizontal padding/margins for RTL */
+[dir="rtl"] .nav-link {
+  direction: rtl;
+}
+
+/* Ensure flex layouts mirror in RTL */
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}

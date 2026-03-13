@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
 import modelRImg from "@/assets/slide-model-r.png";
@@ -15,12 +16,13 @@ const allModels = [
 ];
 
 const ModelsPage = () => {
+  const { t } = useTranslation();
   return (
     <>
       <NavBar />
       <main className="pt-24 pb-20">
         <div className="px-8 md:px-16 mb-16">
-          <h1 className="text-heading-xl text-4xl md:text-6xl text-foreground">All Models</h1>
+          <h1 className="text-heading-xl text-4xl md:text-6xl text-foreground">{t('models.allModels')}</h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2">
           {allModels.map((model, i) => (

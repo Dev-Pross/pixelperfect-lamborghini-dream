@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
 import news1 from "@/assets/news-1.jpg";
@@ -38,6 +39,7 @@ const articlesData: Record<string, { title: string; category: string; date: stri
 };
 
 const NewsDetailPage = () => {
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const article = articlesData[slug || ""];
 
@@ -46,8 +48,8 @@ const NewsDetailPage = () => {
       <>
         <NavBar />
         <div className="pt-32 px-16 text-center">
-          <h1 className="text-heading-xl text-4xl text-foreground">Article not found</h1>
-          <Link to="/news" className="nav-link mt-8 inline-block">Back to News</Link>
+          <h1 className="text-heading-xl text-4xl text-foreground">{t('news.articleNotFound')}</h1>
+          <Link to="/news" className="nav-link mt-8 inline-block">{t('news.backToNews')}</Link>
         </div>
       </>
     );
@@ -72,7 +74,7 @@ const NewsDetailPage = () => {
             <svg className="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeWidth={1.5} d="M5 12h14m-6-6l6 6-6 6" />
             </svg>
-            Back to News
+            {t('news.backToNews')}
           </Link>
         </article>
       </main>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Facebook, Linkedin, Youtube, Instagram, Music2, MessageCircle } from 'lucide-react';
 
 // Using actual image paths available in the project
@@ -60,6 +61,7 @@ const MODELS = [
 ];
 
 const ConfiguratorPageV2 = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(MODELS[0]);
 
   return (
@@ -108,7 +110,7 @@ const ConfiguratorPageV2 = () => {
 
           {/* Title Area */}
           <div className="font-light text-xl md:text-2xl sm:text-[32px] leading-tight text-white mb-2">
-            CONFIGURE YOUR
+            {t('configurator.headline').toUpperCase()}
           </div>
           <div className="font-bold text-3xl md:text-4xl sm:text-[64px] leading-tight text-white mb-3">
             {activeTab.name}
@@ -126,7 +128,7 @@ const ConfiguratorPageV2 = () => {
           <div className="flex flex-col sm:flex-row gap-4 lg:gap-[1.5vw] mt-[2vh]">
             <Link to="/configurator" className="h-[50px] lg:h-[60px] px-6 lg:px-[25px] bg-[#81D8D0] rounded-[6px] hover:bg-[#6ec2ba] transition-colors flex items-center justify-between group min-w-[200px] lg:min-w-[250px]">
               <span className="font-normal text-xs sm:text-sm text-black whitespace-nowrap mr-3">
-                START CONFIGURATION
+                {t('configurator.startConfig').toUpperCase()}
               </span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] lg:w-[22px] lg:h-[22px] text-black group-hover:scale-110 transition-transform relative">
                 {/* 3D Cube core */}
@@ -141,7 +143,7 @@ const ConfiguratorPageV2 = () => {
 
             <Link to={`/models/${activeTab.slug}`} className="h-[50px] lg:h-[60px] px-6 lg:px-[30px] border border-white rounded-[6px] hover:bg-white/10 transition-colors flex items-center justify-between group cursor-pointer pointer-events-auto min-w-[200px] lg:min-w-[250px]">
               <span className="font-normal text-sm lg:text-[15px] text-[#E3E3E3] whitespace-nowrap mr-3">
-                EXPLORE THE MODEL
+                {t('configurator.exploreModel').toUpperCase()}
               </span>
               <svg className="w-[18px] h-[18px] lg:w-[22px] lg:h-[22px] text-[#F5F5F5] group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-6-6l6 6-6 6" />
@@ -159,25 +161,25 @@ const ConfiguratorPageV2 = () => {
 
       {/* Specifications Footer */}
       <div className="w-full px-4 sm:px-[5vw] lg:px-0 lg:max-w-[1620px] mx-auto pb-4 lg:pb-[20px] grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-row items-center justify-center lg:justify-between z-20 text-[11px] sm:text-[12px] lg:text-[15px] text-[#8E8E8E] font-light gap-2 sm:gap-3 lg:gap-0">
-        <div className="whitespace-nowrap text-center">Length: {activeTab.stats.length}</div>
+        <div className="whitespace-nowrap text-center">{t('configurator.specs.length')}: {activeTab.stats.length}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
 
-        <div className="whitespace-nowrap text-center">Width: {activeTab.stats.width}</div>
+        <div className="whitespace-nowrap text-center">{t('configurator.specs.width')}: {activeTab.stats.width}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
 
-        <div className="whitespace-nowrap text-center">Depth: {activeTab.stats.depth}</div>
+        <div className="whitespace-nowrap text-center">{t('configurator.specs.depth')}: {activeTab.stats.depth}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
 
-        <div className="whitespace-nowrap text-center">Seating: {activeTab.stats.seating}</div>
+        <div className="whitespace-nowrap text-center">{t('configurator.specs.seating')}: {activeTab.stats.seating}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
 
-        <div className="whitespace-nowrap text-center">Engine: {activeTab.stats.brand}</div>
+        <div className="whitespace-nowrap text-center">{t('configurator.specs.engine')}: {activeTab.stats.brand}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
-        
+
         <div className="whitespace-nowrap text-center">{activeTab.stats.engine}</div>
         <div className="hidden lg:block w-[30px] h-[1px] bg-[#8E8E8E] transform -rotate-90"></div>
 
-        <div className="whitespace-nowrap text-center col-span-2 sm:col-span-1">Cert: {activeTab.stats.cert}</div>
+        <div className="whitespace-nowrap text-center col-span-2 sm:col-span-1">{t('configurator.specs.cert')}: {activeTab.stats.cert}</div>
       </div>
 
       {/* Social Icons Sidebar */}

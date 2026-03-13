@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
@@ -14,30 +15,34 @@ const sections = [
   { title: "Looking Ahead", text: ["As eDrive continues to grow, its governance and compliance framework will evolve accordingly.", "We are committed to strengthening corporate governance practices in line with future expansion, shareholder structures, and potential public market participation."] },
 ];
 
-const Governance = () => (
-  <>
-    <NavBar />
-    <main className="bg-background text-foreground min-h-screen selection:bg-tiffany selection:text-black">
-      {/* HERO */}
-      <section className="relative h-[60vh] flex flex-col justify-end pb-20 px-8 md:px-16 bg-gradient-to-b from-neutral-900 to-black">
-        <motion.div {...fade}><p className="text-sm tracking-[0.3em] text-white/50 uppercase mb-4">Company</p><h1 className="text-4xl md:text-7xl font-bold tracking-tighter text-heading-xl">GOVERNANCE & COMPLIANCE</h1></motion.div>
-      </section>
+const Governance = () => {
+  const { t } = useTranslation();
 
-      {sections.map((s, i) => (
-        <section key={i} className={`py-24 px-8 ${i % 2 === 0 ? 'bg-black' : 'bg-neutral-950'} ${i > 0 ? 'border-t border-white/5' : ''}`}>
-          <div className="max-w-4xl mx-auto"><motion.div {...fade}>
-            <h3 className="text-sm tracking-[0.2em] text-white/50 uppercase mb-8">{s.title}</h3>
-            {s.text.map((t, j) => <p key={j} className={`text-lg font-light leading-relaxed mb-4 ${j > 0 ? 'text-muted-foreground' : 'text-white/80'}`}>{t}</p>)}
-            {s.bullets && <ul className="mt-6 space-y-3">{s.bullets.map((b, j) => <li key={j} className="flex items-center gap-4 text-white/70"><span className="w-1.5 h-1.5 bg-tiffany rounded-full flex-shrink-0" />{b}</li>)}</ul>}
-          </motion.div></div>
+  return (
+    <>
+      <NavBar />
+      <main className="bg-background text-foreground min-h-screen selection:bg-tiffany selection:text-black">
+        {/* HERO */}
+        <section className="relative h-[60vh] flex flex-col justify-end pb-20 px-8 md:px-16 bg-gradient-to-b from-neutral-900 to-black">
+          <motion.div {...fade}><p className="text-sm tracking-[0.3em] text-white/50 uppercase mb-4">{t('company.governance.heroLabel')}</p><h1 className="text-4xl md:text-7xl font-bold tracking-tighter text-heading-xl">{t('company.governance.heroTitle')}</h1></motion.div>
         </section>
-      ))}
 
-      {/* FINAL NOTE */}
-      <section className="py-40 px-8 text-center bg-black border-t border-white/5"><div className="max-w-4xl mx-auto"><motion.div {...fade}><p className="text-2xl md:text-4xl font-light italic leading-snug">Governance at eDrive is not a formality.<br/>It is a foundation for trust, growth, and long-term value creation.</p></motion.div></div></section>
-    </main>
-    <FooterSection />
-  </>
-);
+        {sections.map((s, i) => (
+          <section key={i} className={`py-24 px-8 ${i % 2 === 0 ? 'bg-black' : 'bg-neutral-950'} ${i > 0 ? 'border-t border-white/5' : ''}`}>
+            <div className="max-w-4xl mx-auto"><motion.div {...fade}>
+              <h3 className="text-sm tracking-[0.2em] text-white/50 uppercase mb-8">{s.title}</h3>
+              {s.text.map((t, j) => <p key={j} className={`text-lg font-light leading-relaxed mb-4 ${j > 0 ? 'text-muted-foreground' : 'text-white/80'}`}>{t}</p>)}
+              {s.bullets && <ul className="mt-6 space-y-3">{s.bullets.map((b, j) => <li key={j} className="flex items-center gap-4 text-white/70"><span className="w-1.5 h-1.5 bg-tiffany rounded-full flex-shrink-0" />{b}</li>)}</ul>}
+            </motion.div></div>
+          </section>
+        ))}
+
+        {/* FINAL NOTE */}
+        <section className="py-40 px-8 text-center bg-black border-t border-white/5"><div className="max-w-4xl mx-auto"><motion.div {...fade}><p className="text-2xl md:text-4xl font-light italic leading-snug">{t('company.governance.closingStatement')}</p></motion.div></div></section>
+      </main>
+      <FooterSection />
+    </>
+  );
+};
 
 export default Governance;

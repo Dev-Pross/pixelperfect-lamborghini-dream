@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { CONFIGURATOR_MODELS } from '@/data/configuratorData';
 import type { ConfiguratorModel } from '@/data/configuratorData';
 import type { ConfiguratorAction } from '@/hooks/useConfiguratorState';
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const ConfiguratorLanding = ({ model, selectedModelIndex, selections, dispatch }: Props) => {
+  const { t } = useTranslation();
   const [direction, setDirection] = useState(0);
 
   // Derive hull-color swatches from the model's exterior tab
@@ -259,7 +261,7 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, selections, dispatch }
             <span className={`font-configurator font-bold text-[13px] lg:text-[14px] tracking-wide ${
               model.comingSoon ? 'text-white/40' : 'text-[#111]'
             }`}>
-              {model.comingSoon ? 'COMING SOON' : 'START CONFIGURATION'}
+              {model.comingSoon ? t('models.comingSoon').toUpperCase() : t('configurator.startConfig').toUpperCase()}
             </span>
             {!model.comingSoon && (
               <ChevronRight className="w-4 h-4 text-[#111] group-hover:translate-x-0.5 transition-transform" />

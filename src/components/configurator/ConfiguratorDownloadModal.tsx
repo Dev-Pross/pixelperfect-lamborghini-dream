@@ -1,6 +1,7 @@
 import { useRef, useCallback, useState } from 'react';
 import { motion } from 'framer-motion';
 import { X, Share2, Camera, Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { ConfiguratorModel, ConfigTab } from '@/data/configuratorData';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const ConfiguratorDownloadModal = ({ model, selections, onClose }: Props) => {
+  const { t } = useTranslation();
   const contentRef = useRef<HTMLDivElement>(null);
   const [downloadedImage, setDownloadedImage] = useState(false);
   const [downloadedText, setDownloadedText] = useState(false);
@@ -288,7 +290,7 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
               </h2>
             </div>
             <p className="font-['Playfair_Display',serif] text-[13px] text-white/40 mt-1">
-              Your configuration summary
+              {t('config.configSummary')}
             </p>
           </div>
           <motion.button
@@ -362,7 +364,7 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
           {totalExtra > 0 && (
             <div className="flex items-center justify-between py-3 px-4 bg-[#81D8D0]/[0.08] rounded-[10px] border border-[#81D8D0]/10">
               <span className="font-['Playfair_Display',serif] font-bold text-[14px] text-white/90">
-                Additional Options Total
+                {t('config.additionalTotal')}
               </span>
               <span className="font-['Playfair_Display',serif] font-bold text-[15px] text-[#F6C974]">
                 + ${totalExtra.toLocaleString()}
@@ -385,7 +387,7 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
               <Camera className="w-4 h-4 text-[#111]" />
             )}
             <span className="font-['Playfair_Display',serif] font-bold text-[13px] text-[#111]">
-              {downloadedImage ? 'Downloaded!' : 'Download with Screenshot'}
+              {downloadedImage ? t('config.downloaded') : t('config.downloadScreenshot')}
             </span>
           </motion.button>
           <motion.button
@@ -400,7 +402,7 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
               <Share2 className="w-4 h-4 text-white/70" />
             )}
             <span className="font-['Playfair_Display',serif] font-medium text-[13px] text-white/80">
-              {downloadedText ? 'Saved!' : 'Export Text'}
+              {downloadedText ? t('config.saved') : t('config.exportText')}
             </span>
           </motion.button>
         </div>

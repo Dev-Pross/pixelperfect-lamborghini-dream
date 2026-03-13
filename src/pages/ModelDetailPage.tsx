@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
 import modelRImg from "@/assets/config/modelR.png";
@@ -61,6 +62,7 @@ const modelData: Record<string, {
 };
 
 const ModelDetailPage = () => {
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const model = modelData[slug || ""];
 
@@ -69,8 +71,8 @@ const ModelDetailPage = () => {
       <>
         <NavBar />
         <div className="pt-32 px-16 text-center">
-          <h1 className="text-heading-xl text-4xl text-foreground">Model not found</h1>
-          <Link to="/models" className="nav-link mt-8 inline-block">Back to Models</Link>
+          <h1 className="text-heading-xl text-4xl text-foreground">{t('models.notFound')}</h1>
+          <Link to="/models" className="nav-link mt-8 inline-block">{t('models.backToModels')}</Link>
         </div>
       </>
     );
@@ -128,9 +130,9 @@ const ModelDetailPage = () => {
           <img src={interiorImg} alt="Interior" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-background/30" />
           <div className="absolute bottom-0 left-0 p-8 md:p-16">
-            <h2 className="text-heading-xl text-3xl md:text-5xl text-foreground mb-4">Interior</h2>
+            <h2 className="text-heading-xl text-3xl md:text-5xl text-foreground mb-4">{t('models.interior')}</h2>
             <p className="text-sm text-foreground/80 font-body max-w-lg">
-              Every detail is crafted with precision, combining luxury materials with cutting-edge technology.
+              {t('models.interiorDesc')}
             </p>
           </div>
         </section>
@@ -138,10 +140,10 @@ const ModelDetailPage = () => {
         {/* CTA */}
         <section className="px-8 md:px-16 py-20 text-center">
           <h2 className="text-heading-xl text-3xl md:text-4xl text-foreground mb-8">
-            Configure your {model.name}
+            {t('models.configureYour')} {model.name}
           </h2>
           <Link to="/configurator" className="btn-filled-white">
-            Start configuration
+            {t('models.startConfiguration')}
           </Link>
         </section>
       </main>

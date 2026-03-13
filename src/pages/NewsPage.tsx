@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
 import news1 from "@/assets/news-1.jpg";
@@ -18,6 +19,7 @@ const articles = [
 ];
 
 const NewsPage = () => {
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState("All");
   const filtered = activeCategory === "All" ? articles : articles.filter(a => a.category === activeCategory);
 
@@ -26,7 +28,7 @@ const NewsPage = () => {
       <NavBar />
       <main className="pt-24 pb-20">
         <div className="px-8 md:px-16 mb-12">
-          <h1 className="text-heading-xl text-4xl md:text-6xl text-foreground mb-8">News</h1>
+          <h1 className="text-heading-xl text-4xl md:text-6xl text-foreground mb-8">{t('news.title')}</h1>
           <div className="flex gap-6 border-b border-border">
             {categories.map(cat => (
               <button

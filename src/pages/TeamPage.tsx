@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -58,6 +59,7 @@ const cardVariants = {
 };
 
 const TeamPage = () => {
+  const { t } = useTranslation();
   return (
     <>
       <SmoothScroll />
@@ -71,7 +73,7 @@ const TeamPage = () => {
             transition={{ duration: 0.4 }}
             className="text-[10px] tracking-[0.3em] uppercase text-tiffany mb-3 font-bold"
           >
-            The People Behind eDrive
+            {t('team.subtitle')}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -80,7 +82,7 @@ const TeamPage = () => {
             className="text-4xl md:text-6xl lg:text-7xl text-foreground font-bold tracking-tighter"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Our Team
+            {t('team.title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -88,8 +90,7 @@ const TeamPage = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 text-white/50 text-lg md:text-xl max-w-2xl font-light leading-relaxed"
           >
-            A dedicated group of professionals united by a passion for
-            innovation, luxury craftsmanship, and marine mobility.
+            {t('team.description')}
           </motion.p>
         </section>
 
@@ -154,7 +155,7 @@ const TeamPage = () => {
               className="text-2xl md:text-4xl font-bold tracking-tight text-foreground mb-4"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              Join Our Team
+              {t('team.joinTitle')}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 15 }}
@@ -163,8 +164,7 @@ const TeamPage = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-white/40 text-base md:text-lg max-w-lg mx-auto mb-8 font-light"
             >
-              We're always looking for talented people who share our vision for
-              the future of marine mobility.
+              {t('team.joinDescription')}
             </motion.p>
             <motion.a
               href="/company/careers"
@@ -174,7 +174,7 @@ const TeamPage = () => {
               transition={{ duration: 0.4, delay: 0.2 }}
               className="inline-flex items-center gap-2 px-8 py-3 bg-tiffany text-black text-sm font-semibold tracking-[0.1em] uppercase hover:bg-tiffany/80 transition-colors"
             >
-              View Careers
+              {t('team.viewCareers')}
               <svg
                 width="14"
                 height="14"

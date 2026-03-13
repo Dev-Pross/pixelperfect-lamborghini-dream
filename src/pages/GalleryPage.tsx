@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -39,6 +40,7 @@ const galleryItems = [
 const categories = ["All", ...Array.from(new Set(galleryItems.map((i) => i.category)))];
 
 const GalleryPage = () => {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("All");
   const [lightbox, setLightbox] = useState<number | null>(null);
 
@@ -78,7 +80,7 @@ const GalleryPage = () => {
             transition={{ duration: 0.4 }}
             className="text-[10px] tracking-[0.3em] uppercase text-tiffany mb-3 font-bold"
           >
-            Visual Showcase
+            {t('gallery.subtitle')}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -87,7 +89,7 @@ const GalleryPage = () => {
             className="text-4xl md:text-6xl lg:text-7xl text-foreground font-bold tracking-tighter"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Gallery
+            {t('gallery.title')}
           </motion.h1>
         </div>
 

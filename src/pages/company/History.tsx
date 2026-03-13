@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
@@ -29,54 +30,58 @@ const timeline = [
   },
 ];
 
-const History = () => (
-  <>
-    <NavBar />
-    <main className="bg-background text-foreground min-h-screen selection:bg-tiffany selection:text-black">
-      {/* HERO */}
-      <section className="relative h-[70vh] flex flex-col justify-end pb-24 px-8 md:px-16 bg-gradient-to-b from-neutral-900 to-black">
-        <motion.div {...fade}><p className="text-lg text-white/40 mb-4">eDrive</p><h1 className="text-3xl md:text-6xl font-bold tracking-tighter text-heading-xl">HISTORY ALWAYS STARTS<br/>WITH A FEELING</h1></motion.div>
-      </section>
+const History = () => {
+  const { t } = useTranslation();
 
-      {/* TIMELINE */}
-      <section className="relative py-16 px-8 bg-black">
-        <div className="max-w-5xl mx-auto">
-          {/* Vertical line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-white/10 transform md:-translate-x-px" />
+  return (
+    <>
+      <NavBar />
+      <main className="bg-background text-foreground min-h-screen selection:bg-tiffany selection:text-black">
+        {/* HERO */}
+        <section className="relative h-[70vh] flex flex-col justify-end pb-24 px-8 md:px-16 bg-gradient-to-b from-neutral-900 to-black">
+          <motion.div {...fade}><p className="text-lg text-white/40 mb-4">{t('company.history.heroLabel')}</p><h1 className="text-3xl md:text-6xl font-bold tracking-tighter text-heading-xl">{t('company.history.heroTitle')}</h1></motion.div>
+        </section>
 
-          {timeline.map((item, i) => (
-            <motion.div key={i} {...fade} transition={{ ...fade.transition, delay: i * 0.1 }} className={`relative flex flex-col md:flex-row items-start gap-8 md:gap-16 mb-24 ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-              {/* Year dot */}
-              <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-tiffany rounded-full transform -translate-x-1/2 mt-2 z-10" />
-              <div className="absolute left-8 md:left-1/2 w-8 h-8 bg-tiffany/20 rounded-full transform -translate-x-1/2 mt-0 animate-pulse" />
+        {/* TIMELINE */}
+        <section className="relative py-16 px-8 bg-black">
+          <div className="max-w-5xl mx-auto">
+            {/* Vertical line */}
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-white/10 transform md:-translate-x-px" />
 
-              {/* Content */}
-              <div className={`md:w-1/2 ml-12 md:ml-0 ${i % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
-                <span className="text-tiffany text-5xl md:text-7xl font-black tracking-tighter">{item.year}</span>
-                <h3 className="text-xl font-bold mt-4 mb-4">{item.title}</h3>
-                <p className="text-white/60 font-light leading-relaxed">{item.text}</p>
+            {timeline.map((item, i) => (
+              <motion.div key={i} {...fade} transition={{ ...fade.transition, delay: i * 0.1 }} className={`relative flex flex-col md:flex-row items-start gap-8 md:gap-16 mb-24 ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                {/* Year dot */}
+                <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-tiffany rounded-full transform -translate-x-1/2 mt-2 z-10" />
+                <div className="absolute left-8 md:left-1/2 w-8 h-8 bg-tiffany/20 rounded-full transform -translate-x-1/2 mt-0 animate-pulse" />
 
-                {item.sub && (
-                  <div className="mt-8 space-y-6">
-                    {item.sub.map((s, j) => (
-                      <div key={j} className="border-l-2 border-tiffany/30 pl-6">
-                        <h4 className="text-sm font-bold text-tiffany uppercase tracking-wide mb-2">{s.title}</h4>
-                        <p className="text-white/50 text-sm leading-relaxed">{s.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+                {/* Content */}
+                <div className={`md:w-1/2 ml-12 md:ml-0 ${i % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
+                  <span className="text-tiffany text-5xl md:text-7xl font-black tracking-tighter">{item.year}</span>
+                  <h3 className="text-xl font-bold mt-4 mb-4">{item.title}</h3>
+                  <p className="text-white/60 font-light leading-relaxed">{item.text}</p>
 
-      {/* CLOSING */}
-      <section className="py-40 px-8 text-center bg-black border-t border-white/5"><div className="max-w-4xl mx-auto"><motion.div {...fade}><p className="text-2xl md:text-4xl font-light italic leading-snug">The history of eDrive is defined not by time,<br/>but by progression.</p></motion.div></div></section>
-    </main>
-    <FooterSection />
-  </>
-);
+                  {item.sub && (
+                    <div className="mt-8 space-y-6">
+                      {item.sub.map((s, j) => (
+                        <div key={j} className="border-l-2 border-tiffany/30 pl-6">
+                          <h4 className="text-sm font-bold text-tiffany uppercase tracking-wide mb-2">{s.title}</h4>
+                          <p className="text-white/50 text-sm leading-relaxed">{s.text}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* CLOSING */}
+        <section className="py-40 px-8 text-center bg-black border-t border-white/5"><div className="max-w-4xl mx-auto"><motion.div {...fade}><p className="text-2xl md:text-4xl font-light italic leading-snug">{t('company.history.closingStatement')}</p></motion.div></div></section>
+      </main>
+      <FooterSection />
+    </>
+  );
+};
 
 export default History;
