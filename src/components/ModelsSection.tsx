@@ -16,6 +16,7 @@ const models = [
     label: "MODEL",
     letterLogo: "R",
     letterColor: "#D4AF37",
+    logoImage: "/logo-r.png",
     tagline: "Refined Performance",
     slug: "model-r",
     image: modelRImg,
@@ -25,6 +26,7 @@ const models = [
     label: "MODEL",
     letterLogo: "F",
     letterColor: "#888888",
+    logoImage: "/logo-f.png",
     tagline: "Pure Power on Water",
     slug: "model-f",
     image: modelFImg,
@@ -100,17 +102,27 @@ const ModelsSection = () => {
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="inline-flex flex-col items-center"
             >
-              {current.label && (
-                <span className="text-black/20 text-[10px] md:text-xs tracking-[0.5em] uppercase font-light">
-                  {current.label}
-                </span>
+              {current.logoImage ? (
+                <img
+                  src={current.logoImage}
+                  alt={`${current.name} Logo`}
+                  className="h-[80px] md:h-[100px] lg:h-[120px] object-contain"
+                />
+              ) : (
+                <>
+                  {current.label && (
+                    <span className="text-black/20 text-[10px] md:text-xs tracking-[0.5em] uppercase font-light">
+                      {current.label}
+                    </span>
+                  )}
+                  <span
+                    className="text-[70px] md:text-[90px] lg:text-[110px] font-black leading-[0.8] italic select-none"
+                    style={{ color: current.letterColor, fontFamily: "var(--font-heading)" }}
+                  >
+                    {current.letterLogo}
+                  </span>
+                </>
               )}
-              <span
-                className="text-[70px] md:text-[90px] lg:text-[110px] font-black leading-[0.8] italic select-none"
-                style={{ color: current.letterColor, fontFamily: "var(--font-heading)" }}
-              >
-                {current.letterLogo}
-              </span>
             </motion.div>
           </AnimatePresence>
         </div>
