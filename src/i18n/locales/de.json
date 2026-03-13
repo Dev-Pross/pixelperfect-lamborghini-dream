@@ -2,7 +2,7 @@
   "nav": {
     "menu": "Menü", "close": "Schließen", "models": "Modelle", "configurator": "Konfigurator",
     "company": "Unternehmen", "news": "Nachrichten", "investors": "Investoren", "dealerships": "Händler",
-    "gallery": "Galerie", "design": "Design", "history": "Geschichte", "languages": "Sprachen", "textSize": "Textgröße"
+    "gallery": "Galerie", "team": "Team", "design": "Design", "history": "Geschichte", "languages": "Sprachen", "textSize": "Textgröße"
   },
   "hero": {
     "topline": "JetCar-Fertigung der nächsten Generation · VAE",

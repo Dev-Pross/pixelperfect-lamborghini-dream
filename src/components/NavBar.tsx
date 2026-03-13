@@ -10,6 +10,7 @@ const menuLinks = [
   { key: "investors", href: "/investors" },
   { key: "dealerships", href: "/become-distributor" },
   { key: "gallery", href: "/gallery" },
+  { key: "team", href: "/team" },
   { key: "company", href: "/company" },
   { key: "news", href: "/#news" },
 ];

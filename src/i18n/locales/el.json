@@ -2,7 +2,7 @@
   "nav": {
     "menu": "Μενού", "close": "Κλείσιμο", "models": "Μοντέλα", "configurator": "Διαμορφωτής",
     "company": "Εταιρεία", "news": "Νέα", "investors": "Επενδυτές", "dealerships": "Αντιπρόσωποι",
-    "gallery": "Γκαλερί", "design": "Σχεδιασμός", "history": "Ιστορία", "languages": "Γλώσσες", "textSize": "Μέγεθος κειμένου"
+    "gallery": "Γκαλερί", "team": "Ομάδα", "design": "Σχεδιασμός", "history": "Ιστορία", "languages": "Γλώσσες", "textSize": "Μέγεθος κειμένου"
   },
   "hero": {
     "topline": "Κατασκευή JetCar νέας γενιάς · ΗΑΕ",

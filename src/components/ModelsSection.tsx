@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import temerarioImg from "@/assets/temerario.jpg";
 import revueltoImg from "@/assets/revuelto.jpg";
 import urusImg from "@/assets/car-model-2.jpg";
@@ -53,6 +54,7 @@ const models = [
 ];
 
 const ModelsSection = () => {
+  const { t } = useTranslation();
   const [active, setActive] = useState(0);
   const current = models[active];
   const count = models.length;

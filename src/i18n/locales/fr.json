@@ -2,7 +2,7 @@
   "nav": {
     "menu": "Menu", "close": "Fermer", "models": "Modèles", "configurator": "Configurateur",
     "company": "Entreprise", "news": "Actualités", "investors": "Investisseurs", "dealerships": "Concessionnaires",
-    "gallery": "Galerie", "design": "Design", "history": "Histoire", "languages": "Langues", "textSize": "Taille du texte"
+    "gallery": "Galerie", "team": "Équipe", "design": "Design", "history": "Histoire", "languages": "Langues", "textSize": "Taille du texte"
   },
   "hero": {
     "topline": "Fabrication de JetCar nouvelle génération · EAU",

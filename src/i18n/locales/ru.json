@@ -2,7 +2,7 @@
   "nav": {
     "menu": "Меню", "close": "Закрыть", "models": "Модели", "configurator": "Конфигуратор",
     "company": "Компания", "news": "Новости", "investors": "Инвесторы", "dealerships": "Дилеры",
-    "gallery": "Галерея", "design": "Дизайн", "history": "История", "languages": "Языки", "textSize": "Размер текста"
+    "gallery": "Галерея", "team": "Команда", "design": "Дизайн", "history": "История", "languages": "Языки", "textSize": "Размер текста"
   },
   "hero": {
     "topline": "Производство JetCar нового поколения · ОАЭ",

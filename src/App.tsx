@@ -25,6 +25,7 @@ import ConfiguratorPageV2 from "./pages/ConfiguratorPageV2.tsx";
 import ConfiguratorFullPage from "./pages/ConfiguratorFullPage.tsx";
 import GalleryPage from "./pages/GalleryPage.tsx";
 import HeroPreviewPage from "./pages/HeroPreviewPage.tsx";
+import TeamPage from "./pages/TeamPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -82,6 +83,7 @@ const App = () => (
           <Route path="/configurator/:modelSlug" element={<ConfiguratorFullPage />} />
           <Route path="/configurator-old" element={<ConfiguratorPage />} />
           <Route path="/configurator-v2" element={<ConfiguratorPageV2 />} />
+          <Route path="/team" element={<TeamPage />} />
           <Route path="/hero-preview" element={<HeroPreviewPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

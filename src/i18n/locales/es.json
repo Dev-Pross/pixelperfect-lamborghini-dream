@@ -2,7 +2,7 @@
   "nav": {
     "menu": "Menú", "close": "Cerrar", "models": "Modelos", "configurator": "Configurador",
     "company": "Empresa", "news": "Noticias", "investors": "Inversores", "dealerships": "Distribuidores",
-    "gallery": "Galería", "design": "Diseño", "history": "Historia", "languages": "Idiomas", "textSize": "Tamaño de texto"
+    "gallery": "Galería", "team": "Equipo", "design": "Diseño", "history": "Historia", "languages": "Idiomas", "textSize": "Tamaño de texto"
   },
   "hero": {
     "topline": "Fabricación de JetCar de nueva generación · EAU",

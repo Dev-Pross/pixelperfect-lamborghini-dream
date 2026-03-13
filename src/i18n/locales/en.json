@@ -9,6 +9,7 @@
     "investors": "Investors",
     "dealerships": "Dealerships",
     "gallery": "Gallery",
+    "team": "Team",
     "design": "Design",
     "history": "History",
     "languages": "Languages",
@@ -21,17 +22,31 @@
     "cta": "Discover More"
   },
   "configurator": {
-    "headline": "The world's first real-time online JetCar configurator.",
+    "headline": "Configure Your",
     "cta": "Create Your JetCar",
     "startConfig": "Start Configuration",
-    "exploreModel": "Explore the Model"
+    "exploreModel": "Explore the Model",
+    "specs": {
+      "length": "Length",
+      "width": "Width",
+      "depth": "Depth",
+      "seating": "Seating",
+      "engine": "Engine",
+      "cert": "Cert"
+    }
   },
   "models": {
     "title": "Models",
     "discoverAll": "Discover All Models",
-    "explore": "Explore the Model",
+    "explore": "Explore",
     "download": "Download Brochure",
     "comingSoon": "Coming Soon",
+    "notFound": "Model not found",
+    "backToModels": "Back to Models",
+    "interior": "Interior",
+    "interiorDesc": "Every detail is crafted with precision, combining luxury materials with cutting-edge technology.",
+    "configureYour": "Configure your",
+    "startConfiguration": "Start configuration",
     "modelR": {
       "name": "MODEL R",
       "tagline": "Refined Performance"
@@ -48,6 +63,22 @@
       "name": "CYBERMARINE",
       "tagline": "The Future, Reimagined"
     }
+  },
+  "team": {
+    "subtitle": "The People Behind eDrive",
+    "title": "Our Team",
+    "description": "A dedicated group of professionals united by a passion for innovation, luxury craftsmanship, and marine mobility.",
+    "joinTitle": "Join Our Team",
+    "joinDescription": "We're always looking for talented people who share our vision for the future of marine mobility.",
+    "viewCareers": "View Careers"
+  },
+  "gallery": {
+    "subtitle": "Visual Showcase",
+    "title": "Gallery"
+  },
+  "dealer": {
+    "globalNetwork": "Global Network",
+    "becomeDistributor": "Become a Distributor"
   },
   "news": {
     "title": "News",

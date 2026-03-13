@@ -2,7 +2,7 @@
   "nav": {
     "menu": "菜单", "close": "关闭", "models": "车型", "configurator": "配置器",
     "company": "公司", "news": "新闻", "investors": "投资者", "dealerships": "经销商",
-    "gallery": "画廊", "design": "设计", "history": "历史", "languages": "语言", "textSize": "字体大小"
+    "gallery": "画廊", "team": "团队", "design": "设计", "history": "历史", "languages": "语言", "textSize": "字体大小"
   },
   "hero": {
     "topline": "新一代喷射快艇制造 · 阿联酋",
