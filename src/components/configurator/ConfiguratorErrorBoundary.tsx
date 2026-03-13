@@ -19,7 +19,7 @@ class ConfiguratorErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo) {
-    console.error('[ConfiguratorErrorBoundary] 3D crash:', error);
+    console.error('[ConfiguratorErrorBoundary] Render error:', error);
     console.error('[ConfiguratorErrorBoundary] Component stack:', info.componentStack);
   }
 
@@ -30,12 +30,12 @@ class ConfiguratorErrorBoundary extends Component<Props, State> {
           {this.props.fallbackImage && (
             <img
               src={this.props.fallbackImage}
-              alt="Car preview"
+              alt="JetCar preview"
               className="w-[60%] max-w-[600px] object-contain opacity-50 mb-8"
             />
           )}
           <p className="font-configurator text-white/60 text-sm mb-4">
-            3D rendering encountered an issue
+            Something went wrong
           </p>
           <p className="font-configurator text-white/30 text-xs mb-4 max-w-md text-center px-4">
             {this.state.errorMessage}

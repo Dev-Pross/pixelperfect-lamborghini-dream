@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Roboto Condensed', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        configurator: ['Nunito Sans', 'sans-serif'],
+        heading: ['Playfair Display', 'serif'],
+        body: ['Playfair Display', 'serif'],
+        configurator: ['Playfair Display', 'serif'],
       },
       colors: {
         tiffany: "#81D8D0",

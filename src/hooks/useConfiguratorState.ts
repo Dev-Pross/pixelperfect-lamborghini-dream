@@ -1,9 +1,9 @@
-import { useReducer, useMemo } from 'react';
+import { useReducer, useMemo, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { CONFIGURATOR_MODELS, DEFAULT_SELECTIONS } from '@/data/configuratorData';
 
 export type Phase = 'landing' | 'canvas';
-export type TabId = 'exterior' | 'interior' | 'equipments';
+export type TabId = 'exterior' | 'interior' | 'performance';
 
 export interface ConfiguratorState {
   phase: Phase;
@@ -11,6 +11,7 @@ export interface ConfiguratorState {
   sidebarOpen: boolean;
   activeTab: TabId;
   activeCategory: string | null;
+  activeAngle: string;
   selections: Record<string, string>;
   touched: string[];
   showDownloadModal: boolean;
@@ -27,26 +28,86 @@ export type ConfiguratorAction =
   | { type: 'SELECT_CATEGORY'; categoryId: string }
   | { type: 'BACK_TO_CATEGORIES' }
   | { type: 'SELECT_OPTION'; categoryId: string; optionId: string }
-  | { type: 'NAVIGATE_CATEGORY'; direction: 'next' | 'prev' }
+  | { type: 'SET_ANGLE'; angle: string }
   | { type: 'RESET_ALL' }
   | { type: 'SHOW_DOWNLOAD' }
   | { type: 'HIDE_DOWNLOAD' };
 
 const ALL_CATEGORY_IDS = [
-  'paint', 'wheels', 'window-tint', 'body-kit',
-  'upholstery', 'dashboard', 'steering', 'ambient',
-  'audio', 'performance',
+  'hull-color', 'hull-graphics', 'exterior-trim',
+  'upholstery', 'dashboard-trim', 'ambient-lighting',
+  'engine', 'marine-audio', 'safety-package',
 ];
 
+const STORAGE_KEY = 'edrive-configurator-state';
+
+interface PersistedState {
+  selectedModelIndex: number;
+  selections: Record<string, string>;
+  touched: string[];
+  activeTab: TabId;
+}
+
+function loadPersistedState(): PersistedState | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as PersistedState;
+    // Validate that selections reference known categories
+    const validSelections: Record<string, string> = {};
+    for (const [key, value] of Object.entries(parsed.selections)) {
+      if (ALL_CATEGORY_IDS.includes(key) && typeof value === 'string') {
+        validSelections[key] = value;
+      }
+    }
+    const validTouched = (parsed.touched || []).filter((t: string) => ALL_CATEGORY_IDS.includes(t));
+    const validTab = ['exterior', 'interior', 'performance'].includes(parsed.activeTab) ? parsed.activeTab : 'exterior';
+    const validModelIndex = typeof parsed.selectedModelIndex === 'number' && parsed.selectedModelIndex >= 0 && parsed.selectedModelIndex < CONFIGURATOR_MODELS.length
+      ? parsed.selectedModelIndex : 0;
+    return {
+      selectedModelIndex: validModelIndex,
+      selections: { ...DEFAULT_SELECTIONS, ...validSelections },
+      touched: validTouched,
+      activeTab: validTab as TabId,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function persistState(state: ConfiguratorState) {
+  try {
+    const data: PersistedState = {
+      selectedModelIndex: state.selectedModelIndex,
+      selections: state.selections,
+      touched: state.touched,
+      activeTab: state.activeTab,
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch {
+    // Private browsing or quota exceeded — silently fail
+  }
+}
+
+function clearPersistedState() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // Silently fail
+  }
+}
+
 function createInitialState(modelIndex: number): ConfiguratorState {
+  const persisted = loadPersistedState();
   return {
     phase: 'landing',
-    selectedModelIndex: modelIndex,
+    selectedModelIndex: persisted?.selectedModelIndex ?? modelIndex,
     sidebarOpen: false,
-    activeTab: 'exterior',
+    activeTab: persisted?.activeTab ?? 'exterior',
     activeCategory: null,
-    selections: { ...DEFAULT_SELECTIONS },
-    touched: [],
+    activeAngle: 'side',
+    selections: persisted?.selections ?? { ...DEFAULT_SELECTIONS },
+    touched: persisted?.touched ?? [],
     showDownloadModal: false,
   };
 }
@@ -101,25 +162,17 @@ function reducer(state: ConfiguratorState, action: ConfiguratorAction): Configur
       };
     }
 
-    case 'NAVIGATE_CATEGORY': {
-      const currentIndex = state.activeCategory
-        ? ALL_CATEGORY_IDS.indexOf(state.activeCategory)
-        : -1;
-      let nextIndex: number;
-      if (action.direction === 'next') {
-        nextIndex = currentIndex < ALL_CATEGORY_IDS.length - 1 ? currentIndex + 1 : 0;
-      } else {
-        nextIndex = currentIndex > 0 ? currentIndex - 1 : ALL_CATEGORY_IDS.length - 1;
-      }
-      return { ...state, activeCategory: ALL_CATEGORY_IDS[nextIndex] };
-    }
+    case 'SET_ANGLE':
+      return { ...state, activeAngle: action.angle };
 
     case 'RESET_ALL':
+      clearPersistedState();
       return {
         ...state,
         selections: { ...DEFAULT_SELECTIONS },
         activeCategory: null,
         activeTab: 'exterior',
+        activeAngle: 'side',
         touched: [],
       };
 
@@ -147,5 +200,16 @@ export function useConfiguratorState() {
 
   const [state, dispatch] = useReducer(reducer, initialModelIndex, createInitialState);
   const model = CONFIGURATOR_MODELS[state.selectedModelIndex];
+
+  // Persist state changes (debounced)
+  const persistTimer = useRef<ReturnType<typeof setTimeout>>();
+  useEffect(() => {
+    clearTimeout(persistTimer.current);
+    persistTimer.current = setTimeout(() => {
+      persistState(state);
+    }, 300);
+    return () => clearTimeout(persistTimer.current);
+  }, [state.selections, state.touched, state.selectedModelIndex, state.activeTab]);
+
   return { state, dispatch, model };
 }

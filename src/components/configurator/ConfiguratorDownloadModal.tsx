@@ -1,6 +1,6 @@
 import { useRef, useCallback, useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, Download, Share2, Camera, Check } from 'lucide-react';
+import { X, Share2, Camera, Check } from 'lucide-react';
 import type { ConfiguratorModel, ConfigTab } from '@/data/configuratorData';
 
 interface Props {
@@ -21,39 +21,31 @@ const ConfiguratorDownloadModal = ({ model, selections, onClose }: Props) => {
     return opt ? opt.name : '';
   };
 
-  const getOptionPrice = (tab: ConfigTab, categoryId: string, optionId: string): string => {
+  const getOptionDetails = (tab: ConfigTab, categoryId: string, optionId: string) => {
     const cat = tab.categories.find((c) => c.id === categoryId);
-    if (!cat) return '';
+    if (!cat) return { price: '', numericPrice: 0 };
     const opt = cat.options.find((o) => o.id === optionId);
-    return opt?.price || '';
+    return { price: opt?.price || '', numericPrice: opt?.numericPrice || 0 };
   };
 
   const configuredItems = model.tabs.flatMap((tab) =>
     tab.categories
       .filter((cat) => selections[cat.id])
-      .map((cat) => ({
-        tab: tab.label,
-        tabId: tab.id,
-        category: cat.title,
-        categoryId: cat.id,
-        selected: getOptionLabel(tab, cat.id, selections[cat.id]),
-        price: getOptionPrice(tab, cat.id, selections[cat.id]),
-      }))
+      .map((cat) => {
+        const details = getOptionDetails(tab, cat.id, selections[cat.id]);
+        return {
+          tab: tab.label,
+          tabId: tab.id,
+          category: cat.title,
+          categoryId: cat.id,
+          selected: getOptionLabel(tab, cat.id, selections[cat.id]),
+          price: details.price,
+          numericPrice: details.numericPrice,
+        };
+      })
   );
 
-  // Capture the 3D canvas as a data URL
-  const capture3DCanvas = (): string | null => {
-    const canvasEl = document.querySelector('canvas') as HTMLCanvasElement | null;
-    if (!canvasEl) return null;
-    try {
-      return canvasEl.toDataURL('image/png');
-    } catch {
-      return null;
-    }
-  };
-
   const handleDownloadImage = useCallback(() => {
-    const canvasDataUrl = capture3DCanvas();
 
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -85,58 +77,57 @@ const ConfiguratorDownloadModal = ({ model, selections, onClose }: Props) => {
 
     // Logo "DTS"
     ctx.fillStyle = '#81D8D0';
-    ctx.font = 'bold 14px "Nunito Sans", sans-serif';
-    ctx.fillText('DTS', padding, padding + 15);
+    ctx.font = 'bold 14px "Playfair Display", sans-serif';
+    ctx.fillText('eDrive', padding, padding + 15);
 
     ctx.fillStyle = '#555';
-    ctx.font = '11px "Nunito Sans", sans-serif';
-    ctx.fillText('DRIVE TO SURVIVE', padding + 45, padding + 15);
+    ctx.font = '11px "Playfair Display", sans-serif';
+    ctx.fillText('JETCAR CONFIGURATOR', padding + 55, padding + 15);
 
     // Model name
     ctx.fillStyle = '#FFFFFF';
-    ctx.font = 'bold 38px "Nunito Sans", sans-serif';
+    ctx.font = 'bold 38px "Playfair Display", sans-serif';
     ctx.fillText(model.name, padding, padding + 65);
 
     // Subtitle
     ctx.fillStyle = '#81D8D0';
-    ctx.font = '16px "Nunito Sans", sans-serif';
+    ctx.font = '16px "Playfair Display", sans-serif';
     ctx.fillText('Configuration Summary', padding, padding + 92);
 
     // Stats line
     ctx.fillStyle = '#666';
-    ctx.font = '13px "Nunito Sans", sans-serif';
-    const statsText = `${model.stats.engine} · ${model.stats.seating} · ${model.stats.length} × ${model.stats.width}`;
+    ctx.font = '13px "Playfair Display", sans-serif';
+    const statsText = `${model.stats.engine} · ${model.stats.seating} · ${model.stats.length} × ${model.stats.beam}`;
     ctx.fillText(statsText, padding, padding + 118);
 
     let y = padding + headerHeight;
 
-    // Draw 3D car image if captured
-    if (canvasDataUrl) {
-      const img = new Image();
-      img.onload = () => {
-        // Draw car image area with rounded corners
-        ctx.save();
-        ctx.fillStyle = '#1f1f1f';
-        ctx.fillRect(padding, y, width - padding * 2, carImageHeight);
+    // Load model image and draw it
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      ctx.save();
+      ctx.fillStyle = '#1f1f1f';
+      ctx.fillRect(padding, y, width - padding * 2, carImageHeight);
 
-        // Draw the 3D screenshot
-        const imgAspect = img.width / img.height;
-        const boxWidth = width - padding * 2;
-        const drawWidth = Math.min(boxWidth, carImageHeight * imgAspect);
-        const drawHeight = drawWidth / imgAspect;
-        const imgX = padding + (boxWidth - drawWidth) / 2;
-        const imgY = y + (carImageHeight - drawHeight) / 2;
-        ctx.drawImage(img, imgX, imgY, drawWidth, drawHeight);
-        ctx.restore();
+      const imgAspect = img.width / img.height;
+      const boxWidth = width - padding * 2;
+      const drawWidth = Math.min(boxWidth, carImageHeight * imgAspect);
+      const drawHeight = drawWidth / imgAspect;
+      const imgX = padding + (boxWidth - drawWidth) / 2;
+      const imgY = y + (carImageHeight - drawHeight) / 2;
+      ctx.drawImage(img, imgX, imgY, drawWidth, drawHeight);
+      ctx.restore();
 
-        y += carImageHeight + 30;
-        drawConfigItems(ctx, y, width, padding, lineHeight, canvas);
-      };
-      img.src = canvasDataUrl;
-    } else {
+      y += carImageHeight + 30;
+      drawConfigItems(ctx, y, width, padding, lineHeight, canvas);
+    };
+    img.onerror = () => {
+      // If image fails to load, skip image area and draw items directly
       y += 20;
       drawConfigItems(ctx, y, width, padding, lineHeight, canvas);
-    }
+    };
+    img.src = model.image;
 
     function drawConfigItems(
       ctx: CanvasRenderingContext2D,
@@ -164,25 +155,25 @@ const ConfiguratorDownloadModal = ({ model, selections, onClose }: Props) => {
           currentTab = item.tab;
           y += 10;
           ctx.fillStyle = '#81D8D0';
-          ctx.font = 'bold 15px "Nunito Sans", sans-serif';
+          ctx.font = 'bold 15px "Playfair Display", sans-serif';
           ctx.fillText(item.tab, padding, y);
           y += lineHeight;
         }
 
         // Category
         ctx.fillStyle = '#FFFFFF';
-        ctx.font = 'bold 14px "Nunito Sans", sans-serif';
+        ctx.font = 'bold 14px "Playfair Display", sans-serif';
         ctx.fillText(item.category, padding + 16, y);
 
         // Selected option
         ctx.fillStyle = '#999';
-        ctx.font = '14px "Nunito Sans", sans-serif';
+        ctx.font = '14px "Playfair Display", sans-serif';
         ctx.fillText(item.selected, padding + 260, y);
 
         // Price
         if (item.price) {
           ctx.fillStyle = item.price === 'Included' ? '#81D8D0' : '#F6C974';
-          ctx.font = '13px "Nunito Sans", sans-serif';
+          ctx.font = '13px "Playfair Display", sans-serif';
           const priceWidth = ctx.measureText(item.price).width;
           ctx.fillText(item.price, width - padding - priceWidth, y);
         }
@@ -200,9 +191,9 @@ const ConfiguratorDownloadModal = ({ model, selections, onClose }: Props) => {
 
       y += 22;
       ctx.fillStyle = '#555';
-      ctx.font = '12px "Nunito Sans", sans-serif';
+      ctx.font = '12px "Playfair Display", sans-serif';
       ctx.fillText(
-        `Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · DTS Configurator`,
+        `Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · eDrive JetCar Configurator`,
         padding,
         y
       );
@@ -228,11 +219,11 @@ const ConfiguratorDownloadModal = ({ model, selections, onClose }: Props) => {
     const summary = `
 ═══════════════════════════════════════════
     ${model.name} — CONFIGURATION SUMMARY
-    DTS · Drive to Survive
+    eDrive · JetCar Configurator
 ═══════════════════════════════════════════
 
 Model: ${model.name}
-${model.stats.engine} · ${model.stats.seating} · ${model.stats.length} × ${model.stats.width}
+${model.stats.engine} · ${model.stats.seating} · ${model.stats.length} x ${model.stats.beam}
 
 ───────────────────────────────────────────
 CONFIGURATION DETAILS
@@ -266,12 +257,8 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
     groupedByTab[item.tab].push(item);
   });
 
-  // Calculate total price
-  const totalExtra = configuredItems.reduce((sum, item) => {
-    if (!item.price || item.price === 'Included') return sum;
-    const match = item.price.match(/[\d,]+/);
-    return sum + (match ? parseInt(match[0].replace(',', ''), 10) : 0);
-  }, 0);
+  // Calculate total price using numericPrice
+  const totalExtra = configuredItems.reduce((sum, item) => sum + item.numericPrice, 0);
 
   return (
     <motion.div
@@ -294,13 +281,13 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
         <div className="flex items-center justify-between px-7 py-5 border-b border-white/[0.06]">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-['Nunito_Sans',sans-serif] font-black text-[13px] text-[#81D8D0] tracking-tight">DTS</span>
+              <span className="font-['Playfair_Display',serif] font-black text-[13px] text-[#81D8D0] tracking-tight">eDrive</span>
               <div className="w-px h-4 bg-white/10" />
-              <h2 className="font-['Nunito_Sans',sans-serif] font-bold text-[22px] text-white">
+              <h2 className="font-['Playfair_Display',serif] font-bold text-[22px] text-white">
                 {model.name}
               </h2>
             </div>
-            <p className="font-['Nunito_Sans',sans-serif] text-[13px] text-white/40 mt-1">
+            <p className="font-['Playfair_Display',serif] text-[13px] text-white/40 mt-1">
               Your configuration summary
             </p>
           </div>
@@ -328,7 +315,7 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
               className="relative z-10 h-[150px] object-contain drop-shadow-lg"
             />
             <div className="absolute top-3 right-3 px-2.5 py-1 bg-black/30 backdrop-blur-sm rounded-full">
-              <span className="font-['Nunito_Sans',sans-serif] text-[10px] text-white/70 font-medium">
+              <span className="font-['Playfair_Display',serif] text-[10px] text-white/70 font-medium">
                 {model.stats.engine}
               </span>
             </div>
@@ -339,7 +326,7 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
             <div key={tabLabel}>
               <div className="flex items-center gap-2 mb-2.5">
                 <div className="w-1 h-4 rounded-full bg-[#81D8D0]" />
-                <h3 className="font-['Nunito_Sans',sans-serif] font-bold text-[13px] text-white/80 uppercase tracking-wider">
+                <h3 className="font-['Playfair_Display',serif] font-bold text-[13px] text-white/80 uppercase tracking-wider">
                   {tabLabel}
                 </h3>
               </div>
@@ -353,14 +340,14 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
                     className="flex items-center justify-between py-2.5 px-4 bg-white/[0.04] hover:bg-white/[0.06] rounded-[10px] transition-colors"
                   >
                     <div className="flex items-center gap-2">
-                      <span className="font-['Nunito_Sans',sans-serif] font-semibold text-[13px] text-white/90">
+                      <span className="font-['Playfair_Display',serif] font-semibold text-[13px] text-white/90">
                         {item.category}
                       </span>
-                      <span className="font-['Nunito_Sans',sans-serif] text-[12px] text-white/40">
+                      <span className="font-['Playfair_Display',serif] text-[12px] text-white/40">
                         {item.selected}
                       </span>
                     </div>
-                    <span className={`font-['Nunito_Sans',sans-serif] text-[12px] font-semibold ${
+                    <span className={`font-['Playfair_Display',serif] text-[12px] font-semibold ${
                       item.price === 'Included' ? 'text-[#81D8D0]/70' : 'text-[#F6C974]'
                     }`}>
                       {item.price}
@@ -374,10 +361,10 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
           {/* Total */}
           {totalExtra > 0 && (
             <div className="flex items-center justify-between py-3 px-4 bg-[#81D8D0]/[0.08] rounded-[10px] border border-[#81D8D0]/10">
-              <span className="font-['Nunito_Sans',sans-serif] font-bold text-[14px] text-white/90">
+              <span className="font-['Playfair_Display',serif] font-bold text-[14px] text-white/90">
                 Additional Options Total
               </span>
-              <span className="font-['Nunito_Sans',sans-serif] font-bold text-[15px] text-[#F6C974]">
+              <span className="font-['Playfair_Display',serif] font-bold text-[15px] text-[#F6C974]">
                 + ${totalExtra.toLocaleString()}
               </span>
             </div>
@@ -397,7 +384,7 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
             ) : (
               <Camera className="w-4 h-4 text-[#111]" />
             )}
-            <span className="font-['Nunito_Sans',sans-serif] font-bold text-[13px] text-[#111]">
+            <span className="font-['Playfair_Display',serif] font-bold text-[13px] text-[#111]">
               {downloadedImage ? 'Downloaded!' : 'Download with Screenshot'}
             </span>
           </motion.button>
@@ -412,7 +399,7 @@ Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 
             ) : (
               <Share2 className="w-4 h-4 text-white/70" />
             )}
-            <span className="font-['Nunito_Sans',sans-serif] font-medium text-[13px] text-white/80">
+            <span className="font-['Playfair_Display',serif] font-medium text-[13px] text-white/80">
               {downloadedText ? 'Saved!' : 'Export Text'}
             </span>
           </motion.button>

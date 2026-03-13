@@ -10,7 +10,7 @@ interface Props {
 }
 
 const ConfiguratorOptionPanel = ({ category, selectedOptionId, onSelect, onBack }: Props) => {
-  const hasColorSwatches = ['paint', 'ambient', 'upholstery', 'window-tint'].includes(category.id);
+  const hasColorSwatches = ['hull-color', 'ambient-lighting', 'upholstery'].includes(category.id);
   const selectedOption = category.options.find((o) => o.id === selectedOptionId);
 
   return (

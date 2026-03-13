@@ -2,8 +2,8 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
-import temerarioImg from "@/assets/temerario.jpg";
-import revueltoImg from "@/assets/revuelto.jpg";
+import modelRImg from "@/assets/config/modelR.png";
+import modelFImg from "@/assets/config/modelF.png";
 import urusImg from "@/assets/car-model-2.jpg";
 import huracanImg from "@/assets/car-model-1.jpg";
 import interiorImg from "@/assets/car-interior.jpg";
@@ -14,10 +14,10 @@ const modelData: Record<string, {
   image: string;
   specs: { label: string; value: string }[];
 }> = {
-  temerario: {
-    name: "Temerario",
-    tagline: "Beyond any satisfhat means",
-    image: temerarioImg,
+  "model-r": {
+    name: "Model R",
+    tagline: "Refined Performance",
+    image: modelRImg,
     specs: [
       { label: "Max Power", value: "920 CV" },
       { label: "Max Speed", value: ">340 km/h" },
@@ -25,9 +25,20 @@ const modelData: Record<string, {
       { label: "Engine", value: "V8 Hybrid" },
     ],
   },
-  urus: {
-    name: "Urus",
-    tagline: "You can't hide who you are",
+  "model-f": {
+    name: "Model F",
+    tagline: "Pure Power on Water",
+    image: modelFImg,
+    specs: [
+      { label: "Max Power", value: "1015 CV" },
+      { label: "Max Speed", value: ">350 km/h" },
+      { label: "0-100 km/h", value: "2.5 s" },
+      { label: "Engine", value: "V12 Hybrid" },
+    ],
+  },
+  lumina: {
+    name: "Lumina",
+    tagline: "Innovation in Motion",
     image: urusImg,
     specs: [
       { label: "Max Power", value: "666 CV" },
@@ -36,20 +47,9 @@ const modelData: Record<string, {
       { label: "Engine", value: "V8 Twin Turbo" },
     ],
   },
-  revuelto: {
-    name: "Revuelto",
-    tagline: "The ultimate fusion of power",
-    image: revueltoImg,
-    specs: [
-      { label: "Max Power", value: "1015 CV" },
-      { label: "Max Speed", value: ">350 km/h" },
-      { label: "0-100 km/h", value: "2.5 s" },
-      { label: "Engine", value: "V12 Hybrid" },
-    ],
-  },
-  huracan: {
-    name: "Huracán",
-    tagline: "Every road becomes a racetrack",
+  cybermarine: {
+    name: "Cybermarine",
+    tagline: "The Future, Reimagined",
     image: huracanImg,
     specs: [
       { label: "Max Power", value: "640 CV" },

@@ -65,9 +65,9 @@ const ModelsSection = () => {
       {/* Top accent line */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-black/10 to-transparent" />
 
-      <div className="py-20 lg:py-28">
+      <div className="py-10 lg:py-16">
         {/* Header */}
-        <div className="px-8 md:px-16 mb-16">
+        <div className="px-8 md:px-16 mb-8">
           <div className="flex items-baseline justify-between">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -91,44 +91,81 @@ const ModelsSection = () => {
           </div>
         </div>
 
-        {/* Model Badge — Centered */}
-        <div className="text-center mb-2 flex flex-col items-center justify-center min-h-[120px] lg:min-h-[150px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`badge-${current.slug}`}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex flex-col items-center"
+        {/* Model Badge row — Arrows flanking the logo/name */}
+        <div className="flex items-center justify-center mb-2 min-h-[80px] lg:min-h-[100px] px-8 md:px-16 gap-10 md:gap-80">
+          {/* Left Arrow — Hexagonal outline */}
+          <button
+            onClick={goPrev}
+            className="group flex-shrink-0 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-black/25 hover:bg-black/50 transition-all duration-300"
+            aria-label="Previous model"
+            style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+          >
+            <div
+              className="w-[calc(100%-3px)] h-[calc(100%-3px)] flex items-center justify-center bg-[#FAFAFA]"
+              style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
             >
-              {current.logoImage ? (
-                <img
-                  src={current.logoImage}
-                  alt={`${current.name} Logo`}
-                  className="h-[80px] md:h-[100px] lg:h-[120px] object-contain"
-                />
-              ) : (
-                <>
-                  {current.label && (
-                    <span className="text-black/20 text-[10px] md:text-xs tracking-[0.5em] uppercase font-light">
-                      {current.label}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-black/50 group-hover:text-black transition-colors">
+                <path d="M15 19l-7-7 7-7" />
+              </svg>
+            </div>
+          </button>
+
+          {/* Badge — fixed height so arrows don't shift */}
+          <div className="text-center flex flex-col items-center justify-center h-[80px] md:h-[100px] lg:h-[120px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`badge-${current.slug}`}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-flex flex-col items-center"
+              >
+                {current.logoImage ? (
+                  <img
+                    src={current.logoImage}
+                    alt={`${current.name} Logo`}
+                    className="h-[80px] md:h-[100px] lg:h-[120px] object-contain"
+                  />
+                ) : (
+                  <>
+                    {current.label && (
+                      <span className="text-black/20 text-[10px] md:text-xs tracking-[0.5em] uppercase font-light">
+                        {current.label}
+                      </span>
+                    )}
+                    <span
+                      className="text-[70px] md:text-[90px] lg:text-[110px] font-black leading-[0.8] italic select-none"
+                      style={{ color: current.letterColor, fontFamily: "var(--font-heading)" }}
+                    >
+                      {current.letterLogo}
                     </span>
-                  )}
-                  <span
-                    className="text-[70px] md:text-[90px] lg:text-[110px] font-black leading-[0.8] italic select-none"
-                    style={{ color: current.letterColor, fontFamily: "var(--font-heading)" }}
-                  >
-                    {current.letterLogo}
-                  </span>
-                </>
-              )}
-            </motion.div>
-          </AnimatePresence>
+                  </>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Right Arrow — Hexagonal outline */}
+          <button
+            onClick={goNext}
+            className="group flex-shrink-0 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-black/25 hover:bg-black/50 transition-all duration-300"
+            aria-label="Next model"
+            style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+          >
+            <div
+              className="w-[calc(100%-3px)] h-[calc(100%-3px)] flex items-center justify-center bg-[#FAFAFA]"
+              style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-black/50 group-hover:text-black transition-colors">
+                <path d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </button>
         </div>
 
         {/* Tagline */}
-        <div className="flex justify-center min-h-[48px] mb-10">
+        <div className="flex justify-center min-h-[48px] mb-4">
           <AnimatePresence mode="wait">
             <motion.p
               key={`tagline-${current.slug}`}
@@ -143,20 +180,8 @@ const ModelsSection = () => {
           </AnimatePresence>
         </div>
 
-        {/* Car Carousel with Adjacent Peeks + Circular Arrows */}
-        <div className="relative flex items-center justify-center h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] w-full mb-10">
-          
-          {/* Left Arrow — Circular */}
-          <button
-            onClick={goPrev}
-            className="absolute left-[3%] md:left-[8%] top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full border border-black/20 text-black/40 hover:border-black/50 hover:text-black transition-all duration-300 bg-white/80 backdrop-blur-sm"
-            aria-label="Previous model"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
+        {/* Car Carousel with Adjacent Peeks */}
+        <div className="relative h-[200px] sm:h-[280px] md:h-[360px] lg:h-[420px] w-full mb-4 overflow-hidden">
           <div className="relative w-full h-full max-w-[1200px] mx-auto flex items-center justify-center">
             {models.map((model, index) => {
               let offset = (index - active) % count;
@@ -212,21 +237,10 @@ const ModelsSection = () => {
               );
             })}
           </div>
-
-          {/* Right Arrow — Circular */}
-          <button
-            onClick={goNext}
-            className="absolute right-[3%] md:right-[8%] top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full border border-black/20 text-black/40 hover:border-black/50 hover:text-black transition-all duration-300 bg-white/80 backdrop-blur-sm"
-            aria-label="Next model"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
         </div>
 
         {/* Description + Explore link */}
-        <div className="flex justify-center min-h-[100px] px-8 md:px-16">
+        <div className="flex justify-center min-h-[60px] px-8 md:px-16">
           <AnimatePresence mode="wait">
             <motion.div
               key={`info-${current.slug}`}
@@ -250,7 +264,7 @@ const ModelsSection = () => {
         </div>
 
         {/* Dot indicators */}
-        <div className="flex justify-center gap-2.5 mt-10">
+        <div className="flex justify-center gap-2.5 mt-6">
           {models.map((_, i) => (
             <button
               key={i}

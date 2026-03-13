@@ -18,7 +18,7 @@ interface Props {
 const TABS: { id: TabId; label: string }[] = [
   { id: 'exterior', label: 'EXTERIOR' },
   { id: 'interior', label: 'INTERIOR' },
-  { id: 'equipments', label: 'PERFORMANCE' },
+  { id: 'performance', label: 'PERFORMANCE' },
 ];
 
 const ConfiguratorSidebar = ({ model, activeTab, activeCategory, selections, touched, dispatch }: Props) => {

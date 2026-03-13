@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -9,24 +9,22 @@ import type { ConfiguratorAction } from '@/hooks/useConfiguratorState';
 interface Props {
   model: ConfiguratorModel;
   selectedModelIndex: number;
+  selections: Record<string, string>;
   dispatch: React.Dispatch<ConfiguratorAction>;
 }
 
-// All 8 paint colors as real swatches from configuratorData
-const PAINT_SWATCHES = [
-  { id: 'rosso-corsa', gradient: 'linear-gradient(130.6deg, #BE292A 20.06%, #FF5850 50.47%, #BA0506 83.49%)', label: 'Rosso Corsa' },
-  { id: 'verde-mantis', gradient: 'linear-gradient(130.6deg, #19C419 20.06%, #41EA4D 50.47%, #00B71B 83.49%)', label: 'Verde Mantis' },
-  { id: 'giallo-orion', gradient: 'linear-gradient(130.6deg, #D4AC0D 20.06%, #F9E154 50.47%, #B7950B 83.49%)', label: 'Giallo Orion' },
-  { id: 'bianco-monocerus', gradient: 'linear-gradient(130.6deg, #D5D8DC 20.06%, #FDFEFE 50.47%, #BDC3C7 83.49%)', label: 'Bianco Monocerus' },
-  { id: 'nero-nemesis', gradient: 'linear-gradient(130.6deg, #0A0A0A 20.06%, #3D3D3D 50.47%, #000000 83.49%)', label: 'Nero Nemesis' },
-  { id: 'blu-nethuns', gradient: 'linear-gradient(130.6deg, #1A5276 20.06%, #3498DB 50.47%, #154360 83.49%)', label: 'Blu Nethuns' },
-  { id: 'grigio-telesto', gradient: 'linear-gradient(130.6deg, #616A6B 20.06%, #95A5A6 50.47%, #515A5A 83.49%)', label: 'Grigio Telesto' },
-  { id: 'arancio-borealis', gradient: 'linear-gradient(130.6deg, #CA6F1E 20.06%, #F0932B 50.47%, #A04000 83.49%)', label: 'Arancio Borealis' },
-];
-
-const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => {
-  const [activeColor, setActiveColor] = useState(0);
+const ConfiguratorLanding = ({ model, selectedModelIndex, selections, dispatch }: Props) => {
   const [direction, setDirection] = useState(0);
+
+  // Derive hull-color swatches from the model's exterior tab
+  const hullColorOptions = useMemo(() => {
+    const exteriorTab = model.tabs.find((t) => t.id === 'exterior');
+    const hullCat = exteriorTab?.categories.find((c) => c.id === 'hull-color');
+    return hullCat?.options ?? [];
+  }, [model]);
+
+  const selectedHullColorId = selections['hull-color'] || 'arctic-white';
+  const selectedHullOption = hullColorOptions.find((o) => o.id === selectedHullColorId);
 
   const goToModel = (index: number) => {
     setDirection(index > selectedModelIndex ? 1 : -1);
@@ -43,24 +41,21 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
     goToModel(newIndex);
   };
 
-  // Visual-only color preview on the landing (does not modify config state)
-  const handleColorSelect = useCallback((index: number) => {
-    setActiveColor(index);
-  }, []);
+  const handleColorSelect = useCallback((optionId: string) => {
+    dispatch({ type: 'SELECT_OPTION', categoryId: 'hull-color', optionId });
+  }, [dispatch]);
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') prevModel();
       else if (e.key === 'ArrowRight') nextModel();
-      else if (e.key === 'Enter') dispatch({ type: 'START_CONFIGURATION' });
+      else if (e.key === 'Enter' && !model.comingSoon) dispatch({ type: 'START_CONFIGURATION' });
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedModelIndex]);
-
-  const currentSwatch = PAINT_SWATCHES[activeColor];
+  }, [selectedModelIndex, model.comingSoon]);
 
   return (
     <div className="relative w-full h-full flex flex-col overflow-hidden bg-[#111]">
@@ -77,12 +72,12 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
         >
           <Home className="w-4 h-4" />
           <span className="font-configurator font-black text-[16px] lg:text-[18px] tracking-tight text-white/90 group-hover:text-white transition-colors">
-            DTS
+            eDrive
           </span>
         </Link>
 
         <span className="absolute left-1/2 -translate-x-1/2 font-configurator font-light text-[11px] tracking-[0.4em] text-white/30 uppercase">
-          Drive to Survive
+          JetCar Configurator
         </span>
 
         <span className="font-configurator text-[12px] text-white/30 font-medium">
@@ -152,7 +147,18 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
           </AnimatePresence>
         </div>
 
-        {/* Car Image area — transparent to show 3D behind */}
+        {/* Coming Soon badge */}
+        {model.comingSoon && (
+          <div className="absolute right-6 lg:right-[8%] top-4 lg:top-[6%] z-20">
+            <div className="px-4 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/10">
+              <span className="font-configurator text-[10px] font-bold tracking-[0.3em] uppercase text-white/60">
+                Coming Soon
+              </span>
+            </div>
+          </div>
+        )}
+
+        {/* Car Image area */}
         <div className="flex-1 flex items-center justify-center relative px-4">
           <div className="absolute w-[55%] h-[25%] bottom-[18%] bg-[#050505] blur-[50px] rounded-full pointer-events-none" />
 
@@ -194,7 +200,7 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
           </motion.button>
         </div>
 
-        {/* Bottom: Color Swatches + START CONFIGURATION */}
+        {/* Bottom: Hull Color Swatches + START CONFIGURATION */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -202,52 +208,62 @@ const ConfiguratorLanding = ({ model, selectedModelIndex, dispatch }: Props) => 
           className="relative z-20 flex items-center justify-center gap-4 lg:gap-6 px-4 lg:px-[8%] pb-5 lg:pb-7"
         >
           <div className="flex items-center gap-2 px-3 py-2 bg-white/[0.05] rounded-[10px] border border-white/[0.08] backdrop-blur-sm overflow-x-auto hide-scrollbar">
-            {PAINT_SWATCHES.map((swatch, i) => (
+            {hullColorOptions.map((option) => (
               <motion.button
-                key={swatch.id}
-                onClick={() => handleColorSelect(i)}
+                key={option.id}
+                onClick={() => handleColorSelect(option.id)}
                 className={`w-[40px] h-[30px] lg:w-[50px] lg:h-[38px] rounded-[6px] transition-all duration-200 shrink-0 ${
-                  activeColor === i
+                  selectedHullColorId === option.id
                     ? 'border-2 border-white shadow-lg'
                     : 'border border-white/15 hover:border-white/40'
                 }`}
                 style={{
-                  background: swatch.gradient,
-                  boxShadow: activeColor === i ? '0 4px 15px rgba(0,0,0,0.4)' : '0 4px 4px 2px rgba(0,0,0,0.25)',
+                  background: option.gradient || option.color || '#ddd',
+                  boxShadow: selectedHullColorId === option.id ? '0 4px 15px rgba(0,0,0,0.4)' : '0 4px 4px 2px rgba(0,0,0,0.25)',
                 }}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
-                title={swatch.label}
-                aria-label={`Select ${swatch.label}`}
+                title={option.name}
+                aria-label={`Select ${option.name}`}
               />
             ))}
           </div>
 
           <AnimatePresence mode="wait">
-            <motion.span
-              key={currentSwatch.id}
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -5 }}
-              className="hidden lg:block font-configurator text-[13px] text-white/35 font-light whitespace-nowrap"
-            >
-              {currentSwatch.label}
-            </motion.span>
+            {selectedHullOption && (
+              <motion.span
+                key={selectedHullOption.id}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                className="hidden lg:block font-configurator text-[13px] text-white/35 font-light whitespace-nowrap"
+              >
+                {selectedHullOption.name}
+              </motion.span>
+            )}
           </AnimatePresence>
 
           <div className="flex-1" />
 
           <motion.button
-            onClick={() => dispatch({ type: 'START_CONFIGURATION' })}
-            className="h-[48px] lg:h-[54px] px-6 lg:px-8 bg-[var(--dts-accent)] rounded-[10px] hover:bg-[var(--dts-accent-hover)] transition-all flex items-center gap-3 group shrink-0 shadow-lg"
-            style={{ boxShadow: '0 8px 30px var(--dts-accent-glow)' }}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+            onClick={() => !model.comingSoon && dispatch({ type: 'START_CONFIGURATION' })}
+            className={`h-[48px] lg:h-[54px] px-6 lg:px-8 rounded-[10px] transition-all flex items-center gap-3 group shrink-0 shadow-lg ${
+              model.comingSoon
+                ? 'bg-white/10 cursor-not-allowed'
+                : 'bg-[var(--dts-accent)] hover:bg-[var(--dts-accent-hover)]'
+            }`}
+            style={!model.comingSoon ? { boxShadow: '0 8px 30px var(--dts-accent-glow)' } : undefined}
+            whileHover={!model.comingSoon ? { scale: 1.03 } : undefined}
+            whileTap={!model.comingSoon ? { scale: 0.97 } : undefined}
           >
-            <span className="font-configurator font-bold text-[13px] lg:text-[14px] text-[#111] tracking-wide">
-              START CONFIGURATION
+            <span className={`font-configurator font-bold text-[13px] lg:text-[14px] tracking-wide ${
+              model.comingSoon ? 'text-white/40' : 'text-[#111]'
+            }`}>
+              {model.comingSoon ? 'COMING SOON' : 'START CONFIGURATION'}
             </span>
-            <ChevronRight className="w-4 h-4 text-[#111] group-hover:translate-x-0.5 transition-transform" />
+            {!model.comingSoon && (
+              <ChevronRight className="w-4 h-4 text-[#111] group-hover:translate-x-0.5 transition-transform" />
+            )}
           </motion.button>
         </motion.div>
       </div>

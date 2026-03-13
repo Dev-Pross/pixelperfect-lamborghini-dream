@@ -6,11 +6,14 @@ import { motion } from 'framer-motion';
 import CarModel from './CarModel';
 import { useCarMaterials } from './CarMaterials';
 import type { ConfiguratorModel } from '@/data/configuratorData';
+import type { ConfiguratorAction } from '@/hooks/useConfiguratorState';
 
 interface Props {
   model: ConfiguratorModel;
   sidebarOpen: boolean;
   selections: Record<string, string>;
+  activeAngle: string;
+  dispatch: React.Dispatch<ConfiguratorAction>;
 }
 
 function detectWebGL(): boolean {

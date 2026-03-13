@@ -25,6 +25,7 @@ const ConfiguratorFullPage = () => {
             <ConfiguratorLanding
               model={model}
               selectedModelIndex={state.selectedModelIndex}
+              selections={state.selections}
               dispatch={dispatch}
             />
           </motion.div>
@@ -50,6 +51,8 @@ const ConfiguratorFullPage = () => {
                 model={model}
                 sidebarOpen={state.sidebarOpen}
                 selections={state.selections}
+                activeAngle={state.activeAngle}
+                dispatch={dispatch}
               />
 
               <AnimatePresence>

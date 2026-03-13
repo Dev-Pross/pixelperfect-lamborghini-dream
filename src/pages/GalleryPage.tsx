@@ -4,6 +4,8 @@ import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
 import SmoothScroll from "@/components/SmoothScroll";
 
+import modelRShowroom from "@/assets/config/modelR.png";
+import modelFShowroom from "@/assets/config/modelF.png";
 import modelRImg from "@/assets/slide-model-r.png";
 import modelFImg from "@/assets/slide-model-f.png";
 import heroImg from "@/assets/hero-headlight.jpg";
@@ -18,18 +20,20 @@ import heroC1 from "@/assets/hero-c1.jpg";
 import configBg from "@/assets/configurator-bg.jpg";
 
 const galleryItems = [
-  { id: 1, src: modelRImg, title: "Model R — Side Profile", category: "Models" },
-  { id: 2, src: modelFImg, title: "Model F — Racing Edition", category: "Models" },
-  { id: 3, src: heroImg, title: "Precision Engineering", category: "Design" },
-  { id: 4, src: news1, title: "Sea Expo 2026 Bahrain", category: "Events" },
-  { id: 5, src: news2, title: "International Boat Show Abu Dhabi", category: "Events" },
-  { id: 6, src: news3, title: "Cockpit & Interior Detail", category: "Design" },
-  { id: 7, src: dealerBg, title: "Mountain Performance Test", category: "Testing" },
-  { id: 8, src: carReveal, title: "Model Reveal Event", category: "Events" },
-  { id: 9, src: carInterior, title: "Interior Craftsmanship", category: "Design" },
-  { id: 10, src: heroBg, title: "eDrive Factory Floor", category: "Manufacturing" },
-  { id: 11, src: heroC1, title: "Heritage Collection", category: "Design" },
-  { id: 12, src: configBg, title: "Configurator Studio", category: "Design" },
+  { id: 1, src: modelRShowroom, title: "Model R — Showroom Edition", category: "Models" },
+  { id: 2, src: modelFShowroom, title: "Model F — Showroom Edition", category: "Models" },
+  { id: 3, src: modelRImg, title: "Model R — Side Profile", category: "Models" },
+  { id: 4, src: modelFImg, title: "Model F — Racing Edition", category: "Models" },
+  { id: 5, src: heroImg, title: "Precision Engineering", category: "Design" },
+  { id: 6, src: news1, title: "Sea Expo 2026 Bahrain", category: "Events" },
+  { id: 7, src: news2, title: "International Boat Show Abu Dhabi", category: "Events" },
+  { id: 8, src: news3, title: "Cockpit & Interior Detail", category: "Design" },
+  { id: 9, src: dealerBg, title: "Mountain Performance Test", category: "Testing" },
+  { id: 10, src: carReveal, title: "Model Reveal Event", category: "Events" },
+  { id: 11, src: carInterior, title: "Interior Craftsmanship", category: "Design" },
+  { id: 12, src: heroBg, title: "eDrive Factory Floor", category: "Manufacturing" },
+  { id: 13, src: heroC1, title: "Heritage Collection", category: "Design" },
+  { id: 14, src: configBg, title: "Configurator Studio", category: "Design" },
 ];
 
 const categories = ["All", ...Array.from(new Set(galleryItems.map((i) => i.category)))];

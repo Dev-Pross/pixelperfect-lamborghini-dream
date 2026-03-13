@@ -40,7 +40,7 @@ const ConfiguratorHeader = ({ model, sidebarOpen, onToggleSidebar, onBackToLandi
         >
           <Home className="w-4 h-4 text-[#888] group-hover:text-[#81D8D0] transition-colors" />
           <span className="font-configurator font-black text-[15px] lg:text-[17px] text-[#333] tracking-tight">
-            DTS
+            eDrive
           </span>
         </Link>
 
@@ -60,7 +60,7 @@ const ConfiguratorHeader = ({ model, sidebarOpen, onToggleSidebar, onBackToLandi
           whileTap={{ scale: 0.97 }}
         >
           <span className="font-configurator font-bold text-[11px] lg:text-[12px] text-[#111] tracking-wide">
-            YOUR CAR
+            YOUR JETCAR
           </span>
         </motion.button>
 

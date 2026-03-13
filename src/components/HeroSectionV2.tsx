@@ -44,7 +44,7 @@ const HeroSectionV2 = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white uppercase"
             style={{ 
-              fontFamily: "'Nunito Sans', sans-serif", 
+              fontFamily: "'Playfair Display', serif", 
               fontWeight: 800, 
               fontSize: 'clamp(14px, 1.67vw, 32px)', 
               lineHeight: '1.38',
@@ -61,7 +61,7 @@ const HeroSectionV2 = () => {
             className="flex flex-col text-white"
           >
             <span style={{ 
-              fontFamily: "'Nunito Sans', sans-serif", 
+              fontFamily: "'Playfair Display', serif", 
               fontWeight: 800, 
               fontSize: 'clamp(32px, 3.33vw, 64px)', 
               lineHeight: '1.36'
@@ -69,7 +69,7 @@ const HeroSectionV2 = () => {
               {t('hero.headline1')}
             </span>
             <span style={{ 
-              fontFamily: "'Nunito Sans', sans-serif", 
+              fontFamily: "'Playfair Display', serif", 
               fontWeight: 200, 
               fontSize: 'clamp(32px, 3.33vw, 64px)', 
               lineHeight: '1.36'
@@ -100,7 +100,7 @@ const HeroSectionV2 = () => {
             <span
               className="text-white transition-transform group-hover:translate-x-1"
               style={{ 
-                fontFamily: "'Nunito Sans', sans-serif", 
+                fontFamily: "'Playfair Display', serif", 
                 fontWeight: 300, 
                 fontSize: 'clamp(16px, 1.25vw, 24px)', 
                 lineHeight: '33px'

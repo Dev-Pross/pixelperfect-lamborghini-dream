@@ -22,7 +22,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3 sm:mb-4"
-          style={{ fontFamily: "'Nunito Sans', sans-serif", fontWeight: 800 }}
+          style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800 }}
         >
           NEXT-GENERATION JETCAR MANUFACTURING — UAE
         </motion.p>
@@ -32,10 +32,10 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-col text-foreground"
         >
-          <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.95]" style={{ fontFamily: "'Nunito Sans', sans-serif", fontWeight: 800 }}>
+          <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.95]" style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800 }}>
             Create. Drive.
           </span>
-          <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.95]" style={{ fontFamily: "'Nunito Sans', sans-serif", fontWeight: 200 }}>
+          <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.95]" style={{ fontFamily: "'Playfair Display', serif", fontWeight: 200 }}>
             Dominate the water.
           </span>
         </motion.div>
@@ -49,7 +49,7 @@ const HeroSection = () => {
             to="/#models"
             className="inline-flex items-center gap-3 bg-black/80 rounded-[10px] px-6 py-3 sm:px-8 sm:py-4 border border-white/10 hover:border-white/30 transition-colors group"
           >
-            <span className="text-white text-sm sm:text-base" style={{ fontFamily: "'Nunito Sans', sans-serif", fontWeight: 300 }}>
+            <span className="text-white text-sm sm:text-base" style={{ fontFamily: "'Playfair Display', serif", fontWeight: 300 }}>
               DISCOVER MORE
             </span>
             <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

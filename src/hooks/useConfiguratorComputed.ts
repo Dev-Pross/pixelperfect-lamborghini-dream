@@ -10,6 +10,7 @@ export interface ConfigItem {
   categoryId: string;
   selected: string;
   price: string;
+  numericPrice: number;
   isDefault: boolean;
 }
 
@@ -28,9 +29,8 @@ export function useConfiguratorComputed(state: ConfiguratorState, model: Configu
   const totalPrice = useMemo(() => {
     return Object.entries(state.selections).reduce((sum, [catId, optId]) => {
       const result = getOptionFromTabs(model.tabs, catId, optId);
-      if (!result || !result.opt.price || result.opt.price === 'Included') return sum;
-      const match = result.opt.price.match(/[\d,]+/);
-      return sum + (match ? parseInt(match[0].replace(',', ''), 10) : 0);
+      if (!result) return sum;
+      return sum + (result.opt.numericPrice || 0);
     }, 0);
   }, [state.selections, model.tabs]);
 
@@ -56,6 +56,7 @@ export function useConfiguratorComputed(state: ConfiguratorState, model: Configu
             categoryId: cat.id,
             selected: opt?.name || '',
             price: opt?.price || '',
+            numericPrice: opt?.numericPrice || 0,
             isDefault: !state.touched.includes(cat.id),
           };
         })
@@ -66,8 +67,14 @@ export function useConfiguratorComputed(state: ConfiguratorState, model: Configu
     return model.tabs.flatMap((tab) => tab.categories);
   }, [model.tabs]);
 
+  const formattedPrice = useMemo(() => {
+    if (totalPrice === 0) return 'Base';
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(totalPrice);
+  }, [totalPrice]);
+
   return {
     totalPrice,
+    formattedPrice,
     progressPercent,
     currentCategoryIndex,
     configSummary,
