@@ -9,7 +9,7 @@ const menuLinks = [
   { key: "models", href: "/#models" },
   { key: "investors", href: "/investors" },
   { key: "dealerships", href: "/become-distributor" },
-  { key: "gallery", href: "#" },
+  { key: "gallery", href: "/gallery" },
   { key: "company", href: "/company" },
   { key: "news", href: "/#news" },
 ];

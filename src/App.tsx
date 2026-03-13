@@ -23,6 +23,7 @@ import History from "./pages/company/History.tsx";
 import ConfiguratorPage from "./pages/ConfiguratorPage.tsx";
 import ConfiguratorPageV2 from "./pages/ConfiguratorPageV2.tsx";
 import ConfiguratorFullPage from "./pages/ConfiguratorFullPage.tsx";
+import GalleryPage from "./pages/GalleryPage.tsx";
 import HeroPreviewPage from "./pages/HeroPreviewPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -43,6 +44,14 @@ const ScrollToHashElement = () => {
   return null;
 };
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -50,6 +59,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToHashElement />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/models" element={<ModelsPage />} />
@@ -57,6 +67,7 @@ const App = () => (
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/:slug" element={<NewsDetailPage />} />
           <Route path="/dealerships" element={<DealershipsPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/become-distributor" element={<BecomeDistributor />} />
           <Route path="/investors" element={<Investors />} />
           <Route path="/company" element={<CompanyOverview />} />

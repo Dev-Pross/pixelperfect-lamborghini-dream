@@ -1,4 +1,4 @@
-import { useState } from "react";
+  import { useState } from "react";
 import { Search } from "lucide-react";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
