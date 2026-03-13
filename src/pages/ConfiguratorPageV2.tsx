@@ -63,13 +63,13 @@ const ConfiguratorPageV2 = () => {
   const [activeTab, setActiveTab] = useState(MODELS[0]);
 
   return (
-    <section id="models" className="w-full h-screen min-h-[700px] bg-[#1B1B1B] relative flex flex-col justify-between overflow-hidden">
+    <section id="models" className="w-full h-[calc(100vh-50px)] min-h-[700px] bg-[#1B1B1B] relative flex flex-col justify-between overflow-hidden">
       
       {/* Background ambient glow behind car */}
       <div className="absolute right-0 bottom-1/4 w-[50vw] h-[20vh] bg-[#0A0A0A] blur-[40px] rounded-full mix-blend-screen pointer-events-none z-0 hidden lg:block"></div>
 
       {/* Top Models Tab Navigation */}
-      <div className="w-full pt-[8vh] flex justify-center gap-[4vw] z-20">
+      <div className="w-full pt-[4vh] flex justify-center gap-[4vw] z-20">
         {MODELS.map((model) => (
           <div 
             key={model.id}
